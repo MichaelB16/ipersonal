@@ -10,7 +10,7 @@ class studentServiceHttp {
   }
 
   delete(id: number) {
-    return $http.delete('students', {params: {id}})
+    return $http.delete(`students/${id}`)
   }
 
   getStudent(params = {} as any) {

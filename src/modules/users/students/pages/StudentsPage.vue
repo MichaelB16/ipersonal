@@ -131,8 +131,8 @@ export default defineComponent({
       studentStore.SET_ROW_SELECTED(row)
       studentStore.SET_OPEN_MODAL_STUDENT(true)
     }
-    const remove = (row) => {
-      console.log(row)
+    const remove = async ({ id }) => {
+      await studentStore.REQUEST_DELETE_STUDENT(id)
     }
 
     return {
