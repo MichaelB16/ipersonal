@@ -1,6 +1,9 @@
 # ifit personal (ifit)
 
-ifit personal
+ifit personal em desenvolvimento
+
+![plot](./public/login.png)
+![plot](./public/cadastro%20de%20alunos.png)
 
 ## Install the dependencies
 ```bash
