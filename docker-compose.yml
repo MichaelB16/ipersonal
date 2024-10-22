@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: 'develop-stage'
+    container_name: app_frontend
+    ports:
+      - '9000:9000'
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    command: /bin/sh -c "npm run dev"

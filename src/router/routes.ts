@@ -1,17 +1,16 @@
 import { RouteRecordRaw } from 'vue-router';
+import { middlewareRoute } from 'src/shared/midlleware';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    path: '/login',
+    name: 'login',
+    component: () => import('src/modules/signin/pages/SigninPage.vue'),
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
+  ...middlewareRoute(),
   {
     path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
+    component: () => import('src/modules/error/pages/ErrorNotFound.vue'),
   },
 ];
 

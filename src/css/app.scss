@@ -1,1 +1,31 @@
 // app global css in SCSS form
+body {
+  #container {
+    background: #efefefe0;
+    height: calc(100vh - 75px);
+    border-radius: 10px;
+    margin-right: 15.5px;
+    margin-left: 15.5px;
+    padding: 15px;
+    overflow-y: auto;
+  }
+  .sidebar-left {
+    .q-item {
+      &.q-router-link--exact-active {
+        background-color: $primary !important;
+        color: #fff !important;
+        border-radius: 100px;
+      }
+    }
+  }
+  .app-table {
+    td {
+      height: 43px;
+    }
+  }
+  .app-btn-actions {
+    .q-item__section--avatar {
+      min-width: 25px !important;
+    }
+  }
+}
