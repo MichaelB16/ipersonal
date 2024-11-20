@@ -9,6 +9,10 @@ class studentServiceHttp {
     return $http.post('students', data);
   }
 
+  getSummary() {
+    return $http.get('students/summary');
+  }
+
   delete(id: number) {
     return $http.delete(`students/${id}`)
   }

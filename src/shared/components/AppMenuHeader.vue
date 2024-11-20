@@ -1,7 +1,19 @@
 <template>
-  <q-header class="tw-h-[60px] tw-bg-white tw-mx-4">
+  <q-header class="tw-h-[60px] tw-bg-white">
     <div class="tw-flex tw-h-full tw-justify-between tw-w-full">
       <div class="tw-flex tw-items-center tw-justify-start tw-w-full">
+        <q-item dense>
+          <q-item-section v-if="menu">
+            <div
+              class="tw-flex tw-py-2 tw-w-[280px] tw-h-[60px] tw-justify-start tw-items-center logo-img"
+            >
+              <img class="tw-h-[40px] tw-w-full" src="~/assets/logo.svg" alt="logo" />
+            </div>
+          </q-item-section>
+          <q-item-section class="tw-h-[60px] tw-w-[60px]" avatar v-else>
+            <img src="~/assets/logo-mini.svg" alt="mini logo" />
+          </q-item-section>
+        </q-item>
         <q-btn
           dense
           round
@@ -75,7 +87,7 @@ import {useAuthStore} from 'src/modules/signin/stores/auth.store';
 export default defineComponent({
   name: 'MenuHeader',
   props: {
-    isMini: {
+    menu: {
       type: Boolean,
       default: false,
     },

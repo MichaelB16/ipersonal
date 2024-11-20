@@ -1,8 +1,8 @@
 {
   "name": "ifit",
   "version": "0.0.1",
-  "description": "ifit personal",
-  "productName": "ifit personal",
+  "description": "IPersonal",
+  "productName": "IPersonal",
   "author": "michaelbatistasousa@gmail.com",
   "private": true,
   "scripts": {
@@ -21,6 +21,7 @@
     "moment": "^2.30.1",
     "pinia": "^2.0.11",
     "quasar": "^2.16.0",
+    "v-money3": "^3.24.1",
     "vue": "^3.4.18",
     "vue-router": "^4.0.12",
     "vue3-google-login": "^2.0.33"

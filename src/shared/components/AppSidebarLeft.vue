@@ -1,27 +1,12 @@
 <template>
   <q-drawer
     side="left"
-    :mini="!model"
-    v-model="drawer"
-    :breakpoint="400"
+    show-if-above
+    v-model="model"
+    :breakpoint="500"
     class="sidebar-left tw-min-w-[70px]"
   >
-    <app-menu-item class="tw-mx-5" :list-menu="listMenu">
-      <template v-slot:before>
-        <q-item dense>
-          <q-item-section v-if="!isMini">
-            <div
-              class="tw-flex tw-w-full tw-justify-center tw-items-center logo-img"
-            >
-              <img class="tw-h-[60px]" src="~/assets/logo.svg" alt="logo" />
-            </div>
-          </q-item-section>
-          <q-item-section class="tw-h-[60px] tw-w-[60px]" avatar v-else>
-            <img src="~/assets/logo-mini.svg" alt="mini logo" />
-          </q-item-section>
-        </q-item>
-      </template>
-    </app-menu-item>
+    <app-menu-item class="tw-mx-3" :list-menu="listMenu" />
   </q-drawer>
 </template>
 <script lang="ts">
@@ -49,15 +34,9 @@ export default defineComponent({
       },
     });
 
-    const isMini = computed(() => {
-      return !props.modelValue;
-    });
-
     return {
       model,
-      isMini,
-      drawer: true,
-      listMenu,
+      listMenu
     };
   },
 });

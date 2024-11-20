@@ -1,12 +1,12 @@
 <template>
   <q-card flat class="tw-w-full app-title">
     <div class="row tw-items-center q-pa-md">
-      <div class="col">
+      <div class="col-xs-12 col-sm col-md col-lg">
         <b class="title-page text-grey-8">{{ title }}</b>
       </div>
-      <div class="col">
+      <div class="col-xs-12 col-sm col-md col-lg">
         <div class="row tw-justify-end q-gutter-x-sm tw-items-center">
-          <div class="col-6" v-if="!hideSearch">
+          <div class="col-xs col-sm-6 col-md-6 col-lg-6" v-if="!hideSearch">
             <app-input
               v-model="search"
               rounded
@@ -31,7 +31,7 @@
               </template>
             </app-input>
           </div>
-          <div class="col-auto" v-if="!hideAdd">
+          <div class="col-xs-auto col-sm-auto col-md-auto col-lg-auto" v-if="!hideAdd">
             <q-btn color="primary" icon="mdi-plus" size="xs" @click="$emit('add')" round/>
           </div>
         </div>
@@ -60,7 +60,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const search = ref()
+    const search = ref('')
 
     return {
       search

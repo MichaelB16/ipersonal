@@ -7,8 +7,9 @@ export const setFormStudent = (data: iFormStudent = {} as iFormStudent) => {
     phone: data?.phone || '',
     date_of_birth: data?.date_of_birth || '',
     age: data?.age || '',
-    weight: data?.weight || null,
-    height: data?.height || null,
+    weight: data?.weight || '',
+    price: data?.price || '0',
+    height: data?.height || '',
     id: data?.id || null,
     access: data?.access || 0
   }

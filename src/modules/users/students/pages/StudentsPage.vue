@@ -2,21 +2,21 @@
   <div class="row q-col-gutter-y-md">
     <div class="col-12">
       <div class="row">
-        <div class="col-md-3 col-sm-6 card-info" v-for="(item, index) in card" :key="index">
-          <q-card bordered class="no-shadow tw-h-[100px]">
+        <div class="col-xs-12 col-md-3 col-sm-6" v-for="(item, index) in card" :key="index">
+          <q-card bordered class="no-shadow tw-h-[95px]" :class="{
+          'border-left': index === 0 || index === 2,
+          'border-right': index === 1 || index === 3,
+          'border-middle': index === 1 || index === 2,
+        }">
             <q-card-section class="row w-flex tw-justify-center">
-              <div class="col-4 tw-flex tw-justify-center">
-                <q-btn
-                  round
-                  class="tw-w-[60px] tw-h-[60px]"
-                  unelevated
-                  color="primary"
-                  :icon="item.icon"
-                />
+              <div class="col-3 tw-flex tw-justify-start">
+                <div class="ball tw-text-white tw-flex tw-justify-center tw-items-center tw-rounded-[8px] tw-w-[60px] tw-h-[60px] bg-primary">
+                  <q-icon class="tw-text-[28px]" :name="item.icon" />
+                </div>
               </div>
-              <div class="col-8">
+              <div class="col-9">
                 <div
-                  class="row q-ml-sm tw-flex tw-items-center tw-justify-center"
+                  class="row q-ml-sm bg tw-flex tw-items-center tw-justify-center"
                 >
                   <div class="col-12 tw-text-left text-h4 text-bold">
                     {{ item.total }}
@@ -56,7 +56,7 @@
               <template v-slot:before-edit>
                 <q-item dense clickable v-close-popup>
                   <q-item-section avatar>
-                    <q-icon color="primary" size="18px" name="mdi-food-steak" />
+                    <q-icon color="primary" size="18px" name="mdi-food-steak"/>
                   </q-item-section>
                   <q-item-section class="text-primary">
                     Gerar dieta
@@ -76,11 +76,11 @@
           </div>
         </template>
         <template v-slot:no-data>
-          <app-no-data />
+          <app-no-data/>
         </template>
       </app-table>
     </div>
-    <modal-add-student />
+    <modal-add-student/>
   </div>
 </template>
 <script lang="ts">
@@ -88,6 +88,8 @@ import {computed, defineComponent, onMounted} from 'vue';
 import ModalAddStudent from 'src/modules/users/students/components/ModalAddStudent.vue';
 import {studentColumns} from 'src/modules/users/students/helpers';
 import {useStudentStore} from 'src/modules/users/students/store/student.store';
+import moment from 'moment';
+import { iFormStudent } from '../model/student.model';
 
 export default defineComponent({
   name: 'StudentsPage',
@@ -101,7 +103,12 @@ export default defineComponent({
     });
 
     const data = computed(() => {
-      return studentStore.listStudent;
+      return studentStore.listStudent.map((item:iFormStudent) => {
+        return {
+          ...item,
+          date_of_birth: moment(item.date_of_birth).format('DD/MM/YYYY')
+        }
+      });
     });
 
     const loading = computed(() => {
@@ -112,12 +119,20 @@ export default defineComponent({
       return studentStore.pagination;
     });
 
-    const card = [
-      { label: 'Quantidade de Alunos', icon: 'mdi-account-group', total: 3 },
-      { label: 'Aulas hoje', icon: 'mdi-calendar', total: 1 },
-      { label: 'Renda mensal', icon: 'mdi-finance', total: 'R$ 1.000' },
-      { label: 'lorem ipsum', icon: 'mdi-calendar', total: 10 },
-    ];
+    const card = computed(() => {
+      const summary = studentStore.listSummary as any;
+      return [
+        {
+          label: 'Quantidade de Alunos',
+          icon: 'mdi-account-group',
+          total: summary?.total_students || 0
+        },
+        {label: 'Aulas hoje', icon: 'mdi-calendar', total: 1},
+        {label: 'Renda mensal', icon: 'mdi-finance', total: 'R$ 1.000'},
+        {label: 'lorem ipsum', icon: 'mdi-calendar', total: 10},
+      ];
+    })
+
 
     const openModal = () => {
       studentStore.SET_OPEN_MODAL_STUDENT(true)
@@ -131,7 +146,7 @@ export default defineComponent({
       studentStore.SET_ROW_SELECTED(row)
       studentStore.SET_OPEN_MODAL_STUDENT(true)
     }
-    const remove = async ({ id }) => {
+    const remove = async ({id}) => {
       await studentStore.REQUEST_DELETE_STUDENT(id)
     }
 
@@ -151,19 +166,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.card-info {
-  > .q-card {
-    border-radius: 0;
-  }
-  &:first-child {
-    .q-card {
-      border-radius: 10px 0 0 10px !important;
-    }
-  }
-  &:last-child {
-    .q-card {
-      border-radius: 0 10px 10px 0 !important;
-    }
-  }
+.border-left {
+  @apply sm:tw-rounded-bl-[10px] sm:tw-rounded-tl-[10px];
+}
+.border-right {
+  @apply sm:tw-rounded-br-[10px] sm:tw-rounded-tr-[10px];
+}
+.border-middle {
+ @apply lg:tw-rounded-none;
 }
 </style>

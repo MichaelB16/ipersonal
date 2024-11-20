@@ -9,12 +9,25 @@ body {
     padding: 15px;
     overflow-y: auto;
   }
-  .sidebar-left {
-    .q-item {
-      &.q-router-link--exact-active {
-        background-color: $primary !important;
-        color: #fff !important;
-        border-radius: 100px;
+  .q-drawer--standard {
+    .sidebar-left {
+      .q-item {
+        &.q-router-link--exact-active {
+          background-color: $primary !important;
+          color: #fff !important;
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+  .q-drawer--mini {
+    .sidebar-left {
+      .q-item {
+        &.q-router-link--exact-active {
+          border-radius: 8px;
+          background-color: #0f0a38bd !important;
+          color: #fff !important;
+        }
       }
     }
   }

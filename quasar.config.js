@@ -10,7 +10,6 @@
 
 const { configure } = require('quasar/wrappers');
 const env = require('dotenv');
-console.log(env.config().parsed)
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -62,7 +61,18 @@ module.exports = configure(function (/* ctx */) {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf (viteConf) {},
+      extendViteConf (viteConf) {
+        viteConf.build = {
+          ...viteConf.build,
+          target: 'esnext'
+        }
+        viteConf.optimizeDeps = {
+          ...viteConf.optimizeDeps,
+          esbuildOptions: {
+            target: 'esnext'
+          }
+        }
+      },
       // viteVuePluginOptions: {},
 
       vitePlugins: [

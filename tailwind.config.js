@@ -6,6 +6,14 @@ module.exports = {
     extend: {
       colors: {
         primary: '#0f0a38'
+      },
+      screens: {
+        'xs': '0px',
+        'sm': '576px',
+        'md': '768px',
+        'lg': '992px',
+        'xl': '1200px',
+        '2xl': '1400px',
       }
     },
   },

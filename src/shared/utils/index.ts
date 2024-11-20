@@ -1,4 +1,4 @@
-import {iPagination} from '../model/paginate.type';
+import { iPagination } from '../model/paginate.type';
 import * as crypto from 'crypto-js';
 
 export const configPagination = (paginate = {} as any): iPagination => {
@@ -11,21 +11,38 @@ export const configPagination = (paginate = {} as any): iPagination => {
   };
 };
 
-export const configModalTitle = (id: boolean, title: { add: string, edit: string }) => {
-  const icon = id ? 'mdi-edit' : 'mdi-plus-circle'
-  const text = id ? title.edit : title.add
+export const configModalTitle = (
+  id: boolean,
+  title: { add: string; edit: string }
+) => {
+  const icon = id ? 'mdi-lead-pencil' : 'mdi-plus-circle';
+  const text = id ? title.edit : title.add;
   return {
     text,
-    icon
-  }
-}
+    icon,
+  };
+};
 
 export const formRules = (otherRules = []) => {
   return [(value: any) => !!value || 'campo obrigatório!', ...otherRules];
 };
 
+export const parseLocalValue = (value: string) => {
+  if (typeof value !== 'string') return '';
+  value = value.trim();
+  const converted = value.replace(/\./g, '').replace(/,/, '.').replace('R$','');
+  const result = parseFloat(converted).toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  return result
+};
+
 export const encrypt = (payload: any) => {
-  return crypto.AES.encrypt(JSON.stringify(payload), process.env.HASH_STORAGE).toString();
+  return crypto.AES.encrypt(
+    JSON.stringify(payload),
+    process.env.HASH_STORAGE
+  ).toString();
 };
 
 export const decrypt = (payload: string | null) => {

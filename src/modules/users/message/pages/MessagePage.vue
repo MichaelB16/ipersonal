@@ -61,7 +61,6 @@ export default defineComponent({
     });
 
     const handleSubmit = () => {
-      console.log(formRef);
       formRef.value.validate().then((success: boolean) => {
         if (success) {
           console.log(state.form);

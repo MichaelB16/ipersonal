@@ -8,6 +8,7 @@
     :disable="loading"
     :loading="loading"
     class="tw-w-full"
+    unelevated
     @click="loginWithGoogle"
     label="Login com o google"
   />
@@ -35,7 +36,6 @@ export default defineComponent({
             client_id: token,
             scope: 'email profile openid',
             callback: async (response) => {
-              console.log(response)
               if (response?.code) {
                 await requestInfoUserGoogle(response.code)
               }
