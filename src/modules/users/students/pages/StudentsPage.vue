@@ -2,15 +2,25 @@
   <div class="row q-col-gutter-y-md">
     <div class="col-12">
       <div class="row">
-        <div class="col-xs-12 col-md-3 col-sm-6" v-for="(item, index) in card" :key="index">
-          <q-card bordered class="no-shadow tw-h-[95px]" :class="{
-          'border-left': index === 0 || index === 2,
-          'border-right': index === 1 || index === 3,
-          'border-middle': index === 1 || index === 2,
-        }">
+        <div
+          class="col-xs-12 col-md-3 col-sm-6"
+          v-for="(item, index) in card"
+          :key="index"
+        >
+          <q-card
+            bordered
+            class="no-shadow tw-h-[95px]"
+            :class="{
+              'border-left': index === 0 || index === 2,
+              'border-right': index === 1 || index === 3,
+              'border-middle': index === 1 || index === 2,
+            }"
+          >
             <q-card-section class="row w-flex tw-justify-center">
               <div class="col-3 tw-flex tw-justify-start">
-                <div class="ball tw-text-white tw-flex tw-justify-center tw-items-center tw-rounded-[8px] tw-w-[60px] tw-h-[60px] bg-primary">
+                <div
+                  class="ball tw-text-white tw-flex tw-justify-center tw-items-center tw-rounded-[8px] tw-w-[60px] tw-h-[60px] bg-primary"
+                >
                   <q-icon class="tw-text-[28px]" :name="item.icon" />
                 </div>
               </div>
@@ -47,16 +57,13 @@
             title="Lista de alunos"
           />
         </template>
-        <template v-slot:body-cell-actions="{row}">
+        <template v-slot:body-cell-actions="{ row }">
           <q-td class="text-center tw-w-5 q-gutter-x-xs">
-            <app-btn-actions
-              @edit="edit(row)"
-              @remove="remove(row)"
-            >
+            <app-btn-actions @edit="edit(row)" @remove="remove(row)">
               <template v-slot:before-edit>
                 <q-item dense clickable v-close-popup>
                   <q-item-section avatar>
-                    <q-icon color="primary" size="18px" name="mdi-food-steak"/>
+                    <q-icon color="primary" size="18px" name="mdi-food-steak" />
                   </q-item-section>
                   <q-item-section class="text-primary">
                     Gerar dieta
@@ -76,26 +83,27 @@
           </div>
         </template>
         <template v-slot:no-data>
-          <app-no-data/>
+          <app-no-data />
         </template>
       </app-table>
     </div>
-    <modal-add-student/>
+    <modal-add-student />
   </div>
 </template>
 <script lang="ts">
-import {computed, defineComponent, onMounted} from 'vue';
+import { computed, defineComponent, onMounted } from 'vue';
 import ModalAddStudent from 'src/modules/users/students/components/ModalAddStudent.vue';
-import {studentColumns} from 'src/modules/users/students/helpers';
-import {useStudentStore} from 'src/modules/users/students/store/student.store';
+import { studentColumns } from 'src/modules/users/students/helpers';
+import { useStudentStore } from 'src/modules/users/students/store/student.store';
 import moment from 'moment';
 import { iFormStudent } from '../model/student.model';
+import { moneyFormatBr } from 'src/shared/utils';
 
 export default defineComponent({
   name: 'StudentsPage',
-  components: {ModalAddStudent},
+  components: { ModalAddStudent },
   setup() {
-    const studentStore = useStudentStore()
+    const studentStore = useStudentStore();
     const columns = studentColumns;
 
     onMounted(async () => {
@@ -103,11 +111,12 @@ export default defineComponent({
     });
 
     const data = computed(() => {
-      return studentStore.listStudent.map((item:iFormStudent) => {
+      return studentStore.listStudent.map((item: iFormStudent) => {
         return {
           ...item,
-          date_of_birth: moment(item.date_of_birth).format('DD/MM/YYYY')
-        }
+          access: parseInt(item.access.toString()),
+          date_of_birth: moment(item.date_of_birth).format('DD/MM/YYYY'),
+        };
       });
     });
 
@@ -123,32 +132,35 @@ export default defineComponent({
       const summary = studentStore.listSummary as any;
       return [
         {
-          label: 'Quantidade de Alunos',
+          label: 'Total de Alunos',
           icon: 'mdi-account-group',
-          total: summary?.total_students || 0
+          total: summary?.total_students || 0,
         },
-        {label: 'Aulas hoje', icon: 'mdi-calendar', total: 1},
-        {label: 'Renda mensal', icon: 'mdi-finance', total: 'R$ 1.000'},
-        {label: 'lorem ipsum', icon: 'mdi-calendar', total: 10},
+        { label: 'Aulas hoje', icon: 'mdi-calendar', total: 0 },
+        {
+          label: 'Renda mensal',
+          icon: 'mdi-finance',
+          total: moneyFormatBr(parseFloat(summary.total_price || 0)),
+        },
+        { label: 'lorem ipsum', icon: 'mdi-calendar', total: 10 },
       ];
-    })
-
+    });
 
     const openModal = () => {
-      studentStore.SET_OPEN_MODAL_STUDENT(true)
-    }
+      studentStore.SET_OPEN_MODAL_STUDENT(true);
+    };
 
     const request = async (params = {}) => {
-      await studentStore.REQUEST_GET_STUDENT(params)
-    }
+      await studentStore.REQUEST_GET_STUDENT(params);
+    };
 
     const edit = (row) => {
-      studentStore.SET_ROW_SELECTED(row)
-      studentStore.SET_OPEN_MODAL_STUDENT(true)
-    }
-    const remove = async ({id}) => {
-      await studentStore.REQUEST_DELETE_STUDENT(id)
-    }
+      studentStore.SET_ROW_SELECTED(row);
+      studentStore.SET_OPEN_MODAL_STUDENT(true);
+    };
+    const remove = async ({ id }) => {
+      await studentStore.REQUEST_DELETE_STUDENT(id);
+    };
 
     return {
       data,
@@ -173,6 +185,6 @@ export default defineComponent({
   @apply sm:tw-rounded-br-[10px] sm:tw-rounded-tr-[10px];
 }
 .border-middle {
- @apply lg:tw-rounded-none;
+  @apply lg:tw-rounded-none;
 }
 </style>

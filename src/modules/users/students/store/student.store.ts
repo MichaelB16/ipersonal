@@ -20,9 +20,12 @@ export const useStudentStore = defineStore('student', {
     SET_ROW_SELECTED(data = {}) {
       this.rowSelected = data;
     },
-    async REQUEST_GET_STUDENT(params = {}) {
+    async REQUEST_GET_STUDENT(params = {} as any) {
       this.loadingTable = true
-      await studentService.getStudent(params).then(async ({data}) => {
+      await studentService.getStudent({
+        ...params,
+        per_page:params?.rowsPerPage || this.pagination.rowsPerPage
+      }).then(async ({data}) => {
         this.listStudent = data.data;
         this.pagination = configPagination(data)
         await this.REQUEST_GET_SUMMARY()

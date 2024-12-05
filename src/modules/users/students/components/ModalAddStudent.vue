@@ -169,7 +169,6 @@ export default defineComponent({
     };
 
     const dateFormat = (date: string) => {
-      console.log(date)
       return moment(date, 'DD/MM/YY').format('YYYY-MM-DD');
     };
 

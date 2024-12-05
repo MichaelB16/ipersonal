@@ -1,4 +1,5 @@
 import {iFormStudent} from 'src/modules/users/students/model/student.model';
+import { moneyFormatBr } from 'src/shared/utils';
 
 export const setFormStudent = (data: iFormStudent = {} as iFormStudent) => {
   return {
@@ -29,6 +30,14 @@ export const studentColumns = [
     field: 'email',
     sortable: true,
     align: 'left',
+  },
+  {
+    name: 'price',
+    label: 'Preço',
+    field: 'price',
+    align: 'center',
+    format: val => moneyFormatBr(val),
+    sortable: true,
   },
   {
     name: 'phone',

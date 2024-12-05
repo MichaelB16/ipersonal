@@ -33,6 +33,7 @@ export default defineComponent({
         page: paginate?.page || 1,
         rowsPerPage: paginate?.rowsPerPage || 15,
         total: 0,
+        total_data: 0,
       };
     };
 

@@ -7,6 +7,7 @@ export const configPagination = (paginate = {} as any): iPagination => {
     descending: paginate?.descending || false,
     page: paginate?.current_page || 1,
     rowsPerPage: paginate?.per_page || 15,
+    total_data: paginate?.total,
     total: paginate?.last_page,
   };
 };
@@ -37,6 +38,14 @@ export const parseLocalValue = (value: string) => {
   });
   return result
 };
+
+export const moneyFormatBr = (value:number) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 0
+  }).format(value)
+}
 
 export const encrypt = (payload: any) => {
   return crypto.AES.encrypt(

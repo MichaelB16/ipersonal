@@ -24,7 +24,7 @@
           @click="$emit('toggle')"
         />
       </div>
-      <div class="tw-flex tw-items-center tw-justify-end">
+      <div class="tw-flex tw-items-center tw-mx-4 tw-justify-end">
         <q-btn-dropdown :menu-offset="[0,10]" size="sm" color="primary" unelevated no-caps flat>
           <template v-slot:label>
             <div class="row q-gutter-x-sm tw-items-center no-wrap">
