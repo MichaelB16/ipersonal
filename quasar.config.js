@@ -10,7 +10,7 @@
 
 const { configure } = require('quasar/wrappers');
 const env = require('dotenv');
-console.log('ENV:', env)
+console.log('ENV:', env.config().parsed)
 
 module.exports = configure(function (/* ctx */) {
   return {
