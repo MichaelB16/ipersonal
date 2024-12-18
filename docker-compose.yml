@@ -6,7 +6,7 @@ services:
       target: 'develop-stage'
     container_name: app_frontend
     ports:
-      - '9000:9000'
+      - '3000:3000'
     volumes:
       - '.:/app'
       - '/app/node_modules'
