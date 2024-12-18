@@ -4,13 +4,16 @@
       <div class="tw-flex tw-items-center tw-justify-start tw-w-full">
         <q-item dense>
           <q-item-section v-if="menu">
-            <div
-              class="tw-flex tw-py-2 tw-w-[280px] tw-h-[60px] tw-justify-start tw-items-center logo-img"
-            >
+            <div class="tw-flex logo-img">
               <img
-                class="tw-h-[40px] tw-w-full"
+                class="tw-h-[40px] tw-w-full xs:tw-hidden sm:tw-block md:tw-block lg:tw-block"
                 src="~/assets/logo.svg"
                 alt="logo"
+              />
+              <img
+                src="~/assets/logo-mini.svg"
+                class="xs:tw-block xs:tw-h-10 sm:tw-h-auto md:tw-h-auto sm:tw-hidden md:tw-hidden lg:tw-hidden"
+                alt="mini logo"
               />
             </div>
           </q-item-section>
@@ -139,3 +142,13 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.logo-img {
+  @apply tw-py-2 tw-justify-start tw-items-center;
+  @apply xs:tw-w-[42px] xs:tw-h-[40px];
+  @apply sm:tw-w-[280px] sm:tw-h-[60px];
+  @apply md:tw-w-[280px] md:tw-h-[60px];
+  @apply lg:tw-w-[280px] lg:tw-h-[60px];
+}
+</style>
