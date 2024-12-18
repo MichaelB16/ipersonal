@@ -7,7 +7,11 @@
             <div
               class="tw-flex tw-py-2 tw-w-[280px] tw-h-[60px] tw-justify-start tw-items-center logo-img"
             >
-              <img class="tw-h-[40px] tw-w-full" src="~/assets/logo.svg" alt="logo" />
+              <img
+                class="tw-h-[40px] tw-w-full"
+                src="~/assets/logo.svg"
+                alt="logo"
+              />
             </div>
           </q-item-section>
           <q-item-section class="tw-h-[60px] tw-w-[60px]" avatar v-else>
@@ -25,10 +29,17 @@
         />
       </div>
       <div class="tw-flex tw-items-center tw-mx-4 tw-justify-end">
-        <q-btn-dropdown :menu-offset="[0,10]" size="sm" color="primary" unelevated no-caps flat>
+        <q-btn-dropdown
+          :menu-offset="[0, 10]"
+          size="sm"
+          color="primary"
+          unelevated
+          no-caps
+          flat
+        >
           <template v-slot:label>
             <div class="row q-gutter-x-sm tw-items-center no-wrap">
-              <app-user-avatar/>
+              <app-user-avatar />
               <div
                 class="text-left tw-mb-0 tw-w-[80px] q-mt-sm tw-flex text-white tw-h-full column"
               >
@@ -46,12 +57,20 @@
           <q-list class="tw-w-[450px]">
             <div class="row tw-w-full bg-grey-2 q-pa-sm">
               <div class="col-5">
-                <div class="tw-justify-center tw-h-full tw-items-center q-pa-md column">
-                  <app-user-avatar class="q-mb-sm" size="60px"/>
-                  <b class="tw-max-w-[150px] tw-leading-5 ellipsis" :title="profile.name">
+                <div
+                  class="tw-justify-center tw-h-full tw-items-center q-pa-md column"
+                >
+                  <app-user-avatar class="q-mb-sm" size="60px" />
+                  <b
+                    class="tw-max-w-[150px] tw-leading-5 ellipsis"
+                    :title="profile.name"
+                  >
                     {{ profile.name }}
                   </b>
-                  <div :title="profile.email" class="tw-leading-5 tw-max-w-[150px] tw-text-[12px] tw-text-primary ellipsis">
+                  <div
+                    :title="profile.email"
+                    class="tw-leading-5 tw-max-w-[150px] tw-text-[12px] tw-text-primary ellipsis"
+                  >
                     {{ profile.email }}
                   </div>
                   <div class="tw-w-full tw-flex tw-justify-center tw-mt-2">
@@ -61,6 +80,8 @@
                       no-caps
                       size="sm"
                       outline
+                      :loading="loading"
+                      :disable="loading"
                       color="primary"
                       @click="logout"
                       unelevated
@@ -80,9 +101,9 @@
   </q-header>
 </template>
 <script>
-import {computed, defineComponent} from 'vue';
-import {useCacheStorage} from '../composable/storage';
-import {useAuthStore} from 'src/modules/signin/stores/auth.store';
+import { computed, defineComponent, toRefs, reactive } from 'vue';
+import { useCacheStorage } from '../composable/storage';
+import { useAuthStore } from 'src/modules/signin/stores/auth.store';
 
 export default defineComponent({
   name: 'MenuHeader',
@@ -93,6 +114,10 @@ export default defineComponent({
     },
   },
   setup() {
+    const state = reactive({
+      loading: false,
+    });
+
     const authStore = useAuthStore();
     const storage = useCacheStorage();
 
@@ -101,12 +126,15 @@ export default defineComponent({
     });
 
     const logout = async () => {
-      await authStore.REQUEST_LOGOUT()
-    }
+      state.loading = true;
+      await authStore.REQUEST_LOGOUT();
+      state.loading = false;
+    };
 
     return {
       profile,
-      logout
+      ...toRefs(state),
+      logout,
     };
   },
 });

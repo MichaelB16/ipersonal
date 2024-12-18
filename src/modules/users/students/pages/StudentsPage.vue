@@ -142,7 +142,7 @@ export default defineComponent({
           icon: 'mdi-finance',
           total: moneyFormatBr(parseFloat(summary.total_price || 0)),
         },
-        { label: 'lorem ipsum', icon: 'mdi-calendar', total: 10 },
+        { label: 'lorem ipsum', icon: 'mdi-calendar', total: 0 },
       ];
     });
 

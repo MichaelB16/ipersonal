@@ -57,7 +57,7 @@ module.exports = configure(function (/* ctx */) {
       analyze: true,
       // rawDefine: {}
       // ignorePublicFolder: true,
-      // minify: false,
+      minify: true,
       // polyfillModulePreload: true,
       // distDir
 
@@ -201,7 +201,7 @@ module.exports = configure(function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'ifit',
+        appId: 'IPersonal',
       },
     },
 

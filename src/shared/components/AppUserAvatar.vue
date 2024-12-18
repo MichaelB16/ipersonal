@@ -1,7 +1,7 @@
 <template>
   <q-avatar v-bind="$attrs" :size="size">
     <template v-if="imageUrl">
-      <img alt="img" :src="imageUrl"/>
+      <q-img alt="img" :src="imageUrl"/>
     </template>
     <template v-else>
       {{ name }}
@@ -29,7 +29,10 @@ export default defineComponent({
     });
 
     const imageUrl = computed(() => {
-      return user?.picture || ''
+      if (user?.picture) {
+        return user?.picture.trim()
+      }
+      return ''
     });
 
     return {
