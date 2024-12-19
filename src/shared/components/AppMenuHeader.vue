@@ -5,20 +5,20 @@
         <q-item dense>
           <q-item-section v-if="menu">
             <div class="tw-flex logo-img">
-              <img
+              <q-img
                 class="tw-h-[40px] tw-w-full xs:tw-hidden sm:tw-block md:tw-block lg:tw-block"
                 src="~/assets/logo.svg"
                 alt="logo"
               />
-              <img
+              <q-img
                 src="~/assets/logo-mini.svg"
-                class="xs:tw-block xs:tw-h-10 sm:tw-h-auto md:tw-h-auto sm:tw-hidden md:tw-hidden lg:tw-hidden"
+                class="xs:tw-block sm:tw-h-auto md:tw-h-auto sm:tw-hidden md:tw-hidden lg:tw-hidden"
                 alt="mini logo"
               />
             </div>
           </q-item-section>
           <q-item-section class="tw-h-[60px] tw-w-[60px]" avatar v-else>
-            <img src="~/assets/logo-mini.svg" alt="mini logo" />
+            <q-img lazy src="~/assets/logo-mini.svg" alt="mini logo" />
           </q-item-section>
         </q-item>
         <q-btn
