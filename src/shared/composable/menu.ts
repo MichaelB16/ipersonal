@@ -8,12 +8,12 @@ export const useMenu = (): iMenu[] => {
 const personal : iMenu[] = [
   {
     label: 'Dashboard',
-    icon: 'mdi-finance',
+    icon: 'mdi-speedometer',
     to: '/personal/dashboard',
   },
   {
     label: 'Alunos',
-    icon: 'mdi-account-outline',
+    icon: 'mdi-account-group-outline',
     to: '/personal/students',
   },
   {

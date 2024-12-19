@@ -7,7 +7,6 @@ export const useStudentStore = defineStore('student', {
   state: () => ({
     openModalStudent: false,
     listStudent: [],
-    listSummary: {},
     loadingTable: false,
     pagination: configPagination(),
     loading: false,
@@ -28,16 +27,11 @@ export const useStudentStore = defineStore('student', {
       }).then(async ({data}) => {
         this.listStudent = data.data;
         this.pagination = configPagination(data)
-        await this.REQUEST_GET_SUMMARY()
       }).finally(() => {
         this.loadingTable = false
       })
     },
-    async REQUEST_GET_SUMMARY(){
-      await studentService.getSummary().then(({ data }) => {
-        this.listSummary = data
-      })
-    },
+
     async REQUEST_ADD_OR_UPDATE_STUDENT(data: iFormStudent) {
       this.loading = true;
       return await studentService.createOrUpdate(data).then(async () => {

@@ -3,7 +3,7 @@
     <app-menu-header :menu="!isMini" @toggle="toggleSidebar" />
     <app-sidebar-left :mini="isMini" v-model="open" />
     <q-page-container class="tw-min-h-[100dvh]">
-      <div id="container" class="tw-px-4">
+      <div id="container">
         <router-view />
       </div>
     </q-page-container>

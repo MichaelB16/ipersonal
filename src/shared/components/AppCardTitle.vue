@@ -2,7 +2,7 @@
   <q-card flat class="tw-w-full app-title">
     <div class="row tw-items-center q-pa-md">
       <div class="col-xs-12 col-sm col-md col-lg">
-        <b class="title-page text-grey-8">{{ title }}</b>
+        <b class="title-page tw-text-primary">{{ title }}</b>
       </div>
       <div class="col-xs-12 col-sm col-md col-lg">
         <div class="row tw-justify-end q-gutter-x-sm tw-items-center">
@@ -71,7 +71,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .app-title {
   border-radius: 0;
-
+  border-bottom: 1px solid #dbdbdb;
   .title-page {
     font-size: 18px;
     font-weight: 700;
