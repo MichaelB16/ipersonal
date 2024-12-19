@@ -13,9 +13,7 @@ body {
     .sidebar-left {
       .q-item {
         &.q-router-link--exact-active {
-          background-color: $primary !important;
-          color: #fff !important;
-          border-radius: 6px;
+          border-left: 4px solid $primary;
         }
       }
     }
