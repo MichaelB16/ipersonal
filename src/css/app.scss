@@ -23,7 +23,7 @@ body {
       .q-item {
         &.q-router-link--exact-active {
           border-radius: 8px;
-          background-color: #0f0a38bd !important;
+          background-color: $primary !important;
           color: #fff !important;
         }
       }
