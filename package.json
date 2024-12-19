@@ -1,8 +1,8 @@
 {
   "name": "ifit",
   "version": "0.0.1",
-  "description": "IPersonal",
-  "productName": "IPersonal",
+  "description": "ifit personal",
+  "productName": "ifit personal",
   "author": "michaelbatistasousa@gmail.com",
   "private": true,
   "scripts": {
@@ -13,35 +13,26 @@
     "build": "quasar build"
   },
   "dependencies": {
-    "@quasar/extras": "^1.16.4",
-    "@vueuse/core": "^12.0.0",
     "axios": "^1.2.1",
-    "crypto-js": "^4.2.0",
-    "dotenv": "^16.4.5",
-    "moment": "^2.30.1",
     "pinia": "^2.0.11",
+    "@quasar/extras": "^1.16.4",
     "quasar": "^2.16.0",
-    "v-money3": "^3.24.1",
     "vue": "^3.4.18",
-    "vue-router": "^4.0.12",
-    "vue3-google-login": "^2.0.33"
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
-    "@quasar/app-vite": "^2.0.2",
-    "@types/node": "^22.10.2",
-    "@typescript-eslint/eslint-plugin": "^8.18.1",
-    "@typescript-eslint/parser": "^8.18.1",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.17.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-vue": "^9.0.0",
-    "postcss": "^8.4.47",
-    "prettier": "^3.4.2",
-    "tailwindcss": "^3.4.13",
-    "typescript": "^5.7.2",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
     "vite-plugin-checker": "^0.8.0",
-    "vite-tsconfig-paths": "^5.0.1",
-    "vue-tsc": "^2.0.29"
+    "vue-tsc": "^2.0.29",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.0.0",
+    "eslint-config-prettier": "^8.1.0",
+    "prettier": "^2.5.1",
+    "@types/node": "^20.14.8",
+    "@quasar/app-vite": "^1.9.0",
+    "autoprefixer": "^10.4.2",
+    "typescript": "~5.5.4"
   },
   "engines": {
     "node": "^20 || ^18 || ^16",
