@@ -3,7 +3,6 @@ export interface iFormStudent {
   email: string;
   phone: string;
   date_of_birth: string | null;
-  age: string;
   weight: number | string;
   price: string;
   height: number | string;

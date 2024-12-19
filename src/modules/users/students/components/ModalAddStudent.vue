@@ -37,16 +37,7 @@
             label="Data de nascimento"
           />
         </div>
-        <div class="col-4">
-          <app-input
-            :rules="formRules()"
-            v-model="form.age"
-            mask="##"
-            fill-mask
-            label="Idade"
-          />
-        </div>
-        <div class="col-4">
+        <div class="col-6">
           <app-input
             :rules="formRules()"
             v-model="form.height"
@@ -55,7 +46,7 @@
             label="Altura"
           />
         </div>
-        <div class="col-4">
+        <div class="col-6">
           <app-input
             :rules="formRules()"
             v-model="form.weight"
