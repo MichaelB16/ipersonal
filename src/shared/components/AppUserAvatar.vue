@@ -1,5 +1,5 @@
 <template>
-  <q-avatar v-bind="$attrs" :size="size">
+  <q-avatar v-bind="$attrs" color="primary" class="tw-text-white" :size="size">
     <template v-if="imageUrl && imgSuccess">
       <q-img alt="img" @error="handleError" :src="imageUrl" />
     </template>
@@ -28,7 +28,7 @@ export default defineComponent({
     const user = storage.getItemStorage('user-storage');
 
     const name = computed(() => {
-      return user.name.slice(0, 1);
+      return user.name.slice(0, 1).toUpperCase();
     });
 
     const imageUrl = computed(() => {
