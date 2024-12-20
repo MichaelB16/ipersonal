@@ -17,11 +17,15 @@ import AppNoData from 'src/shared/components/AppNoData.vue';
 import AppBtnActions from 'src/shared/components/AppBtnActions.vue';
 import AppTitlePage from 'src/shared/components/AppTitlePage.vue';
 import AppInputMoney from 'src/shared/components/AppInputMoney.vue';
+import AppInformationToggle from 'src/shared/components/AppInformationToggle.vue';
+import AppLoadingScreen from 'src/shared/components/AppLoadingScreen.vue';
 import { Money3Directive } from 'v-money3';
 
 export default boot(({app}) => {
   app.directive('money', Money3Directive);
+  app.component('AppLoadingScreen', AppLoadingScreen);
   app.component('AppTitlePage', AppTitlePage);
+  app.component('AppInformationToggle', AppInformationToggle);
   app.component('AppMenuHeader', AppMenuHeader);
   app.component('AppInputMoney', AppInputMoney);
   app.component('AppSidebarLeft', AppSidebarLeft);

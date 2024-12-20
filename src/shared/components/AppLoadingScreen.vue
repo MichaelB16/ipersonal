@@ -1,0 +1,48 @@
+<template>
+  <div class="absolute-full tw-bg-[#e3e3e3] tw-z-[99999]" v-if="loading">
+    <div
+      class="tw-flex tw-animate-pulse tw-flex-col tw-w-full tw-justify-center tw-items-center tw-h-full"
+    >
+      <img src="~/assets/loading.svg" alt="loading" />
+      <span class="tw-mt-[2px] tw-animate-pulse tw-text-[15px]"
+        >Carregando ...</span
+      >
+    </div>
+  </div>
+</template>
+<script lang="ts">
+import { defineComponent, reactive, toRefs } from 'vue';
+import { useRouter } from 'vue-router';
+
+export default defineComponent({
+  name: 'AppLoadingScreen',
+  setup() {
+    const router = useRouter();
+    const state = reactive({
+      loading: true,
+    });
+
+    router.beforeEach((to, from, next) => {
+      state.loading = true;
+      next();
+    });
+
+    router.afterEach(() => {
+      statePageLoading();
+    });
+
+    const statePageLoading = () => {
+      let interval = setInterval(function () {
+        if (document.readyState === 'complete') {
+          clearInterval(interval);
+          state.loading = false;
+        }
+      }, 1200);
+    };
+
+    return {
+      ...toRefs(state),
+    };
+  },
+});
+</script>

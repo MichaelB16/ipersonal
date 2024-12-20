@@ -10,7 +10,7 @@
       :max-pages="maxPages"
       :max="pagination.total"
     />
-    <div class="tw-flex tw-absolute tw-right-2 tw-items-center tw-gap-2">
+    <div class="tw-absolute tw-right-2 xs:tw-hidden sm:tw-flex tw-items-center tw-gap-2">
       linha por página:
       <q-select
         dense
