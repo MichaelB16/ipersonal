@@ -1,22 +1,25 @@
 <template>
-  <div class="absolute-full tw-bg-[#e3e3e3] tw-z-[99999]" v-if="loading">
+  <div class="absolute-full tw-bg-[#e3e3e3] tw-z-[99999]" v-if="loading && user">
     <div
       class="tw-flex tw-animate-pulse tw-flex-col tw-w-full tw-justify-center tw-items-center tw-h-full"
     >
       <img src="~/assets/loading.svg" alt="loading" />
-      <span class="tw-mt-[2px] tw-animate-pulse tw-text-[15px]"
-        >Carregando ...</span
-      >
+      <span class="tw-mt-[2px] tw-animate-pulse tw-text-[15px]">
+        Carregando ...
+      </span>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
 import { useRouter } from 'vue-router';
+import { useCacheStorage } from '../composable/storage';
 
 export default defineComponent({
   name: 'AppLoadingScreen',
   setup() {
+    const storage = useCacheStorage();
+    const user = storage.getItemStorage('user-storage');
     const router = useRouter();
     const state = reactive({
       loading: true,
@@ -41,6 +44,7 @@ export default defineComponent({
     };
 
     return {
+      user,
       ...toRefs(state),
     };
   },
