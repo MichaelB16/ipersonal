@@ -46,6 +46,13 @@ export const studentColumns = [
     sortable: true,
   },
   {
+    name: 'access',
+    label: 'Aréa do aluno',
+    field: 'access',
+    align: 'center',
+    sortable: true,
+  },
+  {
     name: 'actions',
     label: 'Ações',
     field: 'actions',

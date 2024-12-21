@@ -31,34 +31,36 @@ export const formRules = (otherRules = []) => {
 export const parseLocalValue = (value: string) => {
   if (typeof value !== 'string') return '';
   value = value.trim();
-  const converted = value.replace(/\./g, '').replace(/,/, '.').replace('R$','');
+  const converted = value
+    .replace(/\./g, '')
+    .replace(/,/, '.')
+    .replace('R$', '');
   const result = parseFloat(converted).toLocaleString('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-  return result
+  return result;
 };
 
-export const moneyFormatBr = (value:number) => {
+export const moneyFormatBr = (value: number) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
-    minimumFractionDigits: 0
-  }).format(value)
-}
+    minimumFractionDigits: 0,
+  }).format(value);
+};
 
 export const encrypt = (payload: any) => {
-  return crypto.AES.encrypt(
-    JSON.stringify(payload),
-    process.env.HASH_STORAGE
-  ).toString();
+  const data = JSON.stringify(payload);
+  const hash = process.env.HASH_STORAGE;
+  return crypto.AES.encrypt(data, hash).toString();
 };
 
 export const decrypt = (payload: string | null) => {
   if (payload) {
-    const data = crypto.AES.decrypt(payload, process.env.HASH_STORAGE).toString(
-      crypto.enc.Utf8
-    );
+    const hash = process.env.HASH_STORAGE;
+    const code = crypto.enc.Utf8;
+    const data = crypto.AES.decrypt(payload, hash).toString(code);
     return JSON.parse(data);
   }
   return null;

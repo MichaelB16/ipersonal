@@ -17,7 +17,21 @@
         :rows="data"
       >
         <template v-slot:top>
-          <app-card-title @add="openModal" @search="request" title="Meus alunos" />
+          <app-card-title
+            @add="openModal"
+            @search="request"
+            title="Meus alunos"
+          />
+        </template>
+        <template v-slot:body-cell-access="{ row }">
+          <q-td class="text-center">
+            <q-chip
+              size="sm"
+              class="text-white"
+              :color="parseInt(row.access) ? 'green' : 'red'"
+              :label="parseInt(row.access) ? 'Com acesso' : 'Sem acesso'"
+            />
+          </q-td>
         </template>
         <template v-slot:body-cell-actions="{ row }">
           <q-td class="text-center tw-w-5 q-gutter-x-xs">
