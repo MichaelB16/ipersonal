@@ -6,7 +6,7 @@
       >
         <q-intersection
           tag="span"
-          class="tw-w-[600px]"
+          class="sm:tw-w-[350px] md:tw-w-[400px]"
           once
           transition="jump-up"
           transition-duration="3000"

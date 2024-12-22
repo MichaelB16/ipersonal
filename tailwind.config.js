@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0f0a38'
+        primary: '#0f0a38',
       },
       keyframes: {
         fadeOut: {
@@ -17,13 +17,13 @@ module.exports = {
         fadeOut: 'fadeOut 10s ease-out',
       },
       screens: {
-        'xs': '0px',
-        'sm': '576px',
-        'md': '768px',
-        'lg': '992px',
-        'xl': '1200px',
+        xs: '0px',
+        sm: '576px',
+        md: '1024px',
+        lg: '992px',
+        xl: '1200px',
         '2xl': '1400px',
-      }
+      },
     },
   },
   plugins: [

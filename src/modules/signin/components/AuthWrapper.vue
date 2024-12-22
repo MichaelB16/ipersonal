@@ -1,6 +1,6 @@
 <template>
   <div class="row tw-min-h-[100dvh] tw-h-full">
-    <div class="col-md-8 col-sm-6 sm:block bg-primary">
+    <div class="col-md-8 col-sm-6 xs:tw-hidden sm:tw-block bg-primary">
       <slot name="banner" />
     </div>
     <div class="col">
