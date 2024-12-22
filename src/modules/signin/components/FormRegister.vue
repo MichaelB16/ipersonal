@@ -38,6 +38,7 @@
       hide-bottom-space
       v-model="form.name"
       rounded
+      lazy-rules
       :rules="formRules()"
       icon="mdi-lock"
       placeholder="Nome"
@@ -52,6 +53,7 @@
       rounded
       hide-bottom-space
       outlined
+      lazy-rules
       dense
       type="email"
       placeholder="E-mail"
@@ -66,6 +68,7 @@
       rounded
       hide-bottom-space
       outlined
+      lazy-rules
       fill-mask
       mask="(##)#####-####"
       dense
@@ -83,6 +86,7 @@
       mask="##/##/####"
       fill-mask
       outlined
+      lazy-rules
       dense
       placeholder="Data de nascimento"
     >
@@ -104,7 +108,14 @@
   </q-form>
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref, reactive, toRefs, onBeforeMount } from 'vue';
+import {
+  defineComponent,
+  computed,
+  ref,
+  reactive,
+  toRefs,
+  onBeforeMount,
+} from 'vue';
 import { useAuthStore } from '../stores/auth.store';
 import { formRules, rulesDate, rulesEmail } from 'src/shared/utils';
 import moment from 'moment';
@@ -128,7 +139,7 @@ export default defineComponent({
       reset();
       storeAuth.error = '';
       storeAuth.success = '';
-    })
+    });
 
     const error = computed(() => {
       return storeAuth.error;
