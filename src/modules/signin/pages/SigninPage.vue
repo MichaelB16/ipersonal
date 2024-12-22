@@ -2,124 +2,72 @@
   <div class="row tw-min-h-[100dvh] tw-h-full">
     <div class="col-md-8 col-sm-6 sm:block bg-primary"></div>
     <div class="col">
-      <div class="tw-flex tw-h-full tw-items-center tw-justify-center">
-        <q-form
-          ref="formRef"
-          @submit.prevent.stop="handleSubmit"
-          class="tw-justify-center tw-w-[300px] tw-h-auto q-gutter-y-md"
-        >
-          <div class="col-12">
-            <div class="tw-flex tw-justify-center">
-              <img src="~/assets/logo.svg" class="tw-h-[60px]"/>
-            </div>
-          </div>
-          <q-input
-            :rules="formRules()"
-            v-model="form.email"
-            rounded
-            hide-bottom-space
-            outlined
-            dense
-            type="email"
-            placeholder="E-mail"
-          >
-            <template v-slot:prepend>
-              <q-icon name="mdi-email"/>
-            </template>
-          </q-input>
-          <q-input
-            type="password"
-            outlined
-            dense
-            hide-bottom-space
-            v-model="form.password"
-            rounded
-            :rules="formRules()"
-            icon="mdi-lock"
-            placeholder="Senha"
-          >
-            <template v-slot:prepend>
-              <q-icon name="mdi-lock"/>
-            </template>
-          </q-input>
+      <div class="tw-flex q-pa-xs tw-h-[45px] tw-justify-center">
+        <q-btn-group unelevated rounded>
           <q-btn
-            class="full-width"
+            size="sm"
             color="primary"
-            label="Entrar"
+            :outline="!isLogin"
             no-caps
-            type="submit"
-            :loading="loading"
-            rounded
+            @click="toggleLogin"
+            label="Login"
             unelevated
           />
-          <app-btn-google/>
-          <q-card v-if="error" class="bg-negative text-white no-shadow">
-            <q-card-section class="tw-flex tw-justify-between tw-items-center">
-              <div>
-                <q-icon class="q-mr-sm tw-text-[18px]" name="mdi-alert"/>
-                {{ error }}
-              </div>
-              <q-btn size="xs" @click="closeAlert" round flat icon="mdi-close"/>
-            </q-card-section>
-          </q-card>
-        </q-form>
+          <q-btn
+            size="sm"
+            color="primary"
+            :outline="!isRegister"
+            @click="toggleRegister"
+            no-caps
+            label="Cadastra-se"
+            unelevated
+          />
+        </q-btn-group>
+      </div>
+      <div
+        class="tw-flex tw-h-[calc(100vh_-_45px)] tw-items-center tw-justify-center"
+      >
+        <template v-if="isLogin">
+          <q-intersection once transition="jump-up" transition-duration="600">
+            <form-signin />
+          </q-intersection>
+        </template>
+        <template v-else-if="isRegister">
+          <q-intersection once transition-duration="600" transition="jump-up">
+            <form-register />
+          </q-intersection>
+        </template>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import {defineComponent, toRefs, reactive, ref, computed} from 'vue';
-import {formRules} from 'src/shared/utils';
-import {useAuthStore} from 'src/modules/signin/stores/auth.store';
-import {useRouter} from 'vue-router';
-
+import { defineComponent, reactive, toRefs } from 'vue';
+import FormSignin from '../components/FormSignin.vue';
+import FormRegister from '../components/FormRegister.vue';
 export default defineComponent({
   name: 'SigninPage',
+  components: { FormSignin, FormRegister },
   setup() {
-    const formRef = ref();
-    const storeAuth = useAuthStore();
-    const router = useRouter();
     const state = reactive({
-      form: {
-        email: '',
-        password: '',
-      },
+      isLogin: true,
+      isRegister: false,
     });
 
-    const error = computed(() => {
-      return storeAuth.error;
-    });
-
-    const loading = computed(() => {
-      return storeAuth.loading;
-    });
-
-    const handleSubmit = () => {
-      formRef.value.validate().then(async (success: boolean) => {
-        if (success) {
-          const result: boolean = await storeAuth.REQUEST_LOGIN(state.form)
-          result && redirect();
-        }
-      });
+    const toggleLogin = () => {
+      state.isLogin = true;
+      state.isRegister = false;
     };
 
-    const closeAlert = () => {
-      storeAuth.error = '';
-    }
-
-    const redirect = () => {
-      const name = router.resolve({name: 'dashboard'});
-      window.location.href = name.href;
+    const toggleRegister = () => {
+      state.isLogin = false;
+      state.isRegister = true;
     };
 
     return {
-      formRef,
-      error,
+      toggleLogin,
+      toggleRegister,
       ...toRefs(state),
-      formRules,
-      closeAlert,
-      loading,
-      handleSubmit,
     };
   },
 });

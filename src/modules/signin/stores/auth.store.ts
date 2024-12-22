@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia';
 import { authService } from '../services/auth.service';
 import { useCacheStorage } from 'src/shared/composable/storage';
+import { userService } from '../services/user.service';
 const storage = useCacheStorage();
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     error: '',
+    success: '',
     loading: false,
     loadingGoogle: false,
   }),
@@ -23,9 +25,20 @@ export const useAuthStore = defineStore('auth', {
           this.loading = false;
         })
         .catch(() => {
-          this.error = 'E-mail ou senha incorretos!';
+          this.error = 'E-mail ou senha inválidos! Tente novamente.';
           return false;
         });
+    },
+    async REQUEST_CREATE_USER(data) {
+      this.loading = true;
+      return await userService.createPersonal(data).then(() => {
+        this.success = 'Cadastro concluído! Verifique seu e-mail.'
+      }).catch(() => {
+        this.error = 'Error ao realizar cadastro!';
+        return false;
+      }).finally(() => {
+        this.loading = false
+      })
     },
     async REQUEST_LOGIN_GOOGLE(params) {
       this.loadingGoogle = true;

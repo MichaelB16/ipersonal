@@ -1,70 +1,76 @@
 <template>
-  <div class="row q-col-gutter-y-md">
-    <div class="col-12">
-      <app-title-page
-        icon="mdi-account-group"
-        title="Cadastro de Alunos"
-        subtitle="listagem de alunos matriculado"
-      />
-    </div>
-    <div class="col-12">
-      <app-table
-        class="no-shadow"
-        bordered
-        :loading="loading"
-        :columns="columns"
-        :pagination="pagination"
-        :rows="data"
-      >
-        <template v-slot:top>
-          <app-card-title
-            @add="openModal"
-            @search="request"
-            title="Meus alunos"
-          />
-        </template>
-        <template v-slot:body-cell-access="{ row }">
-          <q-td class="text-center">
-            <q-chip
-              size="sm"
-              class="text-white"
-              :color="parseInt(row.access) ? 'green' : 'red'"
-              :label="parseInt(row.access) ? 'Com acesso' : 'Sem acesso'"
+  <q-intersection once transition="jump-up" transition-duration="3000">
+    <div class="row q-col-gutter-y-md">
+      <div class="col-12">
+        <app-title-page
+          icon="mdi-account-group"
+          title="Cadastro de Alunos"
+          subtitle="listagem de alunos matriculado"
+        />
+      </div>
+      <div class="col-12">
+        <app-table
+          class="no-shadow"
+          bordered
+          :loading="loading"
+          :columns="columns"
+          :pagination="pagination"
+          :rows="data"
+        >
+          <template v-slot:top>
+            <app-card-title
+              @add="openModal"
+              @search="request"
+              title="Meus alunos"
             />
-          </q-td>
-        </template>
-        <template v-slot:body-cell-actions="{ row }">
-          <q-td class="text-center tw-w-5 q-gutter-x-xs">
-            <app-btn-actions @edit="edit(row)" @remove="remove(row)">
-              <template v-slot:before-edit>
-                <q-item dense clickable v-close-popup>
-                  <q-item-section avatar>
-                    <q-icon color="primary" size="18px" name="mdi-food-steak" />
-                  </q-item-section>
-                  <q-item-section class="text-primary">
-                    Gerar dieta
-                  </q-item-section>
-                </q-item>
-              </template>
-            </app-btn-actions>
-          </q-td>
-        </template>
-        <template v-slot:bottom>
-          <div class="tw-flex tw-w-full tw-justify-center">
-            <app-pagination
-              @request="request"
-              :pagination="pagination"
-              v-model="pagination.page"
-            />
-          </div>
-        </template>
-        <template v-slot:no-data>
-          <app-no-data />
-        </template>
-      </app-table>
+          </template>
+          <template v-slot:body-cell-access="{ row }">
+            <q-td class="text-center">
+              <q-chip
+                size="sm"
+                class="text-white"
+                :color="parseInt(row.access) ? 'green' : 'red'"
+                :label="parseInt(row.access) ? 'Com acesso' : 'Sem acesso'"
+              />
+            </q-td>
+          </template>
+          <template v-slot:body-cell-actions="{ row }">
+            <q-td class="text-center tw-w-5 q-gutter-x-xs">
+              <app-btn-actions @edit="edit(row)" @remove="remove(row)">
+                <template v-slot:before-edit>
+                  <q-item dense clickable v-close-popup>
+                    <q-item-section avatar>
+                      <q-icon
+                        color="primary"
+                        size="18px"
+                        name="mdi-food-steak"
+                      />
+                    </q-item-section>
+                    <q-item-section class="text-primary">
+                      Gerar dieta
+                    </q-item-section>
+                  </q-item>
+                </template>
+              </app-btn-actions>
+            </q-td>
+          </template>
+          <template v-slot:bottom>
+            <div class="tw-flex tw-w-full tw-justify-center">
+              <app-pagination
+                @request="request"
+                :pagination="pagination"
+                v-model="pagination.page"
+              />
+            </div>
+          </template>
+          <template v-slot:no-data>
+            <app-no-data />
+          </template>
+        </app-table>
+      </div>
+      <modal-add-student />
     </div>
-    <modal-add-student />
-  </div>
+  </q-intersection>
 </template>
 <script lang="ts">
 import { computed, defineComponent, onMounted } from 'vue';

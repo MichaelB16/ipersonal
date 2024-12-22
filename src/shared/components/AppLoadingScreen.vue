@@ -40,7 +40,7 @@ export default defineComponent({
           clearInterval(interval);
           state.loading = false;
         }
-      }, 1200);
+      }, 800);
     };
 
     return {

@@ -18,7 +18,7 @@
           />
         </div>
         <div class="col-12">
-          <app-input :rules="formRules()" v-model="form.email" label="Email" />
+          <app-input :rules="rulesEmail()" v-model="form.email" label="Email" />
         </div>
         <div class="col-6">
           <app-input
@@ -34,6 +34,7 @@
             v-model="form.date_of_birth"
             mask="##/##/####"
             fill-mask
+            :rules="rulesDate()"
             label="Data de nascimento"
           />
         </div>
@@ -89,7 +90,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, reactive, toRefs, ref, watch } from 'vue';
-import { configModalTitle, formRules, parseLocalValue } from 'src/shared/utils';
+import { configModalTitle, formRules, parseLocalValue, rulesDate, rulesEmail } from 'src/shared/utils';
 import { setFormStudent } from 'src/modules/users/students/helpers';
 import { useStudentStore } from 'src/modules/users/students/store/student.store';
 import { iFormStudent } from 'src/modules/users/students/model/student.model';
@@ -102,7 +103,6 @@ export default defineComponent({
     const state = reactive({
       form: setFormStudent(),
     });
-
     const openModal = computed({
       get() {
         return studentStore.openModalStudent;
@@ -166,9 +166,11 @@ export default defineComponent({
     return {
       formRef,
       openModal,
-      formRules,
       modalTitle,
       loading,
+      formRules,
+      rulesDate,
+      rulesEmail,
       handleSubmit,
       ...toRefs(state),
     };

@@ -7,6 +7,15 @@ module.exports = {
       colors: {
         primary: '#0f0a38'
       },
+      keyframes: {
+        fadeOut: {
+          '0%': { opacity: 1 },
+          '100%': { opacity: 0 },
+        },
+      },
+      animation: {
+        fadeOut: 'fadeOut 10s ease-out',
+      },
       screens: {
         'xs': '0px',
         'sm': '576px',

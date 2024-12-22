@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { iPagination } from '../model/paginate.type';
 import * as crypto from 'crypto-js';
 
@@ -24,8 +25,25 @@ export const configModalTitle = (
   };
 };
 
-export const formRules = (otherRules = []) => {
+export const formRules = (otherRules: any = []) => {
   return [(value: any) => !!value || 'campo obrigatório!', ...otherRules];
+};
+
+export const rulesDate = (otherRules: any = []) => {
+  return formRules([
+    (val: any) => moment(val, 'DD/MM/YYYY').isValid() || 'Data inválida!',
+    ...otherRules
+  ]);
+};
+
+export const rulesEmail = (otherRules: any = []) => {
+  return formRules([
+    (val: any) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(val) || 'E-mail inválido!';
+    },
+    ...otherRules
+  ]);
 };
 
 export const parseLocalValue = (value: string) => {
