@@ -12,7 +12,7 @@
         <div class="tw-text-[16px] tw-text-center">
           <div class="tw-text-[13px] text-grey-8">
             <b class="tw-text-[20px] tw-animate-pulse tw-text-primary">
-              Olá, Michael!
+              Olá, {{ username }}!
             </b>
             {{ textTitle }}
           </div>
@@ -28,30 +28,43 @@
         rounded
         :rules="formRules()"
         icon="mdi-lock"
+        :type="password_1 ? 'text' : 'password'"
         placeholder="Senha"
       >
         <template v-slot:prepend>
           <q-icon size="xs" name="mdi-lock-outline" />
         </template>
         <template v-slot:append>
-          <q-btn icon="mdi-eye" flat round size="xs" />
+          <q-btn
+             :icon="password_1 ? 'mdi-eye-off' : 'mdi-eye'"
+            @click="password_1 = !password_1"
+            flat
+            round
+            size="xs"
+          />
         </template>
       </q-input>
       <q-input
-        :rules="rulesEmail()"
+        :rules="rulesPassword()"
         v-model="form.new_password"
         rounded
         hide-bottom-space
         outlined
         dense
-        type="email"
+        :type="password_2 ? 'text' : 'password'"
         placeholder="Confirme senha"
       >
         <template v-slot:prepend>
           <q-icon size="xs" name="mdi-lock-outline" />
         </template>
         <template v-slot:append>
-          <q-btn icon="mdi-eye" flat round size="xs" />
+          <q-btn
+            :icon="password_2 ? 'mdi-eye-off' : 'mdi-eye'"
+            @click="password_2 = !password_2"
+            flat
+            round
+            size="xs"
+          />
         </template>
       </q-input>
       <q-btn
@@ -89,14 +102,24 @@ import {
   toRefs,
   onBeforeMount,
 } from 'vue';
-import { useAuthStore } from '../stores/auth.store';
-import { formRules, rulesDate, rulesEmail } from 'src/shared/utils';
+import { formRules } from 'src/shared/utils';
+import { useNewPassowrdStore } from '../stores/new_password.store';
 
 export default defineComponent({
   name: 'FormNewPassword',
-  setup() {
+  props: {
+    username: {
+      type: String,
+      default: '',
+    },
+    userId: {
+      type: [String],
+      default: null,
+    },
+  },
+  setup(props) {
     const formRef = ref();
-    const storeAuth = useAuthStore();
+    const newPasswordStore = useNewPassowrdStore();
 
     enum STATUS_FORM {
       FORM = 'form',
@@ -105,6 +128,8 @@ export default defineComponent({
 
     const state = reactive({
       status: STATUS_FORM.FORM,
+      password_1: false,
+      password_2: false,
       form: {
         password: '',
         new_password: '',
@@ -125,13 +150,32 @@ export default defineComponent({
     });
 
     const loading = computed(() => {
-      return storeAuth.loading;
+      return newPasswordStore.loading;
     });
+
+    const rulesPassword = () => {
+      return formRules([
+        (val) =>
+          val === state.form.password ||
+          'Ops! Parece que as senhas não são iguais!',
+      ]);
+    };
 
     const handleSubmit = () => {
       formRef.value.validate().then(async (success: boolean) => {
         if (success) {
-          console.log('SUCCESS');
+          const result = await newPasswordStore.REQUEST_UPDATE_PASSWORD(
+            parseInt(props.userId),
+            {
+              password: state.form.password,
+            }
+          );
+
+          console.log(result)
+
+          if (result) {
+            state.status = STATUS_FORM.FORM_SUCCESS;
+          }
         }
       });
     };
@@ -146,8 +190,7 @@ export default defineComponent({
     return {
       STATUS_FORM,
       formRef,
-      rulesDate,
-      rulesEmail,
+      rulesPassword,
       handleSubmit,
       formRules,
       ...toRefs(state),

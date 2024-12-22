@@ -28,18 +28,66 @@
     <template v-slot:content>
       <div class="row tw-w-full tw-justify-center tw-items-center tw-h-full">
         <q-intersection once transition="jump-up" transition-duration="3000">
-          <form-new-password />
+          <template v-if="loadingPage">
+            <app-loading />
+          </template>
+          <template v-else>
+            <template v-if="tokenIsValid">
+              <form-new-password :user-id="userId" :username="name" />
+            </template>
+            <template v-else>
+              <div
+                class="tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-[24px]"
+              >
+                <q-icon
+                  class="text-grey-8"
+                  name="mdi-information"
+                  size="50px"
+                />
+                Acesso inválido!
+              </div>
+            </template>
+          </template>
         </q-intersection>
       </div>
     </template>
   </auth-wrapper>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, reactive, toRefs } from 'vue';
 import AuthWrapper from '../components/AuthWrapper.vue';
 import FormNewPassword from '../components/FormNewPassword.vue';
+import { useNewPassowrdStore } from '../stores/new_password.store';
+import { useRoute } from 'vue-router';
 export default defineComponent({
   name: 'NewPasswordPage',
   components: { AuthWrapper, FormNewPassword },
+  setup() {
+    const newPasswordStore = useNewPassowrdStore();
+    const route = useRoute();
+
+    const state = reactive({
+      tokenIsValid: true,
+      name: '',
+      userId: '',
+      loadingPage: false,
+    });
+
+    onMounted(async () => {
+      state.loadingPage = true;
+      const token = route?.params?.token as string;
+      const result = await newPasswordStore.REQUEST_CHECK_TOKEN(token);
+      if (result) {
+        state.tokenIsValid = true;
+        state.name = result?.user?.name;
+        state.userId = result?.user?.id;
+      }
+      state.loadingPage = false;
+    });
+
+    return {
+      ...toRefs(state),
+    };
+  },
 });
 </script>

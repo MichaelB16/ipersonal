@@ -2,14 +2,7 @@
   <q-dialog v-model="model">
     <q-card :class="cardClass">
       <template v-if="loading">
-        <div
-          class="tw-flex tw-flex-col tw-animate-pulse tw-w-full tw-justify-center tw-items-center tw-h-full tw-bg-[#eeeeeebd] tw-z-10 tw-absolute"
-        >
-          <img src="~/assets/loading.svg" alt="loading" class="tw-w-[60px] tw-h-[60px]" />
-          <span class="tw-mt-[2px] tw-animate-pulse tw-text-[15px]">
-            Carregando ...
-          </span>
-        </div>
+        <app-loading />
       </template>
       <slot name="before-title" />
       <q-card-section class="bg-grey-3" v-if="showTitle">
