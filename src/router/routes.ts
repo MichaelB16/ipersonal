@@ -3,7 +3,7 @@ import { middlewareRoute } from 'src/shared/midlleware';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
+    path: '/login',
     name: 'login',
     component: () => import('src/modules/signin/pages/SigninPage.vue'),
   },

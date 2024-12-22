@@ -9,6 +9,8 @@ export const middlewareConfig = (to, next) => {
     return to.path === '/' ? next({ name: 'dashboard' }) : next();
   } else if ((hasMeta || !user) && to.meta?.auth) {
     return next({ name: 'login' });
+  } else if (to.path === '/') {
+    return next({ name: 'login' });
   }
   return next();
 };

@@ -36,7 +36,7 @@
         </template>
         <template v-slot:append>
           <q-btn
-             :icon="password_1 ? 'mdi-eye-off' : 'mdi-eye'"
+            :icon="password_1 ? 'mdi-eye-off' : 'mdi-eye'"
             @click="password_1 = !password_1"
             flat
             round
