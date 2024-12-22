@@ -1,7 +1,6 @@
 <template>
-  <div class="row tw-min-h-[100dvh] tw-h-full">
-    <div class="col-md-8 col-sm-6 sm:block bg-primary"></div>
-    <div class="col">
+  <auth-wrapper>
+    <template v-slot:content>
       <div class="tw-flex q-pa-xs tw-h-[45px] tw-justify-center">
         <q-btn-group unelevated rounded>
           <q-btn
@@ -25,7 +24,7 @@
         </q-btn-group>
       </div>
       <div
-        class="tw-flex tw-h-[calc(100vh_-_45px)] tw-items-center tw-justify-center"
+        class="tw-flex tw-h-[calc(100dvh_-_45px)] tw-items-center tw-justify-center"
       >
         <template v-if="isLogin">
           <q-intersection once transition="jump-up" transition-duration="600">
@@ -38,16 +37,17 @@
           </q-intersection>
         </template>
       </div>
-    </div>
-  </div>
+    </template>
+  </auth-wrapper>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
 import FormSignin from '../components/FormSignin.vue';
 import FormRegister from '../components/FormRegister.vue';
+import AuthWrapper from '../components/AuthWrapper.vue';
 export default defineComponent({
   name: 'SigninPage',
-  components: { FormSignin, FormRegister },
+  components: { FormSignin, FormRegister, AuthWrapper },
   setup() {
     const state = reactive({
       isLogin: true,

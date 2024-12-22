@@ -4,16 +4,13 @@ const storage = useCacheStorage();
 const user = storage.getItemStorage('user-storage');
 
 export const middlewareConfig = (to, next) => {
-  if (user && to.path === '/') {
-    next({ name: 'dashboard' });
-  } else if (
-    ((to.matched.some((record) => record.meta.auth) && !user) || !user) &&
-    to.path !== '/login'
-  ) {
-    next({ name: 'login' });
-  } else {
-    next();
+  const hasMeta = to.matched.some((record) => record.meta.auth);
+  if (user) {
+    return to.path === '/' ? next({ name: 'dashboard' }) : next();
+  } else if ((hasMeta || !user) && to.meta?.auth) {
+    return next({ name: 'login' });
   }
+  return next();
 };
 
 export const middlewareRoute = () => {

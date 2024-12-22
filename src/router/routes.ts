@@ -7,6 +7,11 @@ const routes: RouteRecordRaw[] = [
     name: 'login',
     component: () => import('src/modules/signin/pages/SigninPage.vue'),
   },
+  {
+    path: '/new/password/:token',
+    name: 'new_password',
+    component: () => import('src/modules/signin/pages/NewPasswordPage.vue'),
+  },
   ...middlewareRoute(),
   {
     path: '/:catchAll(.*)*',
