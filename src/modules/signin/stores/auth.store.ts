@@ -33,6 +33,7 @@ export const useAuthStore = defineStore('auth', {
       this.loading = true;
       return await userService.createPersonal(data).then(() => {
         this.success = 'Cadastro concluído! Verifique seu e-mail.'
+        return true;
       }).catch(() => {
         this.error = 'Error ao realizar cadastro!';
         return false;

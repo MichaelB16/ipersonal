@@ -171,8 +171,6 @@ export default defineComponent({
             }
           );
 
-          console.log(result)
-
           if (result) {
             state.status = STATUS_FORM.FORM_SUCCESS;
           }
