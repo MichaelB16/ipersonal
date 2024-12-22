@@ -67,7 +67,7 @@
       hide-bottom-space
       outlined
       fill-mask
-      mask="(##)9####-####"
+      mask="(##)#####-####"
       dense
       placeholder="Celular"
     >

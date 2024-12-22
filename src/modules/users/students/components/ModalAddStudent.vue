@@ -26,7 +26,7 @@
             v-model="form.phone"
             label="Celular"
             fill-mask
-            mask="(##)9####-####"
+            mask="(##)#####-####"
           />
         </div>
         <div class="col-6">
