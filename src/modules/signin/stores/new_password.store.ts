@@ -18,12 +18,10 @@ export const useNewPassowrdStore = defineStore('new_password', {
       this.loading = true;
       return await newPasswordService
         .updatePassword(id, data)
-        .then(({ data }) => {
-          console.log('aqui:', data)
+        .then(() => {
           return true;
         })
         .catch(() => {
-          console.log('chegou')
           return false;
         })
         .finally(() => {

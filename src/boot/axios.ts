@@ -42,6 +42,8 @@ $http.interceptors.response.use(
       localStorage.clear();
       window.location.href = '/login';
     }
+
+    return Promise.reject(error);
   }
 );
 

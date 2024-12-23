@@ -74,6 +74,7 @@
         no-caps
         type="submit"
         :loading="loading"
+        :disable="loading"
         rounded
         unelevated
       />
