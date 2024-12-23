@@ -44,7 +44,7 @@
     <q-btn
       class="full-width"
       color="primary"
-      label="Entrar"
+      label="Enviar"
       no-caps
       type="submit"
       :loading="loading"

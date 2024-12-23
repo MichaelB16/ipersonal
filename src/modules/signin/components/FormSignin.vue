@@ -75,7 +75,7 @@
     />
     <app-btn-google />
     <a
-      href="/forgot/password"
+      @click="redirectForgot"
       class="tw-flex tw-font-medium tw-justify-center tw-items-center tw-underline tw-cursor-pointer"
     >
       Esqueceu a senha?
@@ -139,6 +139,10 @@ export default defineComponent({
       });
     };
 
+    const redirectForgot = () => {
+      router.push({ name: 'forgot_password'});
+    }
+
     const redirect = () => {
       const name = router.resolve({ name: 'dashboard' });
       window.location.href = name.href;
@@ -147,9 +151,10 @@ export default defineComponent({
     return {
       closeAlert,
       handleSubmit,
-      formRef,
+      redirectForgot,
       formRules,
       ...toRefs(state),
+      formRef,
       loading,
       error,
     };
