@@ -18,7 +18,7 @@ export const useForgotPassowrdStore = defineStore('forgot_password', {
         .then(() => {
           this.notification = {
             type: 'success',
-            message: 'Enviamos as instruções para sua caixa de entrada.',
+            message: 'Enviamos as instruções para o seu e-mail.',
             visible: true,
           };
           return true;
