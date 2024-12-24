@@ -37,12 +37,12 @@
             </template>
             <template v-else>
               <div
-                class="tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-[24px]"
+                class="tw-flex tw-flex-col tw-justify-center tw-items-center tw-font-bold text-grey-8 tw-text-[32px]"
               >
                 <q-icon
                   class="text-grey-8"
                   name="mdi-information"
-                  size="50px"
+                  size="80px"
                 />
                 Acesso inválido!
               </div>
@@ -54,7 +54,7 @@
   </auth-wrapper>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue';
+import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue';
 import AuthWrapper from '../components/AuthWrapper.vue';
 import FormNewPassword from '../components/FormNewPassword.vue';
 import { useNewPassowrdStore } from '../stores/new_password.store';
@@ -70,23 +70,25 @@ export default defineComponent({
       tokenIsValid: true,
       name: '',
       userId: '',
-      loadingPage: false,
     });
 
     onMounted(async () => {
-      state.loadingPage = true;
       const token = route?.params?.token as string;
       const result = await newPasswordStore.REQUEST_CHECK_TOKEN(token);
+      state.tokenIsValid = !!result
       if (result) {
-        state.tokenIsValid = true;
         state.name = result?.user?.name;
         state.userId = result?.user?.id;
       }
-      state.loadingPage = false;
+    });
+
+    const loadingPage = computed(() => {
+      return newPasswordStore.loadingPage;
     });
 
     return {
       ...toRefs(state),
+      loadingPage
     };
   },
 });

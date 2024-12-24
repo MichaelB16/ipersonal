@@ -1,6 +1,6 @@
 <template>
   <div
-    class="tw-absolute alert tw-top-0 xs:tw-left-[25%] sm:tw-left-[50%] tw-z-[2000] tw-w-auto tw-flex tw-justify-center tw-items-start"
+    class="tw-absolute xs:tw-hidden sm:tw-blockp alert tw-top-0 xs:tw-left-[25%] sm:tw-left-[50%] tw-z-[2000] tw-w-auto tw-flex tw-justify-center tw-items-start"
   >
     <div
       class="tw-flex tw-w-full tw-rounded-bl-[20px] tw-rounded-br-[20px] tw-cursor-pointer bg-grey-4 tw-items-center tw-p-2"
