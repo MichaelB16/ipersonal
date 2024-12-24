@@ -12,7 +12,7 @@
               class="tw-flex tw-mt-4 tw-flex-col tw-justify-center tw-items-center tw-text-white tw-w-[500px] tw-gap-1"
             >
               <b class="tw-text-[21px] tw-w-full tw-text-center">
-                Faça seu login para acessar seus dados e recursos.
+                Faça seu login para acessar seus dados e recursos
               </b>
               <div class="tw-text-left text-center tw-w-[330px] q-px-sm tw-text-[14px]">
                 <li class="tw-font-medium">
@@ -39,7 +39,7 @@
               class="tw-flex tw-mt-4 tw-flex-col tw-justify-center tw-items-center tw-text-white tw-w-[500px] tw-gap-1"
             >
               <b class="tw-text-[21px] tw-text-center">
-                Transforme a gestão dos seus alunos com mais eficiência e personalização.
+                Transforme a gestão dos seus alunos com mais eficiência e personalização
               </b>
               <p class="tw-text-center tw-text-[14px]">
                 Transforme a maneira como você gerencia seus alunos com uma
