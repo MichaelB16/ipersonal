@@ -11,9 +11,12 @@
           transition="jump-up"
           transition-duration="3000"
         >
-          <div>
-            <img src="~/assets/banner-new-password.svg" />
+          <div class="tw-flex tw-w-full tw-items-center tw-justify-center">
+            <div class="sm:tw-w-[250px] md:tw-w-full tw-flex tw-justify-center">
+              <img src="~/assets/banner-new-password.svg" />
+            </div>
           </div>
+
           <div class="tw-text-white tw-text-center tw-w-full tw-mt-4">
             <b class="tw-text-[24px]">Defina sua nova senha!</b>
             <div>
@@ -75,7 +78,7 @@ export default defineComponent({
     onMounted(async () => {
       const token = route?.params?.token as string;
       const result = await newPasswordStore.REQUEST_CHECK_TOKEN(token);
-      state.tokenIsValid = !!result
+      state.tokenIsValid = !!result;
       if (result) {
         state.name = result?.user?.name;
         state.userId = result?.user?.id;
@@ -88,7 +91,7 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
-      loadingPage
+      loadingPage,
     };
   },
 });
