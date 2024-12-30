@@ -23,20 +23,15 @@
                 Faça seu login para acessar seus dados e recursos
               </b>
               <div
-                class="tw-text-left text-center tw-w-[330px] q-px-sm tw-text-[14px]"
+                class="tw-text-left text-center tw-w-full q-px-sm tw-text-[14px]"
               >
-                <li class="tw-font-medium">
-                  <i>Plataforma personalizada de gestão de alunos</i>
-                </li>
-                <li class="tw-font-medium">
-                  <i>Organização de horários</i>
-                </li>
-                <li class="tw-font-medium">
-                  <i>Acompanhamento do progresso individual</i>
-                </li>
-                <li class="tw-font-medium">
-                  <i>Ferramentas para personalizar treinos e dietas</i>
-                </li>
+                <div
+                  v-for="(item, index) in loginTips"
+                  :key="index"
+                  class="tw-font-medium text-center tw-italic tw-border tw-mb-3 tw-p-2 tw-rounded-full"
+                >
+                  {{ item }}
+                </div>
               </div>
             </div>
           </q-intersection>
@@ -120,7 +115,7 @@
   </auth-wrapper>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
+import { computed, defineComponent, reactive, toRefs } from 'vue';
 import FormSignin from '../components/FormSignin.vue';
 import FormRegister from '../components/FormRegister.vue';
 import AuthWrapper from '../components/AuthWrapper.vue';
@@ -131,6 +126,15 @@ export default defineComponent({
     const state = reactive({
       isLogin: true,
       isRegister: false,
+    });
+
+    const loginTips = computed(() => {
+      return [
+        'Plataforma personalizada de gestão de alunos',
+        'Acompanhamento do progresso individual',
+        'Ferramentas para personalizar treinos e dietas',
+        'Organização de horários'
+      ];
     });
 
     const toggleLogin = () => {
@@ -146,6 +150,7 @@ export default defineComponent({
     return {
       toggleLogin,
       toggleRegister,
+      loginTips,
       ...toRefs(state),
     };
   },
