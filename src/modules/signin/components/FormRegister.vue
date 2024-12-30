@@ -69,7 +69,6 @@
       hide-bottom-space
       outlined
       lazy-rules
-      fill-mask
       mask="(##)#####-####"
       dense
       placeholder="Celular"
@@ -84,7 +83,6 @@
       rounded
       hide-bottom-space
       mask="##/##/####"
-      fill-mask
       outlined
       lazy-rules
       dense

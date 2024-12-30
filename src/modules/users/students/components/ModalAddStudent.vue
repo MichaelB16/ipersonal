@@ -25,7 +25,6 @@
             :rules="formRules()"
             v-model="form.phone"
             label="Celular"
-            fill-mask
             mask="(##)#####-####"
           />
         </div>
@@ -33,7 +32,6 @@
           <app-input
             v-model="form.date_of_birth"
             mask="##/##/####"
-            fill-mask
             :rules="rulesDate()"
             label="Data de nascimento"
           />
@@ -43,7 +41,6 @@
             :rules="formRules()"
             v-model="form.height"
             mask="#.##"
-            fill-mask
             label="Altura"
           />
         </div>
