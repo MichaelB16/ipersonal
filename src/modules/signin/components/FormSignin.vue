@@ -58,7 +58,7 @@
           @click="showPassword = !showPassword"
           round
           flat
-          :icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+          :icon="showPassword ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
         />
       </template>
     </q-input>
