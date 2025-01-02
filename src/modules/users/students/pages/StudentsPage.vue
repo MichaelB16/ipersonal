@@ -9,77 +9,76 @@
         />
       </div>
       <div class="col-12">
-        <app-table
-          class="no-shadow"
-          bordered
-          :grid="isGrid"
-          card-container-class="q-col-gutter-x-sm q-col-gutter-y-sm q-mb-xs"
-          :loading="loading"
-          :columns="columns"
-          :pagination="pagination"
-          :rows="data"
-        >
-          <template v-slot:top>
-            <app-card-title
-              @add="openModal"
-              @search="request"
-              title="Meus alunos"
+        <q-card class="no-shadow">
+          <q-card-section class="no-padding">
+            <app-table
+              class="no-shadow"
+              bordered
+              :grid="isGrid"
+              card-container-class="q-col-gutter-x-sm q-col-gutter-y-sm q-px-md q-py-xs q-mb-xs"
+              :loading="loading"
+              :columns="columns"
+              hide-pagination
+              :pagination="pagination"
+              :rows="data"
             >
-              <template v-slot:before-add>
-                <q-btn
-                  round
-                  size="xs"
-                  @click="toggleIsGrid"
-                  color="primary"
-                  class="tw-h-full"
-                  :icon="modeView.icon"
+              <template v-slot:top>
+                <app-card-title
+                  @add="openModal"
+                  @search="request"
+                  title="Meus alunos"
                 >
-                  <q-tooltip anchor="top middle" self="bottom middle">
-                    {{ modeView.text }}
-                  </q-tooltip>
-                </q-btn>
+                  <template v-slot:before-add>
+                    <q-btn
+                      round
+                      size="xs"
+                      @click="toggleIsGrid"
+                      color="primary"
+                      class="tw-h-full"
+                      :icon="modeView.icon"
+                    >
+                      <q-tooltip anchor="top middle" self="bottom middle">
+                        {{ modeView.text }}
+                      </q-tooltip>
+                    </q-btn>
+                  </template>
+                </app-card-title>
               </template>
-            </app-card-title>
-          </template>
-          <template v-slot:item="{ row }">
-            <card-student
-              :row="row"
-              @edit="edit(row)"
-              @remove="remove(row)"
-            />
-          </template>
-          <template v-slot:body-cell-access="{ row }">
-            <q-td class="text-center">
-              <q-chip
-                size="sm"
-                class="text-white"
-                :color="parseInt(row.access) ? 'green' : 'red'"
-                :label="parseInt(row.access) ? 'Com acesso' : 'Sem acesso'"
-              />
-            </q-td>
-          </template>
-          <template v-slot:body-cell-actions="{ row }">
-            <q-td class="text-center tw-w-5 q-gutter-x-xs">
-              <actions @edit="edit(row)" @remove="remove(row)" />
-            </q-td>
-          </template>
-          <template v-slot:bottom>
-            <q-card class="tw-w-full no-shadow">
-              <q-card-section>
-                <div class="tw-flex tw-w-full tw-justify-center">
-                  <app-pagination
-                    @request="request"
-                    :pagination="pagination"
-                    v-model="pagination.page"
+              <template v-slot:item="{ row }">
+                <card-student
+                  :row="row"
+                  @edit="edit(row)"
+                  @remove="remove(row)"
+                />
+              </template>
+              <template v-slot:body-cell-access="{ row }">
+                <q-td class="text-center">
+                  <q-chip
+                    size="sm"
+                    class="text-white"
+                    :color="parseInt(row.access) ? 'green' : 'red'"
+                    :label="parseInt(row.access) ? 'Com acesso' : 'Sem acesso'"
                   />
-                </div>
-              </q-card-section>
-            </q-card>
-          </template>
-          <template v-slot:no-data>
-            <app-no-data v-if="!loading" />
-          </template>
-        </app-table>
+                </q-td>
+              </template>
+              <template v-slot:body-cell-actions="{ row }">
+                <q-td class="text-center tw-w-5 q-gutter-x-xs">
+                  <actions @edit="edit(row)" @remove="remove(row)" />
+                </q-td>
+              </template>
+              <template v-slot:no-data>
+                <app-no-data v-if="!loading" />
+              </template>
+            </app-table>
+          </q-card-section>
+          <q-card-actions class="tw-border">
+            <app-pagination
+              @request="request"
+              :pagination="pagination"
+              v-model="pagination.page"
+            />
+          </q-card-actions>
+        </q-card>
       </div>
       <modal-add-student />
     </div>

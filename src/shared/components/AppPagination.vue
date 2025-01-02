@@ -1,26 +1,31 @@
 <template>
-  <div class="tw-flex tw-w-full  tw-gap-2 tw-items-center tw-justify-center">
-    <q-pagination
-      size="sm"
-      v-model="model"
-      color="primary"
-      v-bind="$attrs"
-      direction-links
-      boundary-links
-      :max-pages="maxPages"
-      :max="pagination.total"
-    />
-    <div class="tw-absolute tw-right-2 xs:tw-hidden sm:tw-flex tw-items-center tw-gap-2">
-      linha por página:
-      <q-select
-        dense
-        borderless
-        v-model="rowsPerPage"
-        map-options
-        emit-value
-        :options="options"
-      />
-      {{ pagination.page }} - {{ pagination.total_data }} de {{ rowsPerPage }}
+  <div class="row tw-w-full tw-items-center">
+    <div class="col-7">
+      <div class="row justify-end items-center">
+        <q-pagination
+          size="sm"
+          v-model="model"
+          color="primary"
+          v-bind="$attrs"
+          direction-links
+          boundary-links
+          :max-pages="maxPages"
+          :max="pagination.total"
+        />
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="row justify-end tw-gap-2 items-center">
+        linha por página:
+        <q-select
+          dense
+          v-model="rowsPerPage"
+          map-options
+          emit-value
+          :options="options"
+        />
+        {{ pagination.page }} - {{ pagination.total_data }} de {{ rowsPerPage }}
+      </div>
     </div>
   </div>
 </template>

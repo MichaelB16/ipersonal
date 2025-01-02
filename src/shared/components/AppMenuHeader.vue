@@ -32,6 +32,14 @@
         />
       </div>
       <div class="tw-flex tw-items-center tw-mx-4 tw-justify-end">
+        <q-btn
+          round
+          size="md"
+          text-color="primary"
+          flat
+          @click="toggle"
+          :icon="activeFullscreen ? 'mdi-fullscreen-exit' : 'mdi-fullscreen'"
+        />
         <q-btn-dropdown
           :menu-offset="[0, 10]"
           size="sm"
@@ -107,6 +115,7 @@
 import { computed, defineComponent, toRefs, reactive } from 'vue';
 import { useCacheStorage } from '../composable/storage';
 import { useAuthStore } from 'src/modules/signin/stores/auth.store';
+import { AppFullscreen } from 'quasar';
 
 export default defineComponent({
   name: 'MenuHeader',
@@ -128,6 +137,22 @@ export default defineComponent({
       return storage.getItemStorage('user-storage');
     });
 
+    const activeFullscreen = computed(() => {
+      return AppFullscreen.isActive;
+    });
+
+    const toggle = () => {
+      if (activeFullscreen.value) {
+        AppFullscreen.exit().catch((err) => {
+          console.log(err);
+        });
+      } else {
+        AppFullscreen.request().catch((err) => {
+          console.log(err);
+        });
+      }
+    };
+
     const logout = async () => {
       state.loading = true;
       await authStore.REQUEST_LOGOUT();
@@ -136,6 +161,8 @@ export default defineComponent({
 
     return {
       profile,
+      activeFullscreen,
+      toggle,
       ...toRefs(state),
       logout,
     };
