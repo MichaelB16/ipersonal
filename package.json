@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@quasar/app-vite": "^1.9.0",
-    "@types/node": "^20.14.8",
+    "@types/node": "^22.10.3",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "autoprefixer": "^10.4.20",
@@ -38,7 +38,7 @@
     "postcss": "^8.4.47",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.4.13",
-    "typescript": "~5.5.4",
+    "typescript": "^5.7.2",
     "vite-plugin-checker": "^0.8.0",
     "vite-tsconfig-paths": "^5.0.1",
     "vue-tsc": "^2.0.29"
