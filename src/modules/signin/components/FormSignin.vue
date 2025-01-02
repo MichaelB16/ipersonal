@@ -7,13 +7,13 @@
     <div class="col-12">
       <div class="tw-flex tw-flex-col tw-items-center tw-justify-center">
         <div>
-          <img src="~/assets/logo.svg" class="tw-h-[60px]" />
+          <img src="~/assets/logo.svg" loading="lazy" class="tw-h-[60px]" />
         </div>
         <div class="tw-text-[16px] tw-text-center">
           <div class="tw-text-[13px] text-grey-8">
-            <b class="tw-text-[20px] tw-animate-pulse tw-text-primary"
-              >Bem-vindo!</b
-            >
+            <b class="tw-text-[20px] tw-animate-pulse tw-text-primary">
+              Bem-vindo!
+            </b>
             Faça login na plataforma e simplifique a gestão dos seus alunos.
           </div>
         </div>
@@ -140,8 +140,8 @@ export default defineComponent({
     };
 
     const redirectForgot = () => {
-      router.push({ name: 'forgot_password'});
-    }
+      router.push({ name: 'forgot_password' });
+    };
 
     const redirect = () => {
       const name = router.resolve({ name: 'dashboard' });

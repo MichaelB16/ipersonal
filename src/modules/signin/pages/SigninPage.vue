@@ -10,7 +10,7 @@
               <div
                 class="sm:tw-w-[250px] md:tw-w-full tw-flex tw-justify-center"
               >
-                <img src="~/assets/banner-login.svg" alt="banner" />
+                <img src="~/assets/banner-login.svg" loading="lazy" alt="banner" />
               </div>
             </div>
 
@@ -47,7 +47,7 @@
               <div
                 class="sm:tw-w-[250px] md:tw-w-full tw-flex tw-justify-center"
               >
-                <img src="~/assets/banner-register.svg" alt="banner" />
+                <img src="~/assets/banner-register.svg" loading="lazy" alt="banner" />
               </div>
             </div>
 
@@ -82,6 +82,7 @@
             color="primary"
             :outline="!isLogin"
             no-caps
+            glossy
             @click="toggleLogin"
             label="Login"
             unelevated
@@ -92,6 +93,7 @@
             :outline="!isRegister"
             @click="toggleRegister"
             no-caps
+            glossy
             label="Cadastra-se"
             unelevated
           />
