@@ -27,7 +27,7 @@
     "vue3-google-login": "^2.0.33"
   },
   "devDependencies": {
-    "@quasar/app-vite": "^1.9.0",
+    "@quasar/app-vite": "^2.0.4",
     "@types/node": "^20.14.8",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
