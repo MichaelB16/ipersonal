@@ -1,0 +1,64 @@
+<template>
+  <div class="col-sm-6 col-md-3 col-xs-12">
+    <q-card class="no-shadow">
+      <q-card-section class="tw-p-4">
+        <div class="tw-flex text-center tw-flex-col tw-justify-center">
+          <div class="tw-absolute tw-right-0 tw-top-0 tw-m-1">
+            <btn-actions v-bind="$attrs" />
+          </div>
+          <div>
+            <q-avatar
+              size="64px"
+              class="text-uppercase"
+              text-color="white"
+              color="grey-5"
+            >
+              {{ username.slice(0, 1) }}
+            </q-avatar>
+          </div>
+          <div class="tw-flex tw-flex-col tw-mt-2 tw-mb-1 tw-gap-1">
+            <b
+              class="tw-text[20px] tw-leading-3 tw-text-ellipsis text-capitalize"
+            >
+              {{ row.name }}
+            </b>
+            <span class="tw-text-[14px]">{{ row.email }}</span>
+            <span class="tw-text-[12px]">{{ row.phone }}</span>
+          </div>
+          <span>
+            <q-chip
+              size="sm"
+              class="text-white"
+              :color="parseInt(row.access) ? 'green' : 'red'"
+              :label="parseInt(row.access) ? 'Com acesso' : 'Sem acesso'"
+            />
+          </span>
+        </div>
+      </q-card-section>
+    </q-card>
+  </div>
+</template>
+<script lang="ts">
+import { computed, defineComponent, PropType } from 'vue';
+import BtnActions from './Actions.vue';
+
+export default defineComponent({
+  name: 'CardStudent',
+  components: { BtnActions },
+  props: {
+    row: {
+      type: Object as PropType<any>,
+      default: () => {
+        return {};
+      },
+    },
+  },
+  setup(props) {
+    const username = computed(() => {
+      return props.row.name || '';
+    });
+
+    return { username };
+  },
+});
+</script>

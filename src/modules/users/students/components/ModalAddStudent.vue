@@ -87,7 +87,13 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, reactive, toRefs, ref, watch } from 'vue';
-import { configModalTitle, formRules, parseLocalValue, rulesDate, rulesEmail } from 'src/shared/utils';
+import {
+  configModalTitle,
+  formRules,
+  parseLocalValue,
+  rulesDate,
+  rulesEmail,
+} from 'src/shared/utils';
 import { setFormStudent } from 'src/modules/users/students/helpers';
 import { useStudentStore } from 'src/modules/users/students/store/student.store';
 import { iFormStudent } from 'src/modules/users/students/model/student.model';

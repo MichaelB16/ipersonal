@@ -15,7 +15,7 @@
               icon="mdi-magnify"
               placeholder="Pesquisar"
               outlined
-              @keydown.enter="$emit('search',{search})"
+              @keydown.enter="$emit('search', { search })"
               dense
             >
               <template v-slot:append>
@@ -24,23 +24,34 @@
                   round
                   size="xs"
                   unelevated
-                  @click="$emit('search',{search})"
+                  @click="$emit('search', { search })"
                   :disable="!search"
                   color="primary"
                 />
               </template>
             </app-input>
           </div>
-          <div class="col-xs-auto col-sm-auto col-md-auto col-lg-auto" v-if="!hideAdd">
-            <q-btn color="primary" icon="mdi-plus" size="xs" @click="$emit('add')" round/>
+          <slot name="before-add" />
+          <div
+            class="col-xs-auto col-sm-auto col-md-auto col-lg-auto"
+            v-if="!hideAdd"
+          >
+            <q-btn
+              color="primary"
+              icon="mdi-plus"
+              size="xs"
+              @click="$emit('add')"
+              round
+            />
           </div>
+          <slot name="after-add" />
         </div>
       </div>
     </div>
   </q-card>
 </template>
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'AppTitle',
@@ -60,10 +71,10 @@ export default defineComponent({
     },
   },
   setup() {
-    const search = ref('')
+    const search = ref('');
 
     return {
-      search
+      search,
     };
   },
 });

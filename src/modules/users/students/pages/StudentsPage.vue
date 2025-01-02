@@ -12,6 +12,8 @@
         <app-table
           class="no-shadow"
           bordered
+          :grid="isGrid"
+          card-container-class="q-col-gutter-x-sm q-col-gutter-y-sm q-mb-xs"
           :loading="loading"
           :columns="columns"
           :pagination="pagination"
@@ -22,6 +24,28 @@
               @add="openModal"
               @search="request"
               title="Meus alunos"
+            >
+              <template v-slot:before-add>
+                <q-btn
+                  round
+                  size="xs"
+                  @click="toggleIsGrid"
+                  color="primary"
+                  class="tw-h-full"
+                  :icon="modeView.icon"
+                >
+                  <q-tooltip anchor="top middle" self="bottom middle">
+                    {{ modeView.text }}
+                  </q-tooltip>
+                </q-btn>
+              </template>
+            </app-card-title>
+          </template>
+          <template v-slot:item="{ row }">
+            <card-student
+              :row="row"
+              @edit="edit(row)"
+              @remove="remove(row)"
             />
           </template>
           <template v-slot:body-cell-access="{ row }">
@@ -36,35 +60,24 @@
           </template>
           <template v-slot:body-cell-actions="{ row }">
             <q-td class="text-center tw-w-5 q-gutter-x-xs">
-              <app-btn-actions @edit="edit(row)" @remove="remove(row)">
-                <template v-slot:before-edit>
-                  <q-item dense clickable v-close-popup>
-                    <q-item-section avatar>
-                      <q-icon
-                        color="primary"
-                        size="18px"
-                        name="mdi-food-steak"
-                      />
-                    </q-item-section>
-                    <q-item-section class="text-primary">
-                      Gerar dieta
-                    </q-item-section>
-                  </q-item>
-                </template>
-              </app-btn-actions>
+              <actions @edit="edit(row)" @remove="remove(row)" />
             </q-td>
           </template>
           <template v-slot:bottom>
-            <div class="tw-flex tw-w-full tw-justify-center">
-              <app-pagination
-                @request="request"
-                :pagination="pagination"
-                v-model="pagination.page"
-              />
-            </div>
+            <q-card class="tw-w-full no-shadow">
+              <q-card-section>
+                <div class="tw-flex tw-w-full tw-justify-center">
+                  <app-pagination
+                    @request="request"
+                    :pagination="pagination"
+                    v-model="pagination.page"
+                  />
+                </div>
+              </q-card-section>
+            </q-card>
           </template>
           <template v-slot:no-data>
-            <app-no-data />
+            <app-no-data v-if="!loading" />
           </template>
         </app-table>
       </div>
@@ -73,19 +86,24 @@
   </q-intersection>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted } from 'vue';
+import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue';
 import ModalAddStudent from 'src/modules/users/students/components/ModalAddStudent.vue';
+import CardStudent from '../components/CardStudent.vue';
+import Actions from '../components/Actions.vue';
+import moment from 'moment';
 import { studentColumns } from 'src/modules/users/students/helpers';
 import { useStudentStore } from 'src/modules/users/students/store/student.store';
-import moment from 'moment';
 import { iFormStudent } from '../model/student.model';
 
 export default defineComponent({
   name: 'StudentsPage',
-  components: { ModalAddStudent },
+  components: { ModalAddStudent, CardStudent, Actions },
   setup() {
     const studentStore = useStudentStore();
     const columns = studentColumns;
+    const state = reactive({
+      isGrid: false,
+    });
 
     onMounted(async () => {
       await request();
@@ -109,8 +127,23 @@ export default defineComponent({
       return studentStore.pagination;
     });
 
+    const modeView = computed(() => {
+      const text = state.isGrid
+        ? 'Modo de visualização grid'
+        : 'Modo de visualização linha';
+      const icon = state.isGrid ? 'mdi-view-grid' : 'mdi-view-list';
+      return {
+        text,
+        icon,
+      };
+    });
+
     const openModal = () => {
       studentStore.SET_OPEN_MODAL_STUDENT(true);
+    };
+
+    const toggleIsGrid = () => {
+      state.isGrid = !state.isGrid;
     };
 
     const request = async (params = {}) => {
@@ -130,6 +163,9 @@ export default defineComponent({
       pagination,
       columns,
       loading,
+      modeView,
+      ...toRefs(state),
+      toggleIsGrid,
       edit,
       remove,
       request,
@@ -148,5 +184,10 @@ export default defineComponent({
 }
 .border-middle {
   @apply lg:tw-rounded-none;
+}
+.app-table {
+  :deep(.q-table__bottom) {
+    @apply tw-p-0;
+  }
 }
 </style>

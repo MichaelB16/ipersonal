@@ -2,7 +2,7 @@
   <q-dialog v-model="model">
     <q-card :class="cardClass">
       <template v-if="loading">
-        <app-loading />
+        <app-loading class="absolute-full tw-bg-[#6e6c6cc4] tw-text-white" />
       </template>
       <slot name="before-title" />
       <q-card-section class="bg-grey-3" v-if="showTitle">
