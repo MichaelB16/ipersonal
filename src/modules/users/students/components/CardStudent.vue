@@ -11,9 +11,9 @@
               size="64px"
               class="text-uppercase"
               text-color="white"
-              color="grey-8"
+              color="primary"
             >
-              {{ username.slice(0, 1) }}
+              {{ username.slice(0, 2) }}
             </q-avatar>
           </div>
           <div class="tw-flex tw-flex-col tw-mt-2 tw-mb-1 tw-gap-1">
