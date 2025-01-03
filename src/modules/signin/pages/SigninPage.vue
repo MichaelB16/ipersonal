@@ -15,15 +15,15 @@
             </div>
 
             <div
-              class="tw-flex tw-mt-4 tw-flex-col tw-justify-center tw-items-center tw-text-white tw-w-[500px] tw-gap-1"
+              class="tw-flex tw-mt-4 tw-flex-col tw-justify-center tw-items-center tw-text-white tw-w-[380px] tw-gap-4"
             >
               <b
-                class="tw-text-[21px] sm:tw-w-[350px] md:tw-w-auto tw-w-full tw-text-center"
+                class="tw-text-[16px] sm:tw-w-[350px] md:tw-w-auto tw-w-full tw-text-center"
               >
                 Faça seu login para acessar seus dados e recursos
               </b>
               <div
-                class="tw-text-left text-center tw-w-full q-px-sm tw-text-[14px]"
+                class="tw-text-left text-center tw-w-full q-px-sm tw-text-[12px]"
               >
                 <div
                   v-for="(item, index) in loginTips"
