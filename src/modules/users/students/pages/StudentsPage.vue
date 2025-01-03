@@ -67,11 +67,18 @@
                 </q-td>
               </template>
               <template v-slot:no-data>
-                <app-no-data v-if="!loading" />
+                <template v-if="!loading">
+                  <app-no-data />
+                </template>
+                <template v-else>
+                  <div class="tw-flex tw-w-full tw-justify-center tw-p-4">
+                    <app-loading size="tw-w-[50px] tw-h-[50px]" />
+                  </div>
+                </template>
               </template>
             </app-table>
           </q-card-section>
-          <q-card-actions class="tw-border">
+          <q-card-actions class="tw-border tw-px-8">
             <app-pagination
               @request="request"
               :pagination="pagination"

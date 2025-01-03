@@ -6,7 +6,7 @@
       src="~/assets/loading.svg"
       alt="loading"
       loading="lazy"
-      class="tw-w-[60px] tw-h-[60px]"
+      :class="size"
     />
     <span class="tw-mt-[2px] tw-animate-pulse tw-text-[15px]">
       Carregando ...
@@ -18,5 +18,11 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'AppLoading',
+  props: {
+    size: {
+      type:String,
+      default: 'tw-w-[60px] tw-h-[60px]'
+    }
+  }
 });
 </script>

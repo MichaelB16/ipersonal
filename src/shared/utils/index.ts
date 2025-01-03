@@ -9,7 +9,7 @@ export const configPagination = (paginate = {} as any): iPagination => {
     page: paginate?.current_page || 1,
     rowsPerPage: paginate?.per_page || 15,
     total_data: paginate?.total,
-    total: paginate?.last_page,
+    total: paginate?.last_page || 1,
   };
 };
 
