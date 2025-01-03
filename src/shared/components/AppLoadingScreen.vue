@@ -5,7 +5,7 @@
     >
       <img src="~/assets/loading.svg" alt="loading" />
       <span class="tw-mt-[2px] tw-animate-pulse tw-text-[15px]">
-        Carregando ...
+        Carregando ... {{ loading }}
       </span>
     </div>
   </div>
@@ -37,8 +37,8 @@ export default defineComponent({
     const statePageLoading = () => {
       let interval = setInterval(function () {
         if (document.readyState === 'complete') {
-          clearInterval(interval);
           state.loading = false;
+          clearInterval(interval);
         }
       }, 800);
     };

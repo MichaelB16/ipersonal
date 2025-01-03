@@ -31,34 +31,43 @@ export const useAuthStore = defineStore('auth', {
     },
     async REQUEST_CREATE_USER(data) {
       this.loading = true;
-      return await userService.createPersonal(data).then(() => {
-        this.success = 'Cadastro concluído! Verifique seu e-mail.'
-        return true;
-      }).catch(() => {
-        this.error = 'Error ao realizar cadastro!';
-        return false;
-      }).finally(() => {
-        this.loading = false
-      })
+      return await userService
+        .createPersonal(data)
+        .then(() => {
+          this.success = 'Cadastro concluído! Verifique seu e-mail.';
+          return true;
+        })
+        .catch(() => {
+          this.error = 'Error ao realizar cadastro!';
+          return false;
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
     async REQUEST_LOGIN_GOOGLE(params) {
       this.loadingGoogle = true;
-      return await authService.loginGoogle(params).then(({ data }) => {
-        storage.setItemStorage('user-storage', data.user);
-        storage.setItemStorage('user-token', data.token);
-        return true;
-      }).finally(() => {
-        this.loadingGoogle = false;
-      }).catch(() => {
-        this.error = 'Error ao fazer login com google!';
-        return false;
-      });
+      return await authService
+        .loginGoogle(params)
+        .then(({ data }) => {
+          storage.setItemStorage('user-storage', data.user);
+          storage.setItemStorage('user-token', data.token);
+          return true;
+        })
+        .finally(() => {
+          this.loadingGoogle = false;
+        })
+        .catch(() => {
+          this.error = 'Error ao fazer login com google!';
+          return false;
+        });
     },
     async REQUEST_LOGOUT() {
-      await authService.logout().then(() => {
-        localStorage.clear()
-        window.location.href = '/login'
-      })
-    }
+      this.loading = true;
+      localStorage.clear();
+      await authService.logout();
+      this.loading = false;
+      window.location.href = '/login';
+    },
   },
 });

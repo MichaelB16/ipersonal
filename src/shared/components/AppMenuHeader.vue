@@ -112,7 +112,7 @@
   </q-header>
 </template>
 <script>
-import { computed, defineComponent, toRefs, reactive } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { useCacheStorage } from '../composable/storage';
 import { useAuthStore } from 'src/modules/signin/stores/auth.store';
 import { AppFullscreen } from 'quasar';
@@ -126,15 +126,15 @@ export default defineComponent({
     },
   },
   setup() {
-    const state = reactive({
-      loading: false,
-    });
-
     const authStore = useAuthStore();
     const storage = useCacheStorage();
 
     const profile = computed(() => {
       return storage.getItemStorage('user-storage');
+    });
+
+    const loading = computed(() => {
+      return authStore.loading;
     });
 
     const activeFullscreen = computed(() => {
@@ -154,16 +154,14 @@ export default defineComponent({
     };
 
     const logout = async () => {
-      state.loading = true;
       await authStore.REQUEST_LOGOUT();
-      state.loading = false;
     };
 
     return {
       profile,
+      loading,
       activeFullscreen,
       toggle,
-      ...toRefs(state),
       logout,
     };
   },
