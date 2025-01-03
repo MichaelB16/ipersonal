@@ -5,7 +5,7 @@
     >
       <img src="~/assets/loading.svg" alt="loading" />
       <span class="tw-mt-[2px] tw-animate-pulse tw-text-[15px]">
-        Carregando ... {{ loading }}
+        Carregando ...
       </span>
     </div>
   </div>

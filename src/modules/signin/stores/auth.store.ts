@@ -63,11 +63,10 @@ export const useAuthStore = defineStore('auth', {
         });
     },
     async REQUEST_LOGOUT() {
-      this.loading = true;
       localStorage.clear();
-      await authService.logout();
-      this.loading = false;
-      window.location.href = '/login';
+      await authService.logout().finally(() => {
+        window.location.href = '/login';
+      });
     },
   },
 });

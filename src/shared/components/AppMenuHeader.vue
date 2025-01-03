@@ -31,9 +31,10 @@
           @click="$emit('toggle')"
         />
       </div>
-      <div class="tw-flex tw-items-center tw-mx-4 tw-justify-end">
+      <div class="tw-gap-2 tw-flex tw-items-center tw-mx-4 tw-justify-end">
         <q-btn
           round
+          class="xs:tw-hidden sm:tw-block"
           size="md"
           text-color="primary"
           flat
@@ -112,7 +113,7 @@
   </q-header>
 </template>
 <script>
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, reactive, toRefs } from 'vue';
 import { useCacheStorage } from '../composable/storage';
 import { useAuthStore } from 'src/modules/signin/stores/auth.store';
 import { AppFullscreen } from 'quasar';
@@ -128,13 +129,14 @@ export default defineComponent({
   setup() {
     const authStore = useAuthStore();
     const storage = useCacheStorage();
-
-    const profile = computed(() => {
-      return storage.getItemStorage('user-storage');
+    const state = reactive({
+      loading: false,
     });
 
-    const loading = computed(() => {
-      return authStore.loading;
+    const user = Object.freeze(storage.getItemStorage('user-storage'));
+
+    const profile = computed(() => {
+      return user;
     });
 
     const activeFullscreen = computed(() => {
@@ -154,13 +156,15 @@ export default defineComponent({
     };
 
     const logout = async () => {
+      state.loading = true;
       await authStore.REQUEST_LOGOUT();
+      state.loading = false;
     };
 
     return {
       profile,
-      loading,
       activeFullscreen,
+      ...toRefs(state),
       toggle,
       logout,
     };
