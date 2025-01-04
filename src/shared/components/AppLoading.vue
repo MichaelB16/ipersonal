@@ -8,7 +8,7 @@
       loading="lazy"
       :class="size"
     />
-    <span class="tw-mt-[2px] tw-animate-pulse tw-text-[15px]">
+    <span  v-if="!hideText" class="tw-mt-[2px] tw-animate-pulse tw-text-[15px]">
       Carregando ...
     </span>
   </div>
@@ -19,6 +19,10 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'AppLoading',
   props: {
+    hideText: {
+      type: Boolean,
+      default: false
+    },
     size: {
       type:String,
       default: 'tw-w-[60px] tw-h-[60px]'

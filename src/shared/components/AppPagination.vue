@@ -1,6 +1,5 @@
 <template>
-  <div class="row tw-w-full tw-justify-between tw-items-center">
-    <div class="col-3"></div>
+  <div class="row tw-w-full tw-justify-center tw-items-center">
     <q-pagination
       size="sm"
       v-model="model"
@@ -11,12 +10,15 @@
       :max-pages="maxPages"
       :max="pagination.total"
     />
+  </div>
+  <div class="tw-absolute tw-right-8 xs:tw-hidden md:tw-block">
     <div class="row tw-gap-2 items-center text-grey-8 tw-text-[12px]">
       linha por página:
       <q-select
         dense
         v-model="rowsPerPage"
         map-options
+        borderless
         emit-value
         :options="options"
       />

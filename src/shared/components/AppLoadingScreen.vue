@@ -1,12 +1,12 @@
 <template>
-  <div class="absolute-full tw-bg-[#e3e3e3] tw-z-[99999]" v-if="loading && user">
+  <div class="absolute-full tw-bg-[#e6e6e6] tw-z-[99999]" v-if="loading && user">
     <div
       class="tw-flex tw-animate-pulse tw-flex-col tw-w-full tw-justify-center tw-items-center tw-h-full"
     >
       <img src="~/assets/loading.svg" alt="loading" />
-      <span class="tw-mt-[2px] tw-animate-pulse tw-text-[15px]">
+      <b class="tw-mt-[2px] tw-animate-pulse tw-text-[18px]">
         Carregando ...
-      </span>
+      </b>
     </div>
   </div>
 </template>

@@ -72,7 +72,7 @@
                 </template>
                 <template v-else>
                   <div class="tw-flex tw-w-full tw-justify-center tw-p-4">
-                    <app-loading size="tw-w-[50px] tw-h-[50px]" />
+                    <app-loading hide-text size="tw-w-[50px] tw-h-[50px]" />
                   </div>
                 </template>
               </template>
