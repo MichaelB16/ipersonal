@@ -66,9 +66,9 @@
               </div>
             </div>
           </template>
-          <q-list class="tw-w-[450px]">
+          <q-list class="xs:tw-w-[345px] sm:tw-w-[450px]">
             <div class="row tw-w-full bg-grey-2 q-pa-sm">
-              <div class="col-5">
+              <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                 <div
                   class="tw-justify-center tw-h-full tw-items-center q-pa-md column"
                 >
@@ -102,7 +102,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col q-pa-md bg-white tw-rounded-md">
+              <div class="col-xs-12 col-sm col-md col-lg q-pa-md bg-white tw-rounded-md">
                 <app-form-profile />
               </div>
             </div>
