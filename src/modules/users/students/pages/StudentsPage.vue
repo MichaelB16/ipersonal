@@ -76,15 +76,15 @@
                   </div>
                 </template>
               </template>
+              <template v-slot:bottom>
+                <app-pagination
+                  @request="request"
+                  :pagination="pagination"
+                  v-model="pagination.page"
+                />
+              </template>
             </app-table>
           </q-card-section>
-          <q-card-actions class="tw-border tw-px-8">
-            <app-pagination
-              @request="request"
-              :pagination="pagination"
-              v-model="pagination.page"
-            />
-          </q-card-actions>
         </q-card>
       </div>
       <modal-add-student />
