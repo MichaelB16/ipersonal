@@ -8,7 +8,7 @@
           </div>
           <div>
             <q-avatar
-              size="64px"
+              size="70px"
               class="text-uppercase"
               text-color="white"
               color="primary"
@@ -22,8 +22,9 @@
             >
               {{ row.name }}
             </b>
+            <span class="tw-text-[14px] text-grey-8">{{ row.age }} anos</span>
             <span class="tw-text-[14px] text-grey-8">{{ row.email }}</span>
-            <span class="tw-text-[12px] text-grey-8">{{ row.phone }}</span>
+            <span class="tw-text-[12px] tw-tracking-widest text-grey-8">{{ row.phone }}</span>
           </div>
           <span>
             <q-chip

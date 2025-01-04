@@ -117,9 +117,11 @@ export default defineComponent({
 
     const data = computed(() => {
       return studentStore.listStudent.map((item: iFormStudent) => {
+        console.log(item.date_of_birth)
         return {
           ...item,
           access: parseInt(item.access.toString()),
+          age: moment().diff(moment(item.date_of_birth, 'YYYY-MM-DD'), 'years'),
           date_of_birth: moment(item.date_of_birth).format('DD/MM/YYYY'),
         };
       });
@@ -134,12 +136,10 @@ export default defineComponent({
     });
 
     const modeView = computed(() => {
-      const text = state.isGrid
-        ? 'Modo de visualização grid'
-        : 'Modo de visualização linha';
+      const type = state.isGrid ? 'grid' : 'linha';
       const icon = state.isGrid ? 'mdi-view-grid' : 'mdi-view-list';
       return {
-        text,
+        text: `Modo de visualização ${type}`,
         icon,
       };
     });
