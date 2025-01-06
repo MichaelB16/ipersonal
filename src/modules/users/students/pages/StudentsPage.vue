@@ -67,14 +67,7 @@
                 </q-td>
               </template>
               <template v-slot:no-data>
-                <template v-if="!loading">
-                  <app-no-data />
-                </template>
-                <template v-else>
-                  <div class="tw-flex tw-w-full tw-justify-center tw-p-4">
-                    <app-loading hide-text size="tw-w-[50px] tw-h-[50px]" />
-                  </div>
-                </template>
+                <app-no-data :loading="loading" />
               </template>
               <template v-slot:bottom>
                 <app-pagination
@@ -117,7 +110,7 @@ export default defineComponent({
 
     const data = computed(() => {
       return studentStore.listStudent.map((item: iFormStudent) => {
-        console.log(item.date_of_birth)
+        console.log(item.date_of_birth);
         return {
           ...item,
           access: parseInt(item.access.toString()),
