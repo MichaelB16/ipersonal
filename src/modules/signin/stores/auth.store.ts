@@ -37,8 +37,13 @@ export const useAuthStore = defineStore('auth', {
           this.success = 'Cadastro concluído! Verifique seu e-mail.';
           return true;
         })
-        .catch(() => {
-          this.error = 'Error ao realizar cadastro!';
+        .catch(({ response }) => {
+          const error = response.data.error;
+          const { _default, user } = {
+            _default: 'Error ao realizar cadastro!',
+            user: 'E-mail já vinculado!',
+          };
+          this.error = error === 'user_exists' ? user : _default;
           return false;
         })
         .finally(() => {
