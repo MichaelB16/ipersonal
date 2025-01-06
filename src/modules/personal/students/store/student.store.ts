@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
-import {studentService} from 'src/modules/users/students/services/student.service';
-import {iFormStudent} from 'src/modules/users/students/model/student.model';
+import {studentService} from 'src/modules/personal/students/services/student.service';
+import {iFormStudent} from 'src/modules/personal/students/model/student.model';
 import {configPagination} from 'src/shared/utils';
 
 export const useStudentStore = defineStore('student', {

@@ -12,21 +12,21 @@ export const personalRoutes: RouteRecordRaw[] = [
         name: 'dashboard',
         meta: { auth: true },
         component: () =>
-          import('src/modules/users/dashboard/pages/DashboardPage.vue'),
+          import('src/modules/personal/dashboard/pages/DashboardPage.vue'),
       },
       {
         path: 'students',
         name: 'students',
         meta: { auth: true },
         component: () =>
-          import('src/modules/users/students/pages/StudentsPage.vue'),
+          import('src/modules/personal/students/pages/StudentsPage.vue'),
       },
       {
         path: 'message',
         name: 'message',
         meta: { auth: true },
         component: () =>
-          import('src/modules/users/message/pages/MessagePage.vue'),
+          import('src/modules/personal/message/pages/MessagePage.vue'),
       },
     ],
   },

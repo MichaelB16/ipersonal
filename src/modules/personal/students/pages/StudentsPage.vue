@@ -86,12 +86,12 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue';
-import ModalAddStudent from 'src/modules/users/students/components/ModalAddStudent.vue';
+import ModalAddStudent from 'src/modules/personal/students/components/ModalAddStudent.vue';
 import CardStudent from '../components/CardStudent.vue';
 import Actions from '../components/Actions.vue';
 import moment from 'moment';
-import { studentColumns } from 'src/modules/users/students/helpers';
-import { useStudentStore } from 'src/modules/users/students/store/student.store';
+import { studentColumns } from 'src/modules/personal/students/helpers';
+import { useStudentStore } from 'src/modules/personal/students/store/student.store';
 import { iFormStudent } from '../model/student.model';
 
 export default defineComponent({

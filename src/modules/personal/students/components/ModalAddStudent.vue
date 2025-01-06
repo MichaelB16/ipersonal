@@ -94,9 +94,9 @@ import {
   rulesDate,
   rulesEmail,
 } from 'src/shared/utils';
-import { setFormStudent } from 'src/modules/users/students/helpers';
-import { useStudentStore } from 'src/modules/users/students/store/student.store';
-import { iFormStudent } from 'src/modules/users/students/model/student.model';
+import { setFormStudent } from 'src/modules/personal/students/helpers';
+import { useStudentStore } from 'src/modules/personal/students/store/student.store';
+import { iFormStudent } from 'src/modules/personal/students/model/student.model';
 import moment from 'moment';
 
 export default defineComponent({
@@ -163,7 +163,7 @@ export default defineComponent({
     };
 
     const dateFormat = (date: string) => {
-      return moment(date, 'DD/MM/YY').format('YYYY-MM-DD');
+      return moment(date, 'DD/MM/YYYY').format('YYYY-MM-DD');
     };
 
     return {

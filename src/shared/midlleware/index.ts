@@ -1,4 +1,4 @@
-import { personalRoutes } from 'src/modules/users/route';
+import { personalRoutes } from 'src/router/personal';
 import { useCacheStorage } from '../composable/storage';
 const storage = useCacheStorage();
 const user = storage.getItemStorage('user-storage');

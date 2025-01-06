@@ -1,5 +1,5 @@
 import {$http} from 'src/boot/axios';
-import {iFormStudent} from 'src/modules/users/students/model/student.model';
+import {iFormStudent} from 'src/modules/personal/students/model/student.model';
 
 class studentServiceHttp {
   createOrUpdate(data: iFormStudent) {
