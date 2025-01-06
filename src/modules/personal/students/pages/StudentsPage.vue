@@ -110,7 +110,6 @@ export default defineComponent({
 
     const data = computed(() => {
       return studentStore.listStudent.map((item: iFormStudent) => {
-        console.log(item.date_of_birth);
         return {
           ...item,
           access: parseInt(item.access.toString()),
