@@ -19,15 +19,15 @@
               bordered
               class="no-shadow tw-h-[95px]"
               :class="{
-                'border-left': index === 0 || index === 2,
-                'border-right': index === 1 || index === 3,
-                'border-middle': index === 1 || index === 2,
+                'md:tw-rounded-r-none': index === 0 || index === 2,
+                'md:tw-rounded-l-none': index === 1 || index === 3,
+                'md:tw-rounded-none': index === 1 || index === 2,
               }"
             >
               <q-card-section class="row w-flex tw-justify-center">
                 <div class="col-3 tw-flex tw-justify-start">
                   <div
-                    class="ball tw-text-white tw-flex tw-justify-center tw-items-center tw-rounded-[8px] tw-w-[60px] tw-h-[60px] bg-primary"
+                    class="ball tw-text-white tw-flex tw-justify-center tw-items-center tw-rounded-[4px] tw-w-[60px] tw-h-[60px] bg-primary"
                   >
                     <q-icon class="tw-text-[28px]" :name="item.icon" />
                   </div>
@@ -36,10 +36,10 @@
                   <div
                     class="row q-ml-sm bg tw-flex tw-items-center tw-justify-center"
                   >
-                    <div class="col-12 tw-text-left text-h4 text-bold">
+                    <div class="col-12 tw-text-left ellipsis text-h4 text-bold">
                       {{ item.total }}
                     </div>
-                    <div class="col-12 tw-text-left">
+                    <div class="col-12 ellipsis tw-text-left">
                       {{ item.label }}
                     </div>
                   </div>
