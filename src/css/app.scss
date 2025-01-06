@@ -22,7 +22,7 @@ body {
     .sidebar-left {
       .q-item {
         &.q-router-link--exact-active {
-          border-radius: 8px;
+          border-radius: 100px;
           background-color: $primary !important;
           color: #fff !important;
         }
