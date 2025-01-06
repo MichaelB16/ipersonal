@@ -28,6 +28,13 @@ export const personalRoutes: RouteRecordRaw[] = [
         component: () =>
           import('src/modules/personal/message/pages/MessagePage.vue'),
       },
+      {
+        path: 'calendar',
+        name: 'calendar',
+        meta: { auth: true },
+        component: () =>
+          import('src/modules/personal/schudeles/pages/SchudelePage.vue'),
+      },
     ],
   },
 ];

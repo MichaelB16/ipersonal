@@ -4,7 +4,7 @@
       <div class="col-12">
         <app-title-page
           icon="mdi-account-group"
-          title="Cadastro de Alunos"
+          title="Cadastro de alunos"
           subtitle="listagem de alunos matriculado"
         />
       </div>
