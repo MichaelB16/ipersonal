@@ -10,7 +10,6 @@ export const useMessageStore = defineStore('message', {
     async REQUEST_GET_MESSAGE() {
       this.loading = true
       await messageService.getAllMessage().then(({data}) => {
-        console.log(data)
         this.listMessage = data;
       }).finally(() => {
         this.loading = false

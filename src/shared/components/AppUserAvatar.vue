@@ -32,10 +32,7 @@ export default defineComponent({
     });
 
     const imageUrl = computed(() => {
-      if (user?.picture) {
-        return user?.picture.trim();
-      }
-      return '';
+      return user?.picture ? user?.picture.trim() : null;
     });
 
     const handleError = () => {
