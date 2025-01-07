@@ -9,8 +9,8 @@
         ></app-title-page>
       </div>
       <div class="col-12">
-        <app-card-title title="Suas mensagens" hide-add hide-search />
         <q-card class="tw-w-full no-shadow" flat>
+          <app-card-title title="Suas mensagens" hide-add hide-search />
           <q-card-section class="q-px-md">
             <q-form ref="formRef" @submit.prevent="handleSubmit">
               <div class="row q-col-gutter-y-md">
@@ -22,7 +22,8 @@
                     outlined
                     :rules="formRules()"
                     hide-bottom-space
-                    v-model="form.message_before_class"
+                    :loading="loading"
+                    v-model="form.message_pre_class"
                     dense
                   />
                 </div>
@@ -33,7 +34,8 @@
                     type="textarea"
                     :rules="formRules()"
                     hide-bottom-space
-                    v-model="form.message_before_payment"
+                    :loading="loading"
+                    v-model="form.message_pre_expiry"
                     outlined
                     dense
                   />
@@ -43,6 +45,8 @@
                     <q-btn
                       unelevated
                       no-caps
+                      :loading="loading"
+                      :disable="loading"
                       label="Salvar"
                       type="submit"
                       color="primary"
@@ -58,31 +62,59 @@
   </q-intersection>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from 'vue';
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  reactive,
+  ref,
+  toRefs,
+} from 'vue';
 import { formRules } from 'src/shared/utils';
+import { useMessageStore } from '../store/message.store';
 
 export default defineComponent({
   name: 'MessagePage',
   setup() {
+    const messageStore = useMessageStore();
     const formRef = ref();
     const state = reactive({
       form: {
-        message_before_class: '',
-        message_before_payment: '',
+        message_pre_class: '',
+        message_pre_expiry: '',
       },
     });
 
+    onMounted(async () => {
+      await messageStore.REQUEST_GET_MESSAGE();
+      setForm()
+    });
+
+    const loading = computed(() => {
+      return messageStore.loading;
+    });
+
     const handleSubmit = () => {
-      formRef.value.validate().then((success: boolean) => {
+      formRef.value.validate().then(async (success: boolean) => {
         if (success) {
-          console.log(state.form);
+          await messageStore.REQUEST_ADD_OR_UPDATE_MESSAGE(state.form);
+          setForm()
         }
       });
     };
 
+    const setForm = () => {
+      const data:any = messageStore.listMessage
+      state.form =  {
+        message_pre_class: data.message_pre_class || '',
+        message_pre_expiry: data.message_pre_expiry ||  '',
+      }
+    }
+
     return {
       handleSubmit,
       formRules,
+      loading,
       formRef,
       ...toRefs(state),
     };
