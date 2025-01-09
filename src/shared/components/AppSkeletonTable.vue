@@ -7,8 +7,8 @@
         </div>
         <div class="col">
           <div class="tw-flex tw-gap-2 tw-items-center tw-justify-end">
-            <q-skeleton width="250px" class="tw-rounded-full" height="40px" />
-            <q-skeleton v-for="item in rowBtn" :key="item" type="circle" size="35px" />
+            <q-skeleton class="tw-rounded-full xs:tw-w-[100px] sm:tw-w-[250px] tw-h-10" />
+            <q-skeleton v-for="item in rowBtn" :key="item" class="tw-w-[24px] tw-h-[24px] tw-rounded-full" />
           </div>
         </div>
       </div>
