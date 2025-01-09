@@ -7,6 +7,7 @@ export const useStudentStore = defineStore('student', {
   state: () => ({
     openModalStudent: false,
     openModalDiet: false,
+    openModalTrainer: false,
     listStudent: [],
     loadingTable: false,
     pagination: configPagination(),
@@ -19,6 +20,9 @@ export const useStudentStore = defineStore('student', {
     },
     SET_OPEN_MODAL_DIET(value: boolean) {
       this.openModalDiet = value;
+    },
+    SET_OPEN_MODAL_TRAINER(value: boolean) {
+      this.openModalTrainer = value;
     },
     SET_ROW_SELECTED(data = {}) {
       this.rowSelected = data;

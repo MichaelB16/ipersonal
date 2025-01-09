@@ -1,6 +1,12 @@
 <template>
   <app-btn-actions flat v-bind="$attrs">
     <template v-slot:before-edit>
+      <q-item @click="openModalTrainer" dense clickable v-close-popup>
+        <q-item-section avatar>
+          <q-icon color="primary" size="18px" name="mdi-weight-lifter" />
+        </q-item-section>
+        <q-item-section class="text-primary"> Gerar treino </q-item-section>
+      </q-item>
       <q-item @click="openModalDiet" dense clickable v-close-popup>
         <q-item-section avatar>
           <q-icon color="primary" size="18px" name="mdi-food-steak" />
@@ -23,8 +29,13 @@ export default defineComponent({
       studentStore.SET_OPEN_MODAL_DIET(true);
     };
 
+    const openModalTrainer = () => {
+      studentStore.SET_OPEN_MODAL_TRAINER(true);
+    };
+
     return {
       openModalDiet,
+      openModalTrainer
     };
   },
 });
