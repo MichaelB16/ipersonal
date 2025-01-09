@@ -6,6 +6,7 @@ import {configPagination} from 'src/shared/utils';
 export const useStudentStore = defineStore('student', {
   state: () => ({
     openModalStudent: false,
+    openModalDiet: false,
     listStudent: [],
     loadingTable: false,
     pagination: configPagination(),
@@ -15,6 +16,9 @@ export const useStudentStore = defineStore('student', {
   actions: {
     SET_OPEN_MODAL_STUDENT(value: boolean) {
       this.openModalStudent = value;
+    },
+    SET_OPEN_MODAL_DIET(value: boolean) {
+      this.openModalDiet = value;
     },
     SET_ROW_SELECTED(data = {}) {
       this.rowSelected = data;

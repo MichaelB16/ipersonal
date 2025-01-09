@@ -1,7 +1,7 @@
 <template>
   <div class="row tw-justify-end q-mt-md">
     <div class="col-12">
-      <q-separator color="grey-3"/>
+      <q-separator color="grey-3" />
     </div>
     <div class="col-12 tw-flex tw-justify-end q-mt-md">
       <q-btn
@@ -19,15 +19,21 @@
         rounded
         no-caps
         type="submit"
-        label="Salvar"
+        :label="textSave"
       />
     </div>
   </div>
 </template>
 <script lang="ts">
-import {defineComponent} from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'AppFormFooter'
-})
+  name: 'AppFormFooter',
+  props: {
+    textSave: {
+      type: String,
+      default: 'Salvar',
+    },
+  },
+});
 </script>

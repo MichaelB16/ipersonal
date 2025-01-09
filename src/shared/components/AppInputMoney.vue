@@ -1,5 +1,5 @@
 <template>
-  <q-field dense hide-bottom-space rounded outlined label="Preço" stack-label>
+  <q-field dense hide-bottom-space rounded outlined :label="label" stack-label>
     <template v-slot:control>
       <input
         class="tw-w-full input-money"
@@ -17,7 +17,7 @@ export default defineComponent({
   props: {
     label: {
       type: String,
-      default: '',
+      default: 'Preço',
     },
     modelValue: {
       type: [String, Number],

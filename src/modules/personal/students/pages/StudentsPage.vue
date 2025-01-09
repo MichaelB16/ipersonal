@@ -87,6 +87,7 @@
           </q-card>
         </div>
         <modal-add-student />
+        <modal-diet />
       </div>
     </template>
   </q-intersection>
@@ -96,6 +97,7 @@ import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue';
 import ModalAddStudent from 'src/modules/personal/students/components/ModalAddStudent.vue';
 import CardStudent from '../components/CardStudent.vue';
 import StudentSkeleton from '../components/StudentSkeleton.vue';
+import ModalDiet from '../components/ModalDiet.vue';
 import Actions from '../components/Actions.vue';
 import moment from 'moment';
 import { studentColumns } from 'src/modules/personal/students/helpers';
@@ -104,7 +106,7 @@ import { iFormStudent } from '../model/student.model';
 
 export default defineComponent({
   name: 'StudentsPage',
-  components: { ModalAddStudent, CardStudent, Actions, StudentSkeleton },
+  components: { ModalAddStudent, CardStudent, Actions, StudentSkeleton, ModalDiet },
   setup() {
     const studentStore = useStudentStore();
     const columns = studentColumns;
