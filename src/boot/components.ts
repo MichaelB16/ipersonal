@@ -21,12 +21,16 @@ import AppInformationToggle from 'src/shared/components/AppInformationToggle.vue
 import AppLoadingScreen from 'src/shared/components/AppLoadingScreen.vue';
 import AppAlert from 'src/shared/components/AppAlert.vue';
 import AppLoading from 'src/shared/components/AppLoading.vue';
+import AppSkeletonTitle from 'src/shared/components/AppSkeletonTitle.vue';
+import AppSkeletonTable from 'src/shared/components/AppSkeletonTable.vue';
 import { Money3Directive } from 'v-money3';
 
 export default boot(({app}) => {
   app.directive('money', Money3Directive);
   app.component('AppAlert', AppAlert);
   app.component('AppLoading', AppLoading);
+  app.component('AppSkeletonTitle', AppSkeletonTitle);
+  app.component('AppSkeletonTable', AppSkeletonTable);
   app.component('AppLoadingScreen', AppLoadingScreen);
   app.component('AppTitlePage', AppTitlePage);
   app.component('AppInformationToggle', AppInformationToggle);

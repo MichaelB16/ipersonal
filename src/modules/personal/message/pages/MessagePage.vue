@@ -1,6 +1,10 @@
 <template>
   <q-intersection once transition="jump-up" transition-duration="3000">
-    <div class="row q-col-gutter-y-md">
+    <template v-if="loadingPage">
+      <message-skeleton />
+    </template>
+    <template v-else>
+      <div class="row q-col-gutter-y-md">
       <div class="col-12">
         <app-title-page
           icon="mdi-message-outline"
@@ -59,6 +63,7 @@
         </q-card>
       </div>
     </div>
+    </template>
   </q-intersection>
 </template>
 <script lang="ts">
@@ -72,13 +77,15 @@ import {
 } from 'vue';
 import { formRules } from 'src/shared/utils';
 import { useMessageStore } from '../store/message.store';
-
+import MessageSkeleton from '../components/MessageSkeleton.vue';
 export default defineComponent({
   name: 'MessagePage',
+  components: {MessageSkeleton},
   setup() {
     const messageStore = useMessageStore();
     const formRef = ref();
     const state = reactive({
+      loadingPage: false,
       form: {
         message_pre_class: '',
         message_pre_expiry: '',
@@ -86,8 +93,10 @@ export default defineComponent({
     });
 
     onMounted(async () => {
+      state.loadingPage = true;
       await messageStore.REQUEST_GET_MESSAGE();
       setForm()
+      state.loadingPage = false;
     });
 
     const loading = computed(() => {
