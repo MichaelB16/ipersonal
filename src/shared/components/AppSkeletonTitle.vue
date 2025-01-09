@@ -8,7 +8,7 @@
         <q-skeleton type="text" width="150px" />
       </p>
       <p class="subtitle tw-text-primary tw-ml-3 tw-text-[14px]">
-       <q-skeleton type="text" width="300px" />
+       <q-skeleton type="text" class="xs:tw-w-[250px] sm:tw-w-[300px]" />
       </p>
     </div>
     <slot />

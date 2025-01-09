@@ -3,7 +3,7 @@
     <q-card-section class="tw-border">
       <div class="row items-center">
         <div class="col">
-          <q-skeleton width="200px" />
+          <q-skeleton class="xs:tw-w-[100px] sm:tw-w-[200px]" />
         </div>
         <div class="col">
           <div class="tw-flex tw-gap-2 tw-items-center tw-justify-end">
