@@ -2,17 +2,22 @@ import { defineStore } from 'pinia';
 import { studentService } from 'src/modules/personal/students/services/student.service';
 import { iFormStudent } from 'src/modules/personal/students/model/student.model';
 import { configPagination } from 'src/shared/utils';
+import { trainingService } from '../services/training.service';
+import { iTraining, iTrainingFormSearch } from '../model/training.model';
 
 export const useStudentStore = defineStore('student', {
   state: () => ({
     openModalStudent: false,
     openModalDiet: false,
     openModalTrainer: false,
+    openModalViewTraining: false,
     listStudent: [],
+    listTraining: [],
+    listViewTraining: [],
     loadingTable: false,
     pagination: configPagination(),
     loading: false,
-    rowSelected: {},
+    rowSelected: {} as any,
   }),
   actions: {
     SET_OPEN_MODAL_STUDENT(value: boolean) {
@@ -23,6 +28,9 @@ export const useStudentStore = defineStore('student', {
     },
     SET_OPEN_MODAL_TRAINER(value: boolean) {
       this.openModalTrainer = value;
+    },
+    SET_OPEN_MODAL_VIEW_TRAINING(value: boolean) {
+      this.openModalViewTraining = value;
     },
     SET_ROW_SELECTED(data = {}) {
       this.rowSelected = data;
@@ -42,10 +50,17 @@ export const useStudentStore = defineStore('student', {
           this.loadingTable = false;
         });
     },
-    async REQUEST_GET_TRAINING(data: { objective: string; sex: string }) {
+    async REQUEST_GET_TRAINING(data: iTrainingFormSearch) {
       this.loading = true;
-      return await studentService.getTraining(data).then(({ data }) => {
-        console.log(data);
+      return await trainingService.getTraining(data).then(({ data }) => {
+        return data;
+      }).finally(() => {
+        this.loading = false;
+      });
+    },
+    async SAVE_TRAINING(data: iTraining) {
+      this.loading = true;
+      return await trainingService.saveTraining(data).then(({ data }) => {
         return data;
       }).finally(() => {
         this.loading = false;

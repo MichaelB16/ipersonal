@@ -69,7 +69,25 @@
                 </template>
                 <template v-slot:body-cell-actions="{ row }">
                   <q-td class="text-center tw-w-5 q-gutter-x-xs">
-                    <actions @edit="edit(row)" @remove="remove(row)" />
+                    <q-btn
+                      round
+                      size="xs"
+                      :color="row.training ? 'green' : 'grey-5'"
+                      flat
+                      @click="viewTraining(row)"
+                      :disable="!row.training"
+                      icon="mdi-weight-lifter"
+                    >
+                      <q-tooltip anchor="center left" self="center right">
+                        {{ row.training ? 'Meu treino' : 'Sem treino' }}
+                      </q-tooltip>
+                    </q-btn>
+
+                    <actions
+                      :row="row"
+                      @edit="edit(row)"
+                      @remove="remove(row)"
+                    />
                   </q-td>
                 </template>
                 <template v-slot:no-data>
@@ -89,6 +107,7 @@
         <modal-add-student />
         <modal-diet />
         <modal-training />
+        <modal-view-training />
       </div>
     </template>
   </q-intersection>
@@ -100,6 +119,7 @@ import CardStudent from '../components/CardStudent.vue';
 import StudentSkeleton from '../components/StudentSkeleton.vue';
 import ModalDiet from '../components/ModalDiet.vue';
 import ModalTraining from '../components/ModalTraining.vue';
+import ModalViewTraining from '../components/ModalViewTraining.vue';
 import Actions from '../components/Actions.vue';
 import moment from 'moment';
 import { studentColumns } from 'src/modules/personal/students/helpers';
@@ -115,6 +135,7 @@ export default defineComponent({
     StudentSkeleton,
     ModalDiet,
     ModalTraining,
+    ModalViewTraining
   },
   setup() {
     const studentStore = useStudentStore();
@@ -170,10 +191,17 @@ export default defineComponent({
       await studentStore.REQUEST_GET_STUDENT(params);
     };
 
+    const viewTraining = (row) => {
+      studentStore.SET_OPEN_MODAL_VIEW_TRAINING(true);
+      studentStore.SET_ROW_SELECTED(row);
+      studentStore.listViewTraining =  JSON.parse(row.training.training);
+    };
+
     const edit = (row) => {
       studentStore.SET_ROW_SELECTED(row);
       studentStore.SET_OPEN_MODAL_STUDENT(true);
     };
+
     const remove = async ({ id }) => {
       await studentStore.REQUEST_DELETE_STUDENT(id);
     };
@@ -184,6 +212,7 @@ export default defineComponent({
       columns,
       loading,
       modeView,
+      viewTraining,
       ...toRefs(state),
       toggleIsGrid,
       edit,

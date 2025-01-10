@@ -13,10 +13,6 @@ class studentServiceHttp {
     return $http.get('students/summary');
   }
 
-  getTraining(data: { objective: string; sex: string }) {
-    return $http.post('generate/training', data);
-  }
-
   delete(id: number) {
     return $http.delete(`students/${id}`);
   }

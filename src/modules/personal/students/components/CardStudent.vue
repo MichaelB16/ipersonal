@@ -4,7 +4,7 @@
       <q-card-section class="tw-p-4">
         <div class="tw-flex text-center tw-flex-col tw-justify-center">
           <div class="tw-absolute tw-right-0 tw-top-0 tw-m-1">
-            <actions v-bind="$attrs" />
+            <actions :row="row" v-bind="$attrs" />
           </div>
           <div>
             <q-avatar

@@ -22,7 +22,15 @@ import { useStudentStore } from '../store/student.store';
 
 export default defineComponent({
   name: 'BtnActions',
-  setup() {
+  props: {
+    row: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+  },
+  setup(props) {
     const studentStore = useStudentStore();
 
     const openModalDiet = () => {
@@ -30,12 +38,13 @@ export default defineComponent({
     };
 
     const openModalTrainer = () => {
+      studentStore.SET_ROW_SELECTED(props.row);
       studentStore.SET_OPEN_MODAL_TRAINER(true);
     };
 
     return {
       openModalDiet,
-      openModalTrainer
+      openModalTrainer,
     };
   },
 });
