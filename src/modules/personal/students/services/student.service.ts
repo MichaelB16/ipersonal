@@ -1,10 +1,10 @@
-import {$http} from 'src/boot/axios';
-import {iFormStudent} from 'src/modules/personal/students/model/student.model';
+import { $http } from 'src/boot/axios';
+import { iFormStudent } from 'src/modules/personal/students/model/student.model';
 
 class studentServiceHttp {
   createOrUpdate(data: iFormStudent) {
     if (data.id) {
-      return $http.put(`students/${data.id}`, data)
+      return $http.put(`students/${data.id}`, data);
     }
     return $http.post('students', data);
   }
@@ -13,13 +13,17 @@ class studentServiceHttp {
     return $http.get('students/summary');
   }
 
+  getTraining(data: { objective: string; sex: string }) {
+    return $http.post('generate/training', data);
+  }
+
   delete(id: number) {
-    return $http.delete(`students/${id}`)
+    return $http.delete(`students/${id}`);
   }
 
   getStudent(params = {} as any) {
-    return $http.get('students', {params});
+    return $http.get('students', { params });
   }
 }
 
-export const studentService = new studentServiceHttp()
+export const studentService = new studentServiceHttp();

@@ -88,7 +88,7 @@
         </div>
         <modal-add-student />
         <modal-diet />
-        <modal-trainer />
+        <modal-training />
       </div>
     </template>
   </q-intersection>
@@ -99,7 +99,7 @@ import ModalAddStudent from 'src/modules/personal/students/components/ModalAddSt
 import CardStudent from '../components/CardStudent.vue';
 import StudentSkeleton from '../components/StudentSkeleton.vue';
 import ModalDiet from '../components/ModalDiet.vue';
-import ModalTrainer from '../components/ModalTrainer.vue';
+import ModalTraining from '../components/ModalTraining.vue';
 import Actions from '../components/Actions.vue';
 import moment from 'moment';
 import { studentColumns } from 'src/modules/personal/students/helpers';
@@ -114,7 +114,7 @@ export default defineComponent({
     Actions,
     StudentSkeleton,
     ModalDiet,
-    ModalTrainer,
+    ModalTraining,
   },
   setup() {
     const studentStore = useStudentStore();

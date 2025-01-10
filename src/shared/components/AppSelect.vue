@@ -4,6 +4,8 @@
     hide-bottom-space
     outlined
     dense
+    map-options
+    emit-value
     color="primary"
     v-model="model"
     v-bind="$attrs">
