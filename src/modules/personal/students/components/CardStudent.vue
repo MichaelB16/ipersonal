@@ -4,6 +4,19 @@
       <q-card-section class="tw-p-4">
         <div class="tw-flex text-center tw-flex-col tw-justify-center">
           <div class="tw-absolute tw-right-0 tw-top-0 tw-m-1">
+            <q-btn
+              round
+              size="xs"
+              :color="row.training ? 'green' : 'grey-5'"
+              flat
+              @click="viewTraining"
+              :disable="!row.training"
+              icon="mdi-weight-lifter"
+            >
+              <q-tooltip anchor="center left" self="center right">
+                {{ row.training ? 'Meu treino' : 'Sem treino' }}
+              </q-tooltip>
+            </q-btn>
             <actions :row="row" v-bind="$attrs" />
           </div>
           <div>
@@ -24,7 +37,9 @@
             </b>
             <span class="tw-text-[14px] text-grey-8">{{ row.age }} anos</span>
             <span class="tw-text-[14px] text-grey-8">{{ row.email }}</span>
-            <span class="tw-text-[12px] tw-tracking-widest text-grey-8">{{ row.phone }}</span>
+            <span class="tw-text-[12px] tw-tracking-widest text-grey-8">{{
+              row.phone
+            }}</span>
           </div>
           <span>
             <q-chip
@@ -42,6 +57,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue';
 import Actions from './Actions.vue';
+import { useStudentStore } from '../store/student.store';
 
 export default defineComponent({
   name: 'CardStudent',
@@ -55,11 +71,18 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const studentStore = useStudentStore();
     const username = computed(() => {
       return props.row.name || '';
     });
 
-    return { username };
+    const viewTraining = () => {
+      studentStore.SET_OPEN_MODAL_VIEW_TRAINING(true);
+      studentStore.SET_ROW_SELECTED(props.row);
+      studentStore.listViewTraining =  JSON.parse(props.row.training.training);
+    };
+
+    return { username, viewTraining };
   },
 });
 </script>
