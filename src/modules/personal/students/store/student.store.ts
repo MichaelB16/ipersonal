@@ -4,6 +4,8 @@ import { iFormStudent } from 'src/modules/personal/students/model/student.model'
 import { configPagination } from 'src/shared/utils';
 import { trainingService } from '../services/training.service';
 import { iTraining, iTrainingFormSearch } from '../model/training.model';
+import { useNotification } from 'src/shared/composable/notification';
+const notification = useNotification();
 
 export const useStudentStore = defineStore('student', {
   state: () => ({
@@ -52,25 +54,40 @@ export const useStudentStore = defineStore('student', {
     },
     async REQUEST_GET_TRAINING(data: iTrainingFormSearch) {
       this.loading = true;
-      return await trainingService.getTraining(data).then(({ data }) => {
-        return data;
-      }).finally(() => {
-        this.loading = false;
-      });
+      return await trainingService
+        .getTraining(data)
+        .then(({ data }) => {
+          return data;
+        })
+        .finally(() => {
+          this.loading = false;
+        })
+        .catch(() => {
+          notification.error();
+        });
     },
     async SAVE_TRAINING(data: iTraining) {
       this.loading = true;
-      return await trainingService.saveTraining(data).then(({ data }) => {
-        return data;
-      }).finally(() => {
-        this.loading = false;
-      });
+      return await trainingService
+        .saveTraining(data)
+        .then(async ({ data }) => {
+          notification.success();
+          await this.REQUEST_GET_STUDENT()
+          return data;
+        })
+        .finally(() => {
+          this.loading = false;
+        })
+        .catch(() => {
+          notification.error();
+        });
     },
     async REQUEST_ADD_OR_UPDATE_STUDENT(data: iFormStudent) {
       this.loading = true;
       return await studentService
         .createOrUpdate(data)
         .then(async () => {
+          notification.success();
           await this.REQUEST_GET_STUDENT();
           return true;
         })
@@ -78,6 +95,7 @@ export const useStudentStore = defineStore('student', {
           this.loading = false;
         })
         .catch(() => {
+          notification.error();
           return false;
         });
     },
@@ -85,9 +103,12 @@ export const useStudentStore = defineStore('student', {
       await studentService
         .delete(id)
         .then(async () => {
+          notification.success();
           await this.REQUEST_GET_STUDENT();
         })
-        .catch(() => {});
+        .catch(() => {
+          notification.error();
+        });
     },
   },
 });

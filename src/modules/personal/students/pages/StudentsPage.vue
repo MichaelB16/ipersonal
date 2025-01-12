@@ -125,6 +125,7 @@ import moment from 'moment';
 import { studentColumns } from 'src/modules/personal/students/helpers';
 import { useStudentStore } from 'src/modules/personal/students/store/student.store';
 import { iFormStudent } from '../model/student.model';
+import { useNotification } from 'src/shared/composable/notification';
 
 export default defineComponent({
   name: 'StudentsPage',
@@ -135,10 +136,11 @@ export default defineComponent({
     StudentSkeleton,
     ModalDiet,
     ModalTraining,
-    ModalViewTraining
+    ModalViewTraining,
   },
   setup() {
     const studentStore = useStudentStore();
+    const notification = useNotification();
     const columns = studentColumns;
     const state = reactive({
       isGrid: false,
@@ -194,7 +196,7 @@ export default defineComponent({
     const viewTraining = (row) => {
       studentStore.SET_OPEN_MODAL_VIEW_TRAINING(true);
       studentStore.SET_ROW_SELECTED(row);
-      studentStore.listViewTraining =  JSON.parse(row.training.training);
+      studentStore.listViewTraining = JSON.parse(row.training.training);
     };
 
     const edit = (row) => {
@@ -203,7 +205,9 @@ export default defineComponent({
     };
 
     const remove = async ({ id }) => {
-      await studentStore.REQUEST_DELETE_STUDENT(id);
+      notification.confirm(async () => {
+        await studentStore.REQUEST_DELETE_STUDENT(id);
+      });
     };
 
     return {

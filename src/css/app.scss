@@ -9,6 +9,41 @@ body {
     padding: 20px;
     overflow-y: auto;
   }
+
+  .q-notifications__list {
+    // background: #0a0a0a3d;
+    // margin-bottom: 0;
+    .notification-confirm {
+      .q-notification__content {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        .q-icon {
+          font-size: 60px;
+        }
+        .q-notification__wrapper {
+          width: 300px;
+          height: 150px;
+        }
+        .q-notification__message {
+          div {
+            &:first-child {
+              color: #7c7c7b;
+              font-size: 16px;
+              font-weight: 700;
+            }
+            &:last-child {
+              color:#8c8c8c;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .q-drawer--standard {
     .sidebar-left {
       .q-item {
