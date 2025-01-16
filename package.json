@@ -1,6 +1,6 @@
 {
   "name": "ipersonal",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "IPersonal",
   "productName": "IPersonal",
   "author": "michaelbatistasousa@gmail.com",
@@ -14,8 +14,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
-    "@typescript-eslint/typescript-estree": "^8.20.0",
-    "@vueuse/core": "^12.4.0",
+    "@vueuse/core": "^11.1.0",
     "axios": "^1.2.1",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
@@ -28,21 +27,21 @@
     "vue3-google-login": "^2.0.33"
   },
   "devDependencies": {
-    "@quasar/app-vite": "^2.0.7",
-    "@types/node": "^22.10.3",
-    "@typescript-eslint/eslint-plugin": "^8.20.0",
-    "@typescript-eslint/parser": "^8.20.0",
+    "@quasar/app-vite": "^1.9.0",
+    "@types/node": "^20.14.8",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.18.0",
-    "eslint-config-prettier": "^10.0.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
-    "postcss": "^8.5.1",
-    "prettier": "^3.4.2",
+    "postcss": "^8.4.47",
+    "prettier": "^2.5.1",
     "tailwindcss": "^3.4.13",
-    "typescript": "^5.5.0",
+    "typescript": "~5.5.4",
     "vite-plugin-checker": "^0.8.0",
     "vite-tsconfig-paths": "^5.0.1",
-    "vue-tsc": "^2.1.6"
+    "vue-tsc": "^2.0.29"
   },
   "engines": {
     "node": "^20 || ^18 || ^16",
