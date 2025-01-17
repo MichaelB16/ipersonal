@@ -10,19 +10,31 @@
                 {{ item.day }}
               </b>
               <div class="tw-flex tw-items-center">
-                <q-chip size="md" color="grey-4" :label="item.focus" />
-                <q-btn
-                  unelevated
-                  color="grey-8"
-                  icon="mdi-plus"
-                  round
-                  @click="addTraining(index)"
+                <!-- <q-chip size="md" color="grey-4" :label="item.focus" /> -->
+                <app-input
+                  color="grey-4"
+                  outlined
+                  bg-color="grey-1"
+                  rounded
+                  class="tw-mr-2 tw-w-[220px]"
                   size="xs"
+                  v-model="listTraining[index].focus"
                 >
-                  <q-tooltip anchor="center left" self="center right">
-                    Adicionar treino
-                  </q-tooltip>
-                </q-btn>
+                  <template v-slot:append>
+                    <q-btn
+                      unelevated
+                      color="grey-8"
+                      icon="mdi-plus"
+                      round
+                      @click="addTraining(index)"
+                      size="xs"
+                    >
+                      <q-tooltip anchor="center left" self="center right">
+                        Adicionar treino
+                      </q-tooltip>
+                    </q-btn>
+                  </template>
+                </app-input>
               </div>
             </div>
           </q-card-section>
@@ -38,7 +50,7 @@
                   v-model="listTraining[index].exercises[key].name"
                 >
                   <template v-slot:prepend>
-                    <q-icon name="mdi-star" color="primary" size="15px" />
+                    <q-icon name="mdi-star" color="grey-8" size="15px" />
                   </template>
                   <template v-slot:append>
                     <small class="tw-text-[10px] text-grey-8">
@@ -101,12 +113,12 @@ export default defineComponent({
     const saveTraining = () => {
       formTraning.value.validate().then(async (success: boolean) => {
         if (success) {
-          await studentStore.SAVE_TRAINING({
-            student_id: parseInt(studentStore.rowSelected.id),
-            training: JSON.stringify(state.listTraining),
-          });
-
-          emit('close');
+          await studentStore
+            .SAVE_TRAINING({
+              student_id: parseInt(studentStore.rowSelected.id),
+              training: JSON.stringify(state.listTraining),
+            })
+            emit('close');
         }
       });
     };
@@ -117,7 +129,7 @@ export default defineComponent({
       addTraining,
       saveTraining,
       formRules,
-      ...toRefs(state)
+      ...toRefs(state),
     };
   },
 });

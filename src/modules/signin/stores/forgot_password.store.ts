@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { forgotPasswordService } from '../services/forgot_password.services';
+import { forgotPasswordService } from '../services/forgot_password.service';
 
 export const useForgotPassowrdStore = defineStore('forgot_password', {
   state: () => ({

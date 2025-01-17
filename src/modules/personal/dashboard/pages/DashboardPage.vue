@@ -61,9 +61,9 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, onMounted, reactive, toRefs } from 'vue';
-import { useDashboardStore } from '../store/dashboard.store';
+import { useDashboardStore } from '../stores/dashboard.store';
 import { moneyFormatBr } from 'src/shared/utils';
-import DashboardSkeleton from '../../components/DashboardSkeleton.vue';
+import DashboardSkeleton from '../components/DashboardSkeleton.vue';
 export default defineComponent({
   name: 'DashboardPage',
   components: {

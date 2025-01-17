@@ -76,7 +76,7 @@ import {
   toRefs,
 } from 'vue';
 import { formRules } from 'src/shared/utils';
-import { useMessageStore } from '../store/message.store';
+import { useMessageStore } from '../stores/message.store';
 import MessageSkeleton from '../components/MessageSkeleton.vue';
 export default defineComponent({
   name: 'MessagePage',

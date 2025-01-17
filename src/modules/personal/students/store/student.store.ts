@@ -44,7 +44,7 @@ export const useStudentStore = defineStore('student', {
           ...params,
           per_page: params?.rowsPerPage || this.pagination.rowsPerPage,
         })
-        .then(async ({ data }) => {
+        .then(({ data }) => {
           this.listStudent = data.data;
           this.pagination = configPagination(data);
         })
@@ -70,9 +70,9 @@ export const useStudentStore = defineStore('student', {
       this.loading = true;
       return await trainingService
         .saveTraining(data)
-        .then(async ({ data }) => {
+        .then(({ data }) => {
           notification.success();
-          await this.REQUEST_GET_STUDENT()
+          this.REQUEST_GET_STUDENT()
           return data;
         })
         .finally(() => {
@@ -86,9 +86,9 @@ export const useStudentStore = defineStore('student', {
       this.loading = true;
       return await studentService
         .createOrUpdate(data)
-        .then(async () => {
+        .then(() => {
           notification.success();
-          await this.REQUEST_GET_STUDENT();
+          this.REQUEST_GET_STUDENT();
           return true;
         })
         .finally(() => {
@@ -102,9 +102,9 @@ export const useStudentStore = defineStore('student', {
     async REQUEST_DELETE_STUDENT(id: number) {
       await studentService
         .delete(id)
-        .then(async () => {
+        .then(() => {
           notification.success();
-          await this.REQUEST_GET_STUDENT();
+          this.REQUEST_GET_STUDENT();
         })
         .catch(() => {
           notification.error();

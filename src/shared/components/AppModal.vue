@@ -32,7 +32,7 @@
         </div>
       </q-card-section>
       <slot name="after-title" />
-      <q-card-section>
+      <q-card-section class="tw-max-h-[600px] tw-overflow-auto">
         <slot name="default" />
       </q-card-section>
       <slot name="after-content" />

@@ -24,9 +24,9 @@ export const useMessageStore = defineStore('message', {
       this.loading = true;
       return await messageService
         .createOrUpdate(data)
-        .then(async () => {
+        .then(() => {
           notification.success();
-          await this.REQUEST_GET_MESSAGE();
+          this.REQUEST_GET_MESSAGE();
           return true;
         })
         .finally(() => {
