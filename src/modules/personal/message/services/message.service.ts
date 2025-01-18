@@ -3,10 +3,10 @@ import {iFormStudent} from 'src/modules/personal/students/model/student.model';
 
 class messageServiceHttp {
   createOrUpdate(data: iFormStudent) {
-    return $http.post('message', data);
+    return $http.post('messages', data);
   }
   getAllMessage() {
-    return $http.get('message');
+    return $http.get('messages');
   }
 }
 
