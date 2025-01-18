@@ -12,6 +12,7 @@
         {{ message }}
       </div>
       <q-btn
+        v-if="!hideClose"
         size="xs"
         class="tw-ml-[3px]"
         @click="close"
@@ -33,6 +34,10 @@ export default defineComponent({
       default: '',
     },
     permanent: {
+      type: Boolean,
+      default: false,
+    },
+    hideClose: {
       type: Boolean,
       default: false,
     },

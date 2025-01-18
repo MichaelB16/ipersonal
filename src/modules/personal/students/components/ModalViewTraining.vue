@@ -1,7 +1,7 @@
 <template>
   <app-modal
     :loading="loading"
-    card-class="tw-w-[450px]"
+    card-class="tw-w-[500px]"
     v-model="openModal"
     :title="modalTitle"
   >

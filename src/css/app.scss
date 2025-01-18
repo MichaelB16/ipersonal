@@ -10,6 +10,16 @@ body {
     overflow-y: auto;
   }
 
+  fieldset {
+    border-color: #ffffff4f;
+    border-radius: 6px;
+    padding: 0.4em 0.75em 0.8em;
+    legend {
+      padding: 0 10px 0 10px;
+      color: #636363;
+      font-weight: 600;
+    }
+  }
   .q-notifications__list {
     // background: #0a0a0a3d;
     // margin-bottom: 0;
@@ -35,7 +45,7 @@ body {
               font-weight: 700;
             }
             &:last-child {
-              color:#8c8c8c;
+              color: #8c8c8c;
               font-size: 14px;
             }
           }
