@@ -72,6 +72,20 @@
                     <q-btn
                       round
                       size="xs"
+                      :color="row.diet ? 'brown' : 'grey-5'"
+                      flat
+                      @click="viewDiet(row)"
+                      :disable="!row.diet"
+                      icon="mdi-food-steak"
+                    >
+                      <q-tooltip anchor="center left" self="center right">
+                        {{ row.diet ? 'Minha dieta' : 'Sem dieta' }}
+                      </q-tooltip>
+                    </q-btn>
+
+                    <q-btn
+                      round
+                      size="xs"
                       :color="row.training ? 'green' : 'grey-5'"
                       flat
                       @click="viewTraining(row)"
@@ -106,6 +120,7 @@
         </div>
         <modal-add-student />
         <modal-diet />
+        <modal-view-diet />
         <modal-training />
         <modal-view-training />
       </div>
@@ -120,6 +135,7 @@ import StudentSkeleton from '../components/StudentSkeleton.vue';
 import ModalDiet from '../components/ModalDiet.vue';
 import ModalTraining from '../components/ModalTraining.vue';
 import ModalViewTraining from '../components/ModalViewTraining.vue';
+import ModalViewDiet from '../components/ModalViewDiet.vue'
 import Actions from '../components/Actions.vue';
 import moment from 'moment';
 import { studentColumns } from 'src/modules/personal/students/helpers';
@@ -136,6 +152,7 @@ export default defineComponent({
     StudentSkeleton,
     ModalDiet,
     ModalTraining,
+    ModalViewDiet,
     ModalViewTraining,
   },
   setup() {
@@ -199,6 +216,13 @@ export default defineComponent({
       studentStore.listViewTraining = JSON.parse(row.training.training);
     };
 
+    const viewDiet = (row) => {
+      studentStore.SET_OPEN_MODAL_VIEW_DIET(true);
+      studentStore.SET_ROW_SELECTED(row);
+      studentStore.listDiet = JSON.parse(row.diet.diet);
+    };
+
+
     const edit = (row) => {
       studentStore.SET_ROW_SELECTED(row);
       studentStore.SET_OPEN_MODAL_STUDENT(true);
@@ -216,6 +240,7 @@ export default defineComponent({
       columns,
       loading,
       modeView,
+      viewDiet,
       viewTraining,
       ...toRefs(state),
       toggleIsGrid,

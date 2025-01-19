@@ -5,6 +5,8 @@ import { configPagination } from 'src/shared/utils';
 import { trainingService } from '../services/training.service';
 import { iTraining, iTrainingFormSearch } from '../model/training.model';
 import { useNotification } from 'src/shared/composable/notification';
+import { iDiet, iDietFormSearch } from '../model/diet.model';
+import { dietgService } from '../services/diet.service';
 const notification = useNotification();
 
 export const useStudentStore = defineStore('student', {
@@ -13,8 +15,10 @@ export const useStudentStore = defineStore('student', {
     openModalDiet: false,
     openModalTrainer: false,
     openModalViewTraining: false,
+    openModalViewDiet: false,
     listStudent: [],
     listTraining: [],
+    listDiet: [],
     listViewTraining: [],
     loadingTable: false,
     pagination: configPagination(),
@@ -34,6 +38,9 @@ export const useStudentStore = defineStore('student', {
     SET_OPEN_MODAL_VIEW_TRAINING(value: boolean) {
       this.openModalViewTraining = value;
     },
+    SET_OPEN_MODAL_VIEW_DIET(value: boolean) {
+      this.openModalViewDiet = value;
+    },
     SET_ROW_SELECTED(data = {}) {
       this.rowSelected = data;
     },
@@ -50,6 +57,36 @@ export const useStudentStore = defineStore('student', {
         })
         .finally(() => {
           this.loadingTable = false;
+        });
+    },
+    async REQUEST_GET_DIET(data: iDietFormSearch) {
+      this.loading = true;
+      return await dietgService
+        .getDiet(data)
+        .then(({ data }) => {
+          return data;
+        })
+        .finally(() => {
+          this.loading = false;
+        })
+        .catch(() => {
+          notification.error();
+        });
+    },
+    async SAVE_DIET(data: iDiet) {
+      this.loading = true;
+      return await dietgService
+        .saveDiet(data)
+        .then(() => {
+          notification.success();
+          this.REQUEST_GET_STUDENT();
+          return data;
+        })
+        .finally(() => {
+          this.loading = false;
+        })
+        .catch(() => {
+          notification.error();
         });
     },
     async REQUEST_GET_TRAINING(data: iTrainingFormSearch) {
@@ -72,7 +109,7 @@ export const useStudentStore = defineStore('student', {
         .saveTraining(data)
         .then(({ data }) => {
           notification.success();
-          this.REQUEST_GET_STUDENT()
+          this.REQUEST_GET_STUDENT();
           return data;
         })
         .finally(() => {

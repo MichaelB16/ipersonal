@@ -34,6 +34,7 @@ export default defineComponent({
     const studentStore = useStudentStore();
 
     const openModalDiet = () => {
+      studentStore.SET_ROW_SELECTED(props.row);
       studentStore.SET_OPEN_MODAL_DIET(true);
     };
 
