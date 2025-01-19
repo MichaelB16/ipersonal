@@ -133,8 +133,8 @@ export default defineComponent({
     const loginTips = computed(() => {
       return [
         'Plataforma personalizada de gestão de alunos',
-        'Acompanhamento do progresso individual',
         'Ferramentas para personalizar treinos e dietas',
+        'Acompanhamento do progresso individual',
         'Organização de horários'
       ];
     });
