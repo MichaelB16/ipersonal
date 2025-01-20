@@ -103,11 +103,8 @@ export default defineComponent({
     const listObjective = computed(() => {
       return [
         { label: 'Ganho de massa muscular', value: 'hipertrofia' },
-        { label: 'Perda de gordura', value: 'definição' },
-        {
-          label: 'Melhorar a resistência física ou o condicionamento',
-          value: 'Melhorar a resistência física ou o condicionamento',
-        },
+        { label: 'Perda de gordura', value: 'Perda de gordura' },
+        { label: 'Definição', value: 'Definição' },
       ];
     });
 
