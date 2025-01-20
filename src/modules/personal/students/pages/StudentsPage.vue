@@ -144,6 +144,7 @@ import { studentColumns } from 'src/modules/personal/students/helpers';
 import { useStudentStore } from 'src/modules/personal/students/store/student.store';
 import { iFormStudent } from '../model/student.model';
 import { useNotification } from 'src/shared/composable/notification';
+import { isGrid } from 'src/shared/utils';
 
 export default defineComponent({
   name: 'StudentsPage',
@@ -193,12 +194,7 @@ export default defineComponent({
     });
 
     const modeView = computed(() => {
-      const type = state.isGrid ? 'grid' : 'linha';
-      const icon = state.isGrid ? 'mdi-view-grid' : 'mdi-view-list';
-      return {
-        text: `Modo de visualização ${type}`,
-        icon,
-      };
+      return isGrid(state.isGrid)
     });
 
     const openModal = () => {

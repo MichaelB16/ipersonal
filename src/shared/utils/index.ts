@@ -25,6 +25,13 @@ export const configModalTitle = (
   };
 };
 
+export const isGrid = (grid:boolean) => {
+  return {
+    text: `Modo de visualização ${grid ? 'grid' : 'linha'}`,
+    icon: grid ? 'mdi-view-grid' : 'mdi-view-list'
+  }
+}
+
 export const formRules = (otherRules: any = []) => {
   return [(value: any) => !!value || 'campo obrigatório!', ...otherRules];
 };

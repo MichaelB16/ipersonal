@@ -17,7 +17,6 @@
                     color="grey-4"
                     bg-color="white"
                     class="xs:tw-w-[100px] sm:tw-w-[150px] tw-text-[10px]"
-                    size="xs"
                     borderless
                     :rules="formRules()"
                     v-model="listTraining[index].focus"
@@ -131,45 +130,6 @@
             </q-expansion-item>
           </q-card-section>
         </q-card>
-
-        <!--  <q-card bordered class="no-shadow">
-          <q-card-section dense class="tw-border">
-            <div class="tw-flex tw-items-center tw-justify-between">
-              <b class="text-grey-8">
-                <q-icon size="20px" name="mdi-calendar" />
-                {{ item.day }}
-              </b>
-              <div class="tw-flex tw-items-center">
-                <app-input
-                  color="grey-4"
-                  outlined
-                  bg-color="grey-1"
-                  rounded
-                  class="tw-mr-2 tw-w-[220px]"
-                  size="xs"
-                  v-model="listTraining[index].focus"
-                >
-                  <template v-slot:append>
-                    <q-btn
-                      unelevated
-                      color="grey-8"
-                      icon="mdi-plus"
-                      round
-                      @click="addTraining(index)"
-                      size="xs"
-                    >
-                      <q-tooltip anchor="center left" self="center right">
-                        Adicionar treino
-                      </q-tooltip>
-                    </q-btn>
-                  </template>
-                </app-input>
-              </div>
-            </div>
-          </q-card-section>
-          <q-card-section v-if="listTraining[index].exercises.length">
-          </q-card-section>
-        </q-card> -->
       </div>
       <div class="col-12">
         <app-form-footer />
