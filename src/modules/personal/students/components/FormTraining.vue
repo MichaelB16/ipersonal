@@ -16,7 +16,7 @@
                   <app-input
                     color="grey-4"
                     bg-color="white"
-                    class="tw-w-[150px] tw-text-[10px]"
+                    class="xs:tw-w-[100px] sm:tw-w-[150px] tw-text-[10px]"
                     size="xs"
                     borderless
                     :rules="formRules()"
