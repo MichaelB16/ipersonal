@@ -6,7 +6,7 @@
           <q-card-section class="q-pa-none">
             <q-expansion-item icon="mdi-calendar" :label="item.day">
               <template v-slot:header>
-                <q-item-section avatar>
+                <q-item-section side>
                   <q-icon color="grey" size="20px" name="mdi-calendar" />
                 </q-item-section>
                 <q-item-section>
