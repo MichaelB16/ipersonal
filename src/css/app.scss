@@ -11,8 +11,9 @@ body {
   }
 
   fieldset {
-    border-color: #ffffff4f;
+    border: 1px solid #81777747;
     border-radius: 6px;
+    margin: 0px 8px 0px 8px;
     padding: 0.4em 0.75em 0.8em;
     legend {
       padding: 0 10px 0 10px;
@@ -20,6 +21,7 @@ body {
       font-weight: 600;
     }
   }
+
   .q-notifications__list {
     // background: #0a0a0a3d;
     // margin-bottom: 0;

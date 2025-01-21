@@ -69,35 +69,8 @@
                 </template>
                 <template v-slot:body-cell-actions="{ row }">
                   <q-td class="text-center tw-w-5 q-gutter-x-xs">
-                    <!-- <q-btn
-                      round
-                      size="xs"
-                      :color="row.diet ? 'brown' : 'grey-5'"
-                      flat
-                      @click="viewDiet(row)"
-                      :disable="!row.diet"
-                      icon="mdi-food-steak"
-                    >
-                      <q-tooltip anchor="center left" self="center right">
-                        {{ row.diet ? 'Minha dieta' : 'Sem dieta' }}
-                      </q-tooltip>
-                    </q-btn>
-
-                    <q-btn
-                      round
-                      size="xs"
-                      :color="row.training ? 'green' : 'grey-5'"
-                      flat
-                      @click="viewTraining(row)"
-                      :disable="!row.training"
-                      icon="mdi-weight-lifter"
-                    >
-                      <q-tooltip anchor="center left" self="center right">
-                        {{ row.training ? 'Meu treino' : 'Sem treino' }}
-                      </q-tooltip>
-                    </q-btn>
- -->
                     <btn-views :row="row" />
+                    <btn-pdf :row="row" />
                     <actions
                       :row="row"
                       @edit="edit(row)"
@@ -139,6 +112,7 @@ import ModalViewTraining from '../components/ModalViewTraining.vue';
 import ModalViewDiet from '../components/ModalViewDiet.vue';
 import Actions from '../components/Actions.vue';
 import BtnViews from '../components/BtnViews.vue';
+import BtnPdf from '../components/BtnPdf.vue';
 import moment from 'moment';
 import { studentColumns } from 'src/modules/personal/students/helpers';
 import { useStudentStore } from 'src/modules/personal/students/store/student.store';
@@ -153,6 +127,7 @@ export default defineComponent({
     CardStudent,
     BtnViews,
     Actions,
+    BtnPdf,
     StudentSkeleton,
     ModalDiet,
     ModalTraining,
@@ -194,7 +169,7 @@ export default defineComponent({
     });
 
     const modeView = computed(() => {
-      return isGrid(state.isGrid)
+      return isGrid(state.isGrid);
     });
 
     const openModal = () => {

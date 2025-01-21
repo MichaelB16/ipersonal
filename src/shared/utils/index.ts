@@ -1,6 +1,8 @@
 import moment from 'moment';
 import { iPagination } from '../model/paginate.type';
 import * as crypto from 'crypto-js';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 export const configPagination = (paginate = {} as any): iPagination => {
   return {
@@ -25,12 +27,33 @@ export const configModalTitle = (
   };
 };
 
-export const isGrid = (grid:boolean) => {
+export const exportFile = (
+  columns: string[],
+  data: any,
+  filename: string,
+  callback
+) => {
+  const doc = new jsPDF({
+    orientation: 'landscape',
+  });
+  callback(doc);
+  autoTable(doc, {
+    head: [columns],
+    body: data,
+    margin: { right: 6, left: 6, top: 12, bottom: 6 },
+    rowPageBreak: 'auto',
+    theme: 'grid',
+    styles: { font: 'times', fontSize: 10, cellPadding: 3 },
+  });
+  doc.save(filename);
+};
+
+export const isGrid = (grid: boolean) => {
   return {
     text: `Modo de visualização ${grid ? 'grid' : 'linha'}`,
-    icon: grid ? 'mdi-view-grid' : 'mdi-view-list'
-  }
-}
+    icon: grid ? 'mdi-view-grid' : 'mdi-view-list',
+  };
+};
 
 export const formRules = (otherRules: any = []) => {
   return [(value: any) => !!value || 'campo obrigatório!', ...otherRules];
@@ -39,7 +62,7 @@ export const formRules = (otherRules: any = []) => {
 export const rulesDate = (otherRules: any = []) => {
   return formRules([
     (val: any) => moment(val, 'DD/MM/YYYY').isValid() || 'Data inválida!',
-    ...otherRules
+    ...otherRules,
   ]);
 };
 
@@ -49,7 +72,7 @@ export const rulesEmail = (otherRules: any = []) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(val) || 'E-mail inválido!';
     },
-    ...otherRules
+    ...otherRules,
   ]);
 };
 

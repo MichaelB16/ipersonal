@@ -5,6 +5,7 @@
         <div class="tw-flex text-center tw-flex-col tw-justify-center">
           <div class="tw-absolute tw-right-0 tw-top-0 tw-m-1">
             <btn-views :row="row" />
+            <btn-pdf :row="row" />
             <actions :row="row" v-bind="$attrs" />
           </div>
           <div>
@@ -48,9 +49,10 @@
 import { computed, defineComponent, PropType } from 'vue';
 import Actions from './Actions.vue';
 import BtnViews from './BtnViews.vue';
+import BtnPdf from './BtnPdf.vue';
 export default defineComponent({
   name: 'CardStudent',
-  components: { Actions, BtnViews },
+  components: { Actions, BtnViews, BtnPdf },
   props: {
     row: {
       type: Object as PropType<any>,

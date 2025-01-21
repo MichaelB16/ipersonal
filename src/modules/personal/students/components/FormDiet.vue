@@ -17,7 +17,7 @@
                 <q-card-section class="q-pa-xs tw-bg-[#f5f5f5c9]">
                   <template v-if="item.meals.length">
                     <div
-                      class="row full-width items-center q-col-gutter-x-sm tw-mb-2"
+                      class="row full-width items-center q-col-gutter-x-sm tw-mb-1"
                       v-for="(meal, key) in item.meals"
                       :key="key"
                     >
@@ -25,7 +25,7 @@
                         <fieldset>
                           <legend>
                             <q-chip color="primary" text-color="white">
-                              {{meal.label}}
+                              {{ meal.label }}
                             </q-chip>
                           </legend>
                           <div class="row q-col-gutter-y-sm">
@@ -35,7 +35,7 @@
                               <div class="col">
                                 <app-input
                                   bg-color="white"
-                                  class='tw-text-[10px]'
+                                  class="tw-text-[10px]"
                                   :rules="formRules()"
                                   v-model="
                                     listDiet[index].meals[key].description
@@ -99,7 +99,6 @@ export default defineComponent({
     const removeDiet = (index: number, key: number) => {
       state.listDiet[index].meals.splice(key, 1);
     };
-
 
     const saveDiet = () => {
       formDiet.value.validate().then(async (success: boolean) => {

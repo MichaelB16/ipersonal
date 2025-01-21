@@ -1,7 +1,7 @@
 <template>
   <q-card
-    :class="alert.color"
-    class="tw-text-white tw-w-full no-shadow tw-rounded-full tw-border tw-animate-fadeOut"
+    :class="alertClass"
+    class="tw-text-white tw-w-full no-shadow tw-rounded-full tw-border"
   >
     <q-card-section
       :class="alert.text"
@@ -90,9 +90,18 @@ export default defineComponent({
       return types[props.type];
     });
 
+    const alertClass = computed(() => {
+      const classname = [types[props.type].color];
+
+      if (!props.permanent) classname.push('tw-animate-fadeOut');
+
+      return classname;
+    });
+
     return {
       close,
       alert,
+      alertClass,
     };
   },
 });
