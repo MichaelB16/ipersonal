@@ -1,7 +1,7 @@
 <template>
   <router-view />
   <app-loading-screen />
-  <app-information-toggle />
+  <!-- <app-information-toggle /> -->
 </template>
 
 <script lang="ts">
