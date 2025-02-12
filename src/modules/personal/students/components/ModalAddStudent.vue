@@ -53,7 +53,7 @@
           />
         </div>
         <div class="col-12">
-          <app-input-money v-model.lazy="form.price" label="Preço" />
+          <app-input-money v-model.lazy="form.price" label="Mensalidade" />
         </div>
         <div class="col-12">
           <q-toggle

@@ -121,7 +121,7 @@
                         permanent
                         hide-close
                         type="info"
-                        message="Olá! Tudo bem? Hoje é dia de descanso, aproveite!"
+                        message="Dia de descanso, aproveite!"
                       />
                     </div>
                   </template>
