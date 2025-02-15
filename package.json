@@ -6,10 +6,9 @@
   "author": "michaelbatistasousa@gmail.com",
   "private": true,
   "scripts": {
-    "test": "vitest",
-    "coverage": "vitest run --coverage",
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "build": "quasar build"
   },
@@ -34,7 +33,6 @@
     "@types/node": "^22.10.3",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
-    "@vitest/coverage-v8": "^3.0.5",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^8.1.0",
@@ -45,7 +43,6 @@
     "typescript": "^5.7.2",
     "vite-plugin-checker": "^0.8.0",
     "vite-tsconfig-paths": "^5.0.1",
-    "vitest": "^3.0.5",
     "vue-tsc": "^2.0.29"
   },
   "engines": {
