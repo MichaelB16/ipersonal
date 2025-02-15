@@ -102,7 +102,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm col-md col-lg q-pa-md bg-white tw-rounded-md">
+              <div
+                class="col-xs-12 col-sm col-md col-lg q-pa-md bg-white tw-rounded-md"
+              >
                 <app-form-profile />
               </div>
             </div>
@@ -144,15 +146,7 @@ export default defineComponent({
     });
 
     const toggle = () => {
-      if (activeFullscreen.value) {
-        AppFullscreen.exit().catch((err) => {
-          console.log(err);
-        });
-      } else {
-        AppFullscreen.request().catch((err) => {
-          console.log(err);
-        });
-      }
+      activeFullscreen.value ? AppFullscreen.exit() : AppFullscreen.request();
     };
 
     const logout = async () => {

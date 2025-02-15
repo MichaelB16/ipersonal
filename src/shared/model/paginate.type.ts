@@ -1,4 +1,4 @@
-export interface iPagination {
+export interface IPagination {
   sortBy: string;
   descending: boolean;
   page: number;

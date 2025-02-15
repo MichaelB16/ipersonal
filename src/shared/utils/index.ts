@@ -1,10 +1,10 @@
 import moment from 'moment';
-import { iPagination } from '../model/paginate.type';
+import { IPagination } from '../model/paginate.type';
 import * as crypto from 'crypto-js';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
-export const configPagination = (paginate = {} as any): iPagination => {
+export const configPagination = (paginate = {} as any): IPagination => {
   return {
     sortBy: paginate?.sortBy || '',
     descending: paginate?.descending || false,

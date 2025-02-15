@@ -1,4 +1,4 @@
-export interface iFormStudent {
+export interface IFormStudent {
   name: string;
   email: string;
   phone: string;

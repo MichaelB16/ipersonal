@@ -29,6 +29,7 @@ export default defineComponent({
     const loading = computed(() => {
       return authStore.loadingGoogle;
     });
+
     const loginWithGoogle = () => {
       if (token) {
         googleSdkLoaded(google => {
@@ -79,14 +80,9 @@ export default defineComponent({
       window.location.href = name.href;
     }
 
-    const errorLogin = (response) => {
-      console.log('error:', response)
-    }
-
     return {
       loading,
-      loginWithGoogle,
-      errorLogin
+      loginWithGoogle
     }
   }
 })

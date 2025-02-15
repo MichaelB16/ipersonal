@@ -1,7 +1,7 @@
-import {iFormStudent} from 'src/modules/personal/students/model/student.model';
+import {IFormStudent} from 'src/modules/personal/students/model/student.model';
 import { moneyFormatBr } from 'src/shared/utils';
 
-export const setFormStudent = (data: iFormStudent = {} as iFormStudent) => {
+export const setFormStudent = (data: IFormStudent = {} as IFormStudent) => {
   return {
     name: data?.name || '',
     email: data?.email || '',

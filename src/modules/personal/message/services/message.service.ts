@@ -1,8 +1,8 @@
 import {$http} from 'src/boot/axios';
-import {iFormStudent} from 'src/modules/personal/students/model/student.model';
+import {IFormStudent} from 'src/modules/personal/students/model/student.model';
 
 class messageServiceHttp {
-  createOrUpdate(data: iFormStudent) {
+  createOrUpdate(data: IFormStudent) {
     return $http.post('messages', data);
   }
   getAllMessage() {

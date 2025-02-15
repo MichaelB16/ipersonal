@@ -96,7 +96,7 @@ import {
 } from 'src/shared/utils';
 import { setFormStudent } from 'src/modules/personal/students/helpers';
 import { useStudentStore } from 'src/modules/personal/students/store/student.store';
-import { iFormStudent } from 'src/modules/personal/students/model/student.model';
+import { IFormStudent } from 'src/modules/personal/students/model/student.model';
 import moment from 'moment';
 
 export default defineComponent({
@@ -132,7 +132,7 @@ export default defineComponent({
       (isOpen: boolean) => {
         if (isOpen) {
           state.form = setFormStudent({
-            ...(studentStore.rowSelected as iFormStudent),
+            ...(studentStore.rowSelected as IFormStudent),
           });
         }
       }

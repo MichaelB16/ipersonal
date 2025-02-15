@@ -116,7 +116,7 @@ import BtnPdf from '../components/BtnPdf.vue';
 import moment from 'moment';
 import { studentColumns } from 'src/modules/personal/students/helpers';
 import { useStudentStore } from 'src/modules/personal/students/store/student.store';
-import { iFormStudent } from '../model/student.model';
+import { IFormStudent } from '../model/student.model';
 import { useNotification } from 'src/shared/composable/notification';
 import { isGrid } from 'src/shared/utils';
 
@@ -150,7 +150,7 @@ export default defineComponent({
     });
 
     const data = computed(() => {
-      return studentStore.listStudent.map((item: iFormStudent) => {
+      return studentStore.listStudent.map((item: IFormStudent) => {
         return {
           ...item,
           access: parseInt(item.access.toString()),

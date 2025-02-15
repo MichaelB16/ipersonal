@@ -1,8 +1,8 @@
 import { $http } from 'src/boot/axios';
-import { iFormStudent } from 'src/modules/personal/students/model/student.model';
+import { IFormStudent } from 'src/modules/personal/students/model/student.model';
 
 class studentServiceHttp {
-  createOrUpdate(data: iFormStudent) {
+  createOrUpdate(data: IFormStudent) {
     if (data.id) {
       return $http.put(`students/${data.id}`, data);
     }

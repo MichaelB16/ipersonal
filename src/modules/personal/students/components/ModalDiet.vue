@@ -49,7 +49,7 @@
 import { computed, defineComponent, reactive, ref, toRefs } from 'vue';
 import { useStudentStore } from '../store/student.store';
 import { formRules, parseLocalValue } from 'src/shared/utils';
-import { iDietFormSearch } from '../model/diet.model';
+import { IDietFormSearch } from '../model/diet.model';
 import FormDiet from './FormDiet.vue';
 
 export default defineComponent({
@@ -69,7 +69,7 @@ export default defineComponent({
         restriction: '',
         sex: '',
         price: '',
-      } as iDietFormSearch,
+      } as IDietFormSearch,
     });
 
     const openModal = computed({

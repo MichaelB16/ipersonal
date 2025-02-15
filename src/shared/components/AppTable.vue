@@ -12,7 +12,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, useAttrs } from 'vue';
-import { iPagination } from '../model/paginate.type';
+import { IPagination } from '../model/paginate.type';
 
 export default defineComponent({
   name: 'AppTable',
@@ -25,8 +25,8 @@ export default defineComponent({
   setup() {
     const attrs = useAttrs();
 
-    const setConfigPagination = (): iPagination => {
-      const paginate = (attrs?.pagination || {}) as iPagination;
+    const setConfigPagination = (): IPagination => {
+      const paginate = (attrs?.pagination || {}) as IPagination;
       return {
         sortBy: paginate?.sortBy || '',
         descending: paginate?.descending || false,

@@ -35,13 +35,13 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { iMenu } from '../model/menu.type';
+import { IMenu } from '../model/menu.type';
 
 export default defineComponent({
   name: 'MenuItem',
   props: {
     listMenu: {
-      type: Array as PropType<iMenu[]>,
+      type: Array as PropType<IMenu[]>,
       default: () => [],
     },
   },

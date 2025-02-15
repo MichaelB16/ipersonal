@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 import { studentService } from 'src/modules/personal/students/services/student.service';
-import { iFormStudent } from 'src/modules/personal/students/model/student.model';
+import { IFormStudent } from 'src/modules/personal/students/model/student.model';
 import { configPagination } from 'src/shared/utils';
 import { trainingService } from '../services/training.service';
-import { iTraining, iTrainingFormSearch } from '../model/training.model';
+import { ITraining, ITrainingFormSearch } from '../model/training.model';
 import { useNotification } from 'src/shared/composable/notification';
-import { iDiet, iDietFormSearch } from '../model/diet.model';
+import { IDiet, IDietFormSearch } from '../model/diet.model';
 import { dietgService } from '../services/diet.service';
 const notification = useNotification();
 
@@ -59,7 +59,7 @@ export const useStudentStore = defineStore('student', {
           this.loadingTable = false;
         });
     },
-    async REQUEST_GET_DIET(data: iDietFormSearch) {
+    async REQUEST_GET_DIET(data: IDietFormSearch) {
       this.loading = true;
       return await dietgService
         .getDiet(data)
@@ -73,7 +73,7 @@ export const useStudentStore = defineStore('student', {
           notification.error();
         });
     },
-    async SAVE_DIET(data: iDiet) {
+    async SAVE_DIET(data: IDiet) {
       this.loading = true;
       return await dietgService
         .saveDiet(data)
@@ -89,7 +89,7 @@ export const useStudentStore = defineStore('student', {
           notification.error();
         });
     },
-    async REQUEST_GET_TRAINING(data: iTrainingFormSearch) {
+    async REQUEST_GET_TRAINING(data: ITrainingFormSearch) {
       this.loading = true;
       return await trainingService
         .getTraining(data)
@@ -103,7 +103,7 @@ export const useStudentStore = defineStore('student', {
           notification.error();
         });
     },
-    async SAVE_TRAINING(data: iTraining) {
+    async SAVE_TRAINING(data: ITraining) {
       this.loading = true;
       return await trainingService
         .saveTraining(data)
@@ -119,7 +119,7 @@ export const useStudentStore = defineStore('student', {
           notification.error();
         });
     },
-    async REQUEST_ADD_OR_UPDATE_STUDENT(data: iFormStudent) {
+    async REQUEST_ADD_OR_UPDATE_STUDENT(data: IFormStudent) {
       this.loading = true;
       return await studentService
         .createOrUpdate(data)

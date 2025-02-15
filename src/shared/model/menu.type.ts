@@ -1,6 +1,6 @@
-export interface iMenu {
+export interface IMenu {
   label: string;
   icon: string;
   to?: string;
-  dropdown?: iMenu[];
+  dropdown?: IMenu[];
 }
