@@ -24,7 +24,7 @@ export const useForgotPassowrdStore = defineStore('forgot_password', {
           return true;
         })
         .catch(({ response }) => {
-          const error = response.data
+          const error = response.data.error
           const mailInvalid = 'Este e-mail não foi encontrado!'
           const mailGoogle = 'Esta conta está vinculada ao Google!'
           const message = (error === 'mail_invalid') ? mailInvalid : mailGoogle
