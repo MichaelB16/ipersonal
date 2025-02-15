@@ -21,10 +21,12 @@ interface ICreateEvent {
 
 export const useGoogleCalendar = () => {
   const user = useCacheStorage().getItemStorage('user-storage');
-  const URL_EVENTS ='https://www.googleapis.com/calendar/v3/calendars/primary/events';
+  const URL_EVENTS =
+    'https://www.googleapis.com/calendar/v3/calendars/primary/events';
 
   const state = reactive({
     listEvents: [],
+    loadingGoogleCalendar: false,
   });
 
   const getIframeURL = computed(() => {
@@ -40,25 +42,36 @@ export const useGoogleCalendar = () => {
   });
 
   const getEventsGoogleCalendar = async () => {
-    await axios.get(URL_EVENTS, configHeaders.value).then(({ data }) => {
-      state.listEvents = data;
-    });
+    state.loadingGoogleCalendar = true;
+    await axios
+      .get(URL_EVENTS, configHeaders.value)
+      .then(({ data }) => {
+        state.listEvents = data;
+      })
+      .finally(() => {
+        state.loadingGoogleCalendar = false;
+      });
   };
 
   const createEventsGoogleCalendar = async (data: ICreateEvent) => {
-    await axios.post(
-      URL_EVENTS,
-      {
-        ...data,
-        extendedProperties: {
-          private: {
-            platformId: 'IPersonal',
-            eventId: uuidv4(),
+    state.loadingGoogleCalendar = true;
+    await axios
+      .post(
+        URL_EVENTS,
+        {
+          ...data,
+          extendedProperties: {
+            private: {
+              platformId: 'IPersonal',
+              eventId: uuidv4(),
+            },
           },
         },
-      },
-      configHeaders.value
-    );
+        configHeaders.value
+      )
+      .finally(() => {
+        state.loadingGoogleCalendar = false;
+      });
   };
 
   return {
