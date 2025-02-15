@@ -1,4 +1,4 @@
-import {boot} from 'quasar/wrappers';
+import { boot } from 'quasar/wrappers';
 
 import AppMenuHeader from 'src/shared/components/AppMenuHeader.vue';
 import AppMenuItem from 'src/shared/components/AppMenuItem.vue';
@@ -23,9 +23,10 @@ import AppAlert from 'src/shared/components/AppAlert.vue';
 import AppLoading from 'src/shared/components/AppLoading.vue';
 import AppSkeletonTitle from 'src/shared/components/AppSkeletonTitle.vue';
 import AppSkeletonTable from 'src/shared/components/AppSkeletonTable.vue';
+import AppGoogleCalendar from 'src/shared/components/AppGoogleCalendar.vue';
 import { Money3Directive } from 'v-money3';
 
-export default boot(({app}) => {
+export default boot(({ app }) => {
   app.directive('money', Money3Directive);
   app.component('AppAlert', AppAlert);
   app.component('AppLoading', AppLoading);
@@ -50,4 +51,5 @@ export default boot(({app}) => {
   app.component('AppSelect', AppSelect);
   app.component('AppNoData', AppNoData);
   app.component('AppBtnActions', AppBtnActions);
+  app.component('AppGoogleCalendar', AppGoogleCalendar);
 });
