@@ -1,55 +1,37 @@
 import { boot } from 'quasar/wrappers';
 
-import AppMenuHeader from 'src/shared/components/AppMenuHeader.vue';
-import AppMenuItem from 'src/shared/components/AppMenuItem.vue';
-import AppSidebarLeft from 'src/shared/components/AppSidebarLeft.vue';
-import AppPagination from 'src/shared/components/AppPagination.vue';
-import AppTable from 'src/shared/components/AppTable.vue';
-import AppCardTitle from 'src/shared/components/AppCardTitle.vue';
-import AppUserAvatar from 'src/shared/components/AppUserAvatar.vue';
-import AppFormProfile from 'src/shared/components/AppFormProfile.vue';
-import AppBtnGoogle from 'src/shared/components/AppBtnGoogle.vue';
-import AppModal from 'src/shared/components/AppModal.vue';
-import AppFormFooter from 'src/shared/components/AppFormFooter.vue';
-import AppInput from 'src/shared/components/AppInput.vue';
-import AppSelect from 'src/shared/components/AppSelect.vue';
-import AppNoData from 'src/shared/components/AppNoData.vue';
-import AppBtnActions from 'src/shared/components/AppBtnActions.vue';
-import AppTitlePage from 'src/shared/components/AppTitlePage.vue';
-import AppInputMoney from 'src/shared/components/AppInputMoney.vue';
-import AppInformationToggle from 'src/shared/components/AppInformationToggle.vue';
-import AppLoadingScreen from 'src/shared/components/AppLoadingScreen.vue';
-import AppAlert from 'src/shared/components/AppAlert.vue';
-import AppLoading from 'src/shared/components/AppLoading.vue';
-import AppSkeletonTitle from 'src/shared/components/AppSkeletonTitle.vue';
-import AppSkeletonTable from 'src/shared/components/AppSkeletonTable.vue';
-import AppGoogleCalendar from 'src/shared/components/AppGoogleCalendar.vue';
+const components = {
+  AppAlert: () => import('src/shared/components/AppAlert.vue'),
+  AppLoading: () => import('src/shared/components/AppLoading.vue'),
+  AppSkeletonTitle: () => import('src/shared/components/AppSkeletonTitle.vue'),
+  AppSkeletonTable: () => import('src/shared/components/AppSkeletonTable.vue'),
+  AppLoadingScreen: () => import('src/shared/components/AppLoadingScreen.vue'),
+  AppTitlePage: () => import('src/shared/components/AppTitlePage.vue'),
+  AppInformationToggle: () => import('src/shared/components/AppInformationToggle.vue'),
+  AppMenuHeader: () => import('src/shared/components/AppMenuHeader.vue'),
+  AppInputMoney: () => import('src/shared/components/AppInputMoney.vue'),
+  AppSidebarLeft: () => import('src/shared/components/AppSidebarLeft.vue'),
+  AppMenuItem: () => import('src/shared/components/AppMenuItem.vue'),
+  AppTable: () => import('src/shared/components/AppTable.vue'),
+  AppCardTitle: () => import('src/shared/components/AppCardTitle.vue'),
+  AppUserAvatar: () => import('src/shared/components/AppUserAvatar.vue'),
+  AppFormProfile: () => import('src/shared/components/AppFormProfile.vue'),
+  AppPagination: () => import('src/shared/components/AppPagination.vue'),
+  AppBtnGoogle: () => import('src/shared/components/AppBtnGoogle.vue'),
+  AppModal: () => import('src/shared/components/AppModal.vue'),
+  AppFormFooter: () => import('src/shared/components/AppFormFooter.vue'),
+  AppInput: () => import('src/shared/components/AppInput.vue'),
+  AppSelect: () => import('src/shared/components/AppSelect.vue'),
+  AppNoData: () => import('src/shared/components/AppNoData.vue'),
+  AppBtnActions: () => import('src/shared/components/AppBtnActions.vue'),
+  AppGoogleCalendar: () => import('src/shared/components/AppGoogleCalendar.vue'),
+};
+
 import { Money3Directive } from 'v-money3';
 
-export default boot(({ app }) => {
+export default boot(async ({ app }) => {
   app.directive('money', Money3Directive);
-  app.component('AppAlert', AppAlert);
-  app.component('AppLoading', AppLoading);
-  app.component('AppSkeletonTitle', AppSkeletonTitle);
-  app.component('AppSkeletonTable', AppSkeletonTable);
-  app.component('AppLoadingScreen', AppLoadingScreen);
-  app.component('AppTitlePage', AppTitlePage);
-  app.component('AppInformationToggle', AppInformationToggle);
-  app.component('AppMenuHeader', AppMenuHeader);
-  app.component('AppInputMoney', AppInputMoney);
-  app.component('AppSidebarLeft', AppSidebarLeft);
-  app.component('AppMenuItem', AppMenuItem);
-  app.component('AppTable', AppTable);
-  app.component('AppCardTitle', AppCardTitle);
-  app.component('AppUserAvatar', AppUserAvatar);
-  app.component('AppFormProfile', AppFormProfile);
-  app.component('AppPagination', AppPagination);
-  app.component('AppBtnGoogle', AppBtnGoogle);
-  app.component('AppModal', AppModal);
-  app.component('AppFormFooter', AppFormFooter);
-  app.component('AppInput', AppInput);
-  app.component('AppSelect', AppSelect);
-  app.component('AppNoData', AppNoData);
-  app.component('AppBtnActions', AppBtnActions);
-  app.component('AppGoogleCalendar', AppGoogleCalendar);
+  for (const [name, component] of Object.entries(components)) {
+    app.component(name, (await component()).default);
+  }
 });
