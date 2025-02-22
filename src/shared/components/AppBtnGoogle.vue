@@ -36,7 +36,7 @@ export default defineComponent({
           google.accounts.oauth2
             .initCodeClient({
               client_id: token,
-              scope: 'email profile openid https://www.googleapis.com/auth/calendar.events',
+              scope: 'email profile openid',
               callback: async (response) => {
                 if (response?.code) {
                   await requestInfoUserGoogle(response.code);
