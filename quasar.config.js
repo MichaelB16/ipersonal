@@ -48,6 +48,9 @@ module.exports = configure(function (/* ctx */) {
       chunkSizeWarningLimit: 1000,
       cssCodeSplit: true,
       preloadChunks: true,
+      sourcemap: true,
+      cssMinify: true,
+      jsMinify: true,
       vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
