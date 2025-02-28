@@ -45,6 +45,7 @@ module.exports = configure(function (/* ctx */) {
         browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
         node: 'node20',
       },
+      chunkSizeWarningLimit: 1000,
       cssCodeSplit: true,
       preloadChunks: true,
       vueRouterMode: 'history', // available values: 'hash', 'history'
@@ -79,8 +80,11 @@ module.exports = configure(function (/* ctx */) {
               if (id.includes('/src/shared/components/')) {
                 return id.split('/src/shared/components/')[1].split('.')[0];
               }
+              if (id.endsWith('.svg')) {
+                return 'svg/' + id.split('/').pop().split('.')[0];
+              }
             },
-            minSize: 20 * 1024,
+            minSize: 50 * 1024,
           },
           target: 'esnext',
         };
@@ -88,6 +92,7 @@ module.exports = configure(function (/* ctx */) {
           ...viteConf.optimizeDeps,
           esbuildOptions: {
             target: 'esnext',
+            include: ['vue', 'vue-router', 'quasar', 'pinia'],
           },
         };
       },
