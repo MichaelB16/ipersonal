@@ -78,6 +78,13 @@ module.exports = configure(function (/* ctx */) {
                 if (id.includes('vue') || id.includes('vue-router')) {
                   return 'vue-vendor';
                 }
+                if (id.includes('axios')) {
+                  return 'axios';
+                }
+                const packageName = id.split('/')[id.split('/').length - 2];
+                if (packageName) {
+                  return `vendor-${packageName}`;
+                }
                 return 'vendor';
               }
               if (id.includes('/src/shared/components/')) {
@@ -87,7 +94,17 @@ module.exports = configure(function (/* ctx */) {
                 return 'svg/' + id.split('/').pop().split('.')[0];
               }
             },
-            minSize: 50 * 1024,
+          },
+          output: {
+            chunkFileNames: '[name]-[hash].js',
+            entryFileNames: '[name]-[hash].js',
+            assetFileNames: '[name]-[hash].[ext]',
+          },
+          splitChunks: {
+            chunks: 'all',
+            minSize: 100000,
+            maxSize: 500000,
+            automaticNameDelimiter: '-',
           },
           target: 'esnext',
         };
