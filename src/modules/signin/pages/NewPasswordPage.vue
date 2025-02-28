@@ -13,7 +13,11 @@
         >
           <div class="tw-flex tw-w-full tw-items-center tw-justify-center">
             <div class="sm:tw-w-[250px] md:tw-w-full tw-flex tw-justify-center">
-              <img src="~/assets/banner-new-password.svg" loading="lazy" />
+              <img
+                src="~/assets/banner-new-password.svg"
+                alt="banner"
+                loading="lazy"
+              />
             </div>
           </div>
 

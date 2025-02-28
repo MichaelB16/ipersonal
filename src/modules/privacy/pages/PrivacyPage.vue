@@ -2,7 +2,7 @@
   <div class="row full-width">
     <q-card bordered dense class="full-width no-shadow">
       <q-card-section class="tw-px-[45px]">
-        <img src="~/assets/logo.svg" loading="lazy" class="tw-h-[30px]" />
+        <app-logo />
       </q-card-section>
     </q-card>
   </div>
@@ -15,7 +15,10 @@
       <div class="full-width">
         <b class="tw-text-[20px]">{{ item.title }}</b>
       </div>
-      <p class="tw-text-[14px] text-justify tw-leading-6 tw-w-[60%]" v-html="item.text"></p>
+      <p
+        class="tw-text-[14px] text-justify tw-leading-6 tw-w-[60%]"
+        v-html="item.text"
+      ></p>
     </div>
   </div>
 </template>

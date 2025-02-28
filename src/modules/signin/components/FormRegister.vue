@@ -7,7 +7,7 @@
     <div class="col-12">
       <div class="tw-flex tw-flex-col tw-items-center tw-justify-center">
         <div>
-          <img src="~/assets/logo.svg" loading="lazy" class="tw-h-[60px]" />
+          <app-logo />
         </div>
         <div class="tw-text-[16px] tw-text-center">
           <div class="tw-text-[13px] text-grey-8">

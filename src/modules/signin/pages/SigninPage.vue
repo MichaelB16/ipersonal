@@ -10,7 +10,11 @@
               <div
                 class="sm:tw-w-[250px] md:tw-w-full tw-flex tw-justify-center"
               >
-                <img src="~/assets/banner-login.svg" loading="lazy" alt="banner" />
+                <img
+                  src="~/assets/banner-login.svg"
+                  loading="lazy"
+                  alt="banner"
+                />
               </div>
             </div>
 
@@ -47,7 +51,11 @@
               <div
                 class="sm:tw-w-[250px] md:tw-w-full tw-flex tw-justify-center"
               >
-                <img src="~/assets/banner-register.svg" loading="lazy" alt="banner" />
+                <img
+                  src="~/assets/banner-register.svg"
+                  loading="lazy"
+                  alt="banner"
+                />
               </div>
             </div>
 
@@ -135,7 +143,7 @@ export default defineComponent({
         'Plataforma personalizada de gestão de alunos',
         'Ferramentas para personalizar treinos e dietas',
         'Acompanhamento do progresso individual',
-        'Organização de horários'
+        'Organização de horários',
       ];
     });
 

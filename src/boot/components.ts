@@ -7,7 +7,8 @@ const components = {
   AppSkeletonTable: () => import('src/shared/components/AppSkeletonTable.vue'),
   AppLoadingScreen: () => import('src/shared/components/AppLoadingScreen.vue'),
   AppTitlePage: () => import('src/shared/components/AppTitlePage.vue'),
-  AppInformationToggle: () => import('src/shared/components/AppInformationToggle.vue'),
+  AppInformationToggle: () =>
+    import('src/shared/components/AppInformationToggle.vue'),
   AppMenuHeader: () => import('src/shared/components/AppMenuHeader.vue'),
   AppInputMoney: () => import('src/shared/components/AppInputMoney.vue'),
   AppSidebarLeft: () => import('src/shared/components/AppSidebarLeft.vue'),
@@ -24,7 +25,9 @@ const components = {
   AppSelect: () => import('src/shared/components/AppSelect.vue'),
   AppNoData: () => import('src/shared/components/AppNoData.vue'),
   AppBtnActions: () => import('src/shared/components/AppBtnActions.vue'),
-  AppGoogleCalendar: () => import('src/shared/components/AppGoogleCalendar.vue'),
+  AppGoogleCalendar: () =>
+    import('src/shared/components/AppGoogleCalendar.vue'),
+  AppLogo: () => import('src/shared/components/AppLogo.vue'),
 };
 
 import { Money3Directive } from 'v-money3';
