@@ -45,7 +45,8 @@ module.exports = configure(function (/* ctx */) {
         browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
         node: 'node20',
       },
-
+      cssCodeSplit: true,
+      preloadChunks: true,
       vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
@@ -54,24 +55,41 @@ module.exports = configure(function (/* ctx */) {
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
       publicPath: '/',
-      analyze: true,
+      analyze: false,
       // rawDefine: {}
       // ignorePublicFolder: true,
       minify: true,
       // polyfillModulePreload: true,
       // distDir
 
-      extendViteConf (viteConf) {
+      extendViteConf(viteConf) {
         viteConf.build = {
           ...viteConf.build,
-          target: 'esnext'
-        }
+          rollupOptions: {
+            manualChunks(id) {
+              if (id.includes('node_modules')) {
+                if (id.includes('quasar')) {
+                  return 'quasar';
+                }
+                if (id.includes('vue') || id.includes('vue-router')) {
+                  return 'vue-vendor';
+                }
+                return 'vendor';
+              }
+              if (id.includes('/src/shared/components/')) {
+                return id.split('/src/shared/components/')[1].split('.')[0];
+              }
+            },
+            minSize: 20 * 1024,
+          },
+          target: 'esnext',
+        };
         viteConf.optimizeDeps = {
           ...viteConf.optimizeDeps,
           esbuildOptions: {
-            target: 'esnext'
-          }
-        }
+            target: 'esnext',
+          },
+        };
       },
       // viteVuePluginOptions: {},
 
