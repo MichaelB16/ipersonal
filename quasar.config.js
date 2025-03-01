@@ -45,7 +45,6 @@ module.exports = configure(function (/* ctx */) {
         browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
         node: 'node20',
       },
-      chunkSizeWarningLimit: 1000,
       cssCodeSplit: true,
       preloadChunks: true,
       sourcemap: true,
@@ -74,11 +73,16 @@ module.exports = configure(function (/* ctx */) {
               if (id.includes('node_modules')) {
                 const mappings = new Map([
                   ['quasar', 'quasar'],
-                  ['vue', 'vue-vendor'],
-                  ['vue-router', 'vue-vendor'],
+                  ['vue', 'vue'],
+                  ['vue-router', 'vue-router'],
                   ['axios', 'axios'],
                   ['moment', 'moment'],
                   ['jspdf', 'jspdf'],
+                  ['uuid', 'uuid'],
+                  ['pinia', 'pinia'],
+                  ['crypto-js', 'crypto-js'],
+                  ['core-js', 'core-js'],
+                  ['dompurify', 'dompurify'],
                   ['html2canvas', 'html2canvas'],
                   ['canvg', 'canvg'],
                 ]);
@@ -89,10 +93,8 @@ module.exports = configure(function (/* ctx */) {
                   }
                 }
 
-                const parts = id.split('/');
-                const packageName = parts[parts.length - 2];
-
-                return packageName ? `vendor-${packageName}` : 'vendor';
+                const parts = id.split('node_modules/')[1].split('/');
+                return `vendor-${parts[0]}`;
               }
               if (id.includes('/src/shared/components/')) {
                 return id.split('/src/shared/components/')[1].split('.')[0];
@@ -103,6 +105,7 @@ module.exports = configure(function (/* ctx */) {
             },
           },
           output: {
+            inlineDynamicImports: false,
             chunkFileNames: '[name]-[hash].js',
             entryFileNames: '[name]-[hash].js',
             assetFileNames: '[name]-[hash].[ext]',
