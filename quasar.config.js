@@ -47,6 +47,7 @@ module.exports = configure(function (/* ctx */) {
       },
       chunkSizeWarningLimit: 1000,
       cssCodeSplit: true,
+      preloadChunks: true,
       sourcemap: true,
       cssMinify: true,
       jsMinify: true,
@@ -58,7 +59,7 @@ module.exports = configure(function (/* ctx */) {
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
       publicPath: '/',
-      analyze: false,
+      analyze: true,
       // rawDefine: {}
       // ignorePublicFolder: true,
       minify: true,
@@ -71,20 +72,23 @@ module.exports = configure(function (/* ctx */) {
           rollupOptions: {
             manualChunks(id) {
               if (id.includes('node_modules')) {
-                if (id.includes('quasar')) {
-                  return 'quasar';
+                const chunkMap = {
+                  quasar: 'quasar',
+                  vue: 'vue-vendor',
+                  'vue-router': 'vue-vendor',
+                  axios: 'axios',
+                  moment: 'moment',
+                  jspdf: 'jspdf',
+                  html2canvas: 'html2canvas',
+                  canvg: 'canvg',
+                };
+
+                for (const [key, chunkName] of Object.entries(chunkMap)) {
+                  if (id.includes(key)) return chunkName;
                 }
-                if (id.includes('vue') || id.includes('vue-router')) {
-                  return 'vue-vendor';
-                }
-                if (id.includes('axios')) {
-                  return 'axios';
-                }
+
                 const packageName = id.split('/')[id.split('/').length - 2];
-                if (packageName) {
-                  return `vendor-${packageName}`;
-                }
-                return 'vendor';
+                return packageName ? `vendor-${packageName}` : 'vendor';
               }
               if (id.includes('/src/shared/components/')) {
                 return id.split('/src/shared/components/')[1].split('.')[0];
@@ -101,7 +105,7 @@ module.exports = configure(function (/* ctx */) {
           },
           splitChunks: {
             chunks: 'all',
-            minSize: 100000,
+            minSize: 10000,
             maxSize: 500000,
             automaticNameDelimiter: '-',
           },
