@@ -3,8 +3,8 @@
     <app-menu-header :menu="!isMini" @toggle="toggleSidebar" />
     <app-sidebar-left :mini="isMini" v-model="open" />
     <q-page-container class="tw-min-h-[100dvh]">
+      <!-- <app-loading-screen /> -->
       <div id="container">
-        <app-loading-screen />
         <router-view />
       </div>
     </q-page-container>

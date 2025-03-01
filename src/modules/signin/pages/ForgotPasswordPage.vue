@@ -13,7 +13,7 @@
         >
           <div class="tw-flex tw-w-full tw-items-center tw-justify-center">
             <div class="sm:tw-w-[250px] md:tw-w-full tw-flex tw-justify-center">
-              <img
+              <q-img
                 src="~/assets/banner-forgot-password.svg"
                 alt="banner"
                 loading="lazy"

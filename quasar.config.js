@@ -72,22 +72,26 @@ module.exports = configure(function (/* ctx */) {
           rollupOptions: {
             manualChunks(id) {
               if (id.includes('node_modules')) {
-                const chunkMap = {
-                  quasar: 'quasar',
-                  vue: 'vue-vendor',
-                  'vue-router': 'vue-vendor',
-                  axios: 'axios',
-                  moment: 'moment',
-                  jspdf: 'jspdf',
-                  html2canvas: 'html2canvas',
-                  canvg: 'canvg',
-                };
+                const mappings = new Map([
+                  ['quasar', 'quasar'],
+                  ['vue', 'vue-vendor'],
+                  ['vue-router', 'vue-vendor'],
+                  ['axios', 'axios'],
+                  ['moment', 'moment'],
+                  ['jspdf', 'jspdf'],
+                  ['html2canvas', 'html2canvas'],
+                  ['canvg', 'canvg'],
+                ]);
 
-                for (const [key, chunkName] of Object.entries(chunkMap)) {
-                  if (id.includes(key)) return chunkName;
+                for (const [key, value] of mappings) {
+                  if (id.includes(key)) {
+                    return value;
+                  }
                 }
 
-                const packageName = id.split('/')[id.split('/').length - 2];
+                const parts = id.split('/');
+                const packageName = parts[parts.length - 2];
+
                 return packageName ? `vendor-${packageName}` : 'vendor';
               }
               if (id.includes('/src/shared/components/')) {
@@ -115,7 +119,7 @@ module.exports = configure(function (/* ctx */) {
           ...viteConf.optimizeDeps,
           esbuildOptions: {
             target: 'esnext',
-            include: ['vue', 'vue-router', 'quasar', 'pinia'],
+            // include: ['vue', 'vue-router', 'quasar', 'pinia'],
           },
         };
       },
