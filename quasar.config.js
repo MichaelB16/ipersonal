@@ -119,7 +119,6 @@ module.exports = configure(function (/* ctx */) {
           ...viteConf.optimizeDeps,
           esbuildOptions: {
             target: 'esnext',
-            // include: ['vue', 'vue-router', 'quasar', 'pinia'],
           },
         };
       },
