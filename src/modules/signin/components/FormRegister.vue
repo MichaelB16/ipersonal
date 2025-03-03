@@ -116,10 +116,14 @@ import {
 } from 'vue';
 import { useAuthStore } from '../stores/auth.store';
 import { formRules, rulesDate, rulesEmail } from 'src/shared/utils';
+import AppBtnGoogle from 'src/shared/components/AppBtnGoogle.vue';
 import moment from 'moment';
 
 export default defineComponent({
   name: 'FormSignin',
+  components: {
+    AppBtnGoogle,
+  },
   setup() {
     const formRef = ref();
     const storeAuth = useAuthStore();

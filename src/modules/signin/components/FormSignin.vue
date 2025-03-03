@@ -94,9 +94,12 @@ import {
 import { useAuthStore } from '../stores/auth.store';
 import { useRouter } from 'vue-router';
 import { formRules } from 'src/shared/utils';
-
+import AppBtnGoogle from 'src/shared/components/AppBtnGoogle.vue';
 export default defineComponent({
   name: 'FormSignin',
+  components: {
+    AppBtnGoogle,
+  },
   setup() {
     const formRef = ref();
     const router = useRouter();

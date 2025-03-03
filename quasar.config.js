@@ -46,7 +46,7 @@ module.exports = configure(function (/* ctx */) {
         node: 'node20',
       },
       cssCodeSplit: true,
-      preloadChunks: true,
+      preloadChunks: false,
       sourcemap: true,
       cssMinify: true,
       jsMinify: true,

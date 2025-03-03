@@ -28,9 +28,10 @@
 <script>
 import { defineComponent, onMounted, reactive, toRefs } from 'vue';
 import SchudeleSkeleton from '../components/SchudeleSkeleton.vue';
+import AppGoogleCalendar from 'src/shared/components/AppGoogleCalendar.vue';
 export default defineComponent({
   name: 'SchudelePage',
-  components: { SchudeleSkeleton },
+  components: { SchudeleSkeleton, AppGoogleCalendar },
   setup() {
     const state = reactive({
       loadingPage: false,
