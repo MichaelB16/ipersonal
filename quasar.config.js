@@ -11,6 +11,10 @@
 const { configure } = require('quasar/wrappers');
 const env = require('dotenv');
 
+const generateRandomName = () => {
+  return Math.random().toString(36).substring(2, 15);
+};
+
 module.exports = configure(function (/* ctx */) {
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
@@ -98,12 +102,10 @@ module.exports = configure(function (/* ctx */) {
                 return `vendor-${parts[0]}`;
               }
               if (id.includes('/src/shared/components/')) {
-                return `component-${
-                  id.split('/src/shared/components/')[1].split('.')[0]
-                }`;
+                return `component-${generateRandomName()}`;
               }
               if (id.endsWith('.svg')) {
-                return `svg-${id.split('/').pop().split('.')[0]}`;
+                return `svg-${generateRandomName()}`;
               }
             },
             preserveEntrySignatures: 'strict',
