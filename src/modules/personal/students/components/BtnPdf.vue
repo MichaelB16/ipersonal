@@ -22,7 +22,7 @@
 </template>
 <script>
 import { computed, defineComponent } from 'vue';
-import { exportFile } from 'src/shared/utils';
+import { usePdf } from 'src/shared/composable/pdf';
 export default defineComponent({
   name: 'BtnPdf',
   props: {
@@ -34,6 +34,8 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const { exportFile } = usePdf();
+
     const options = computed(() => {
       return [
         { label: 'Dieta', disable: !!!props.row.diet, handler: exportDiet },
@@ -75,27 +77,25 @@ export default defineComponent({
     });
 
     const exportTraining = () => {
-      exportFile(
-        ['Dia', 'Foco', 'Exercícios'],
-        trainingData.value,
-        `${username.value}-treino.pdf`,
-        (doc) => {
-          doc
-            .text(`Olá, ${username.value} sua ficha de treino`, 6, 9)
-            .setFontSize(16);
-        }
-      );
+      const columns = ['Dia', 'Foco', 'Exercícios'];
+      const data = trainingData.value;
+      const filename = `${username.value}-treino.pdf`;
+      const text = `Olá, ${username.value} sua ficha de treino`;
+
+      exportFile(columns, data, filename, (doc) => {
+        doc.text(text, 6, 9).setFontSize(16);
+      });
     };
 
     const exportDiet = () => {
-      exportFile(
-        ['Dia', 'Refeições'],
-        dietData.value,
-        `${username.value}-dieta.pdf`,
-        (doc) => {
-          doc.text(`Olá, ${username.value} sua dieta`, 6, 9).setFontSize(16);
-        }
-      );
+      const columns = ['Dia', 'Refeições'];
+      const data = dietData.value;
+      const filename = `${username.value}-dieta.pdf`;
+      const text = `Olá, ${username.value} sua dieta`;
+
+      exportFile(columns, data, filename, (doc) => {
+        doc.text(text, 6, 9).setFontSize(16);
+      });
     };
 
     return {

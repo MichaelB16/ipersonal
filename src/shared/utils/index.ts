@@ -1,8 +1,5 @@
 import moment from 'moment';
 import { IPagination } from '../model/paginate.type';
-import * as crypto from 'crypto-js';
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
 
 export const configPagination = (paginate = {} as any): IPagination => {
   return {
@@ -25,27 +22,6 @@ export const configModalTitle = (
     text,
     icon,
   };
-};
-
-export const exportFile = (
-  columns: string[],
-  data: any,
-  filename: string,
-  callback
-) => {
-  const doc = new jsPDF({
-    orientation: 'landscape',
-  });
-  callback(doc);
-  autoTable(doc, {
-    head: [columns],
-    body: data,
-    margin: { right: 6, left: 6, top: 12, bottom: 6 },
-    rowPageBreak: 'auto',
-    theme: 'striped',
-    styles: { font: 'times', fontSize: 10, cellPadding: 3 },
-  });
-  doc.save(filename);
 };
 
 export const isGrid = (grid: boolean) => {
@@ -96,20 +72,4 @@ export const moneyFormatBr = (value: number) => {
     currency: 'BRL',
     minimumFractionDigits: 0,
   }).format(value);
-};
-
-export const encrypt = (payload: any) => {
-  const data = JSON.stringify(payload);
-  const hash = process.env.HASH_STORAGE;
-  return crypto.AES.encrypt(data, hash).toString();
-};
-
-export const decrypt = (payload: string | null) => {
-  if (payload) {
-    const hash = process.env.HASH_STORAGE;
-    const code = crypto.enc.Utf8;
-    const data = crypto.AES.decrypt(payload, hash).toString(code);
-    return JSON.parse(data);
-  }
-  return null;
 };

@@ -68,53 +68,45 @@ module.exports = configure(function (/* ctx */) {
       extendViteConf(viteConf) {
         viteConf.build = {
           ...viteConf.build,
-          rollupOptions: {
-            manualChunks(id) {
-              if (id.includes('node_modules')) {
-                const mappings = new Map([
-                  ['quasar', 'quasar'],
-                  ['vue', 'vue'],
-                  ['vue-router', 'vue-router'],
-                  ['axios', 'axios'],
-                  ['moment', 'moment'],
-                  ['jspdf', 'jspdf'],
-                  ['uuid', 'uuid'],
-                  ['pinia', 'pinia'],
-                  ['crypto-js', 'crypto-js'],
-                  ['core-js', 'core-js'],
-                  ['dompurify', 'dompurify'],
-                  ['html2canvas', 'html2canvas'],
-                  ['canvg', 'canvg'],
-                ]);
-
-                for (const [key, value] of mappings) {
-                  if (id.includes(key)) {
-                    return value;
-                  }
-                }
-
-                const parts = id.split('node_modules/')[1].split('/');
-                return `vendor-${parts[0]}`;
-              }
-              if (id.includes('/src/shared/components/')) {
-                return id.split('/src/shared/components/')[1].split('.')[0];
-              }
-              if (id.endsWith('.svg')) {
-                return 'svg/' + id.split('/').pop().split('.')[0];
-              }
-            },
-          },
           output: {
             inlineDynamicImports: false,
             chunkFileNames: '[name]-[hash].js',
             entryFileNames: '[name]-[hash].js',
             assetFileNames: '[name]-[hash].[ext]',
           },
-          splitChunks: {
-            chunks: 'all',
-            minSize: 10000,
-            maxSize: 500000,
-            automaticNameDelimiter: '-',
+          rollupOptions: {
+            manualChunks(id) {
+              if (id.includes('node_modules')) {
+                const vendorMap = new Map([
+                  ['quasar', 'vendor-quasar'],
+                  ['vue', 'vendor-vue'],
+                  ['vue-router', 'vendor-vue-router'],
+                  ['axios', 'vendor-axios'],
+                  ['moment', 'vendor-moment'],
+                  ['jspdf', 'vendor-jspdf'],
+                  ['crypto-js', 'vendor-crypto-js'],
+                  ['html2canvas', 'vendor-html2canvas'],
+                  ['canvg', 'vendor-canvg'],
+                ]);
+
+                const vendor = [...vendorMap.keys()].find((lib) =>
+                  id.includes(lib)
+                );
+                if (vendor) return vendorMap.get(vendor);
+
+                const parts = id.split('node_modules/')[1].split('/');
+                return `vendor-${parts[0]}`;
+              }
+              if (id.includes('/src/shared/components/')) {
+                return `component-${
+                  id.split('/src/shared/components/')[1].split('.')[0]
+                }`;
+              }
+              if (id.endsWith('.svg')) {
+                return `svg-${id.split('/').pop().split('.')[0]}`;
+              }
+            },
+            preserveEntrySignatures: 'strict',
           },
           target: 'esnext',
         };
