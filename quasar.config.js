@@ -80,27 +80,27 @@ module.exports = configure(function (/* ctx */) {
           },
           rollupOptions: {
             manualChunks(id) {
-              if (id.includes('node_modules')) {
-                const vendorMap = new Map([
-                  ['quasar', 'vendor-quasar'],
-                  ['vue', 'vendor-vue'],
-                  ['vue-router', 'vendor-vue-router'],
-                  ['axios', 'vendor-axios'],
-                  ['moment', 'vendor-moment'],
-                  ['jspdf', 'vendor-jspdf'],
-                  ['crypto-js', 'vendor-crypto-js'],
-                  ['html2canvas', 'vendor-html2canvas'],
-                  ['canvg', 'vendor-canvg'],
-                ]);
+              // if (id.includes('node_modules')) {
+              //   const vendorMap = new Map([
+              //     ['quasar', 'vendor-quasar'],
+              //     ['vue', 'vendor-vue'],
+              //     ['vue-router', 'vendor-vue-router'],
+              //     ['axios', 'vendor-axios'],
+              //     ['moment', 'vendor-moment'],
+              //     ['jspdf', 'vendor-jspdf'],
+              //     ['crypto-js', 'vendor-crypto-js'],
+              //     ['html2canvas', 'vendor-html2canvas'],
+              //     ['canvg', 'vendor-canvg'],
+              //   ]);
 
-                const vendor = [...vendorMap.keys()].find((lib) =>
-                  id.includes(lib)
-                );
-                if (vendor) return vendorMap.get(vendor);
+              //   const vendor = [...vendorMap.keys()].find((lib) =>
+              //     id.includes(lib)
+              //   );
+              //   if (vendor) return vendorMap.get(vendor);
 
-                const parts = id.split('node_modules/')[1].split('/');
-                return `vendor-${parts[0]}`;
-              }
+              //   const parts = id.split('node_modules/')[1].split('/');
+              //   return `vendor-${parts[0]}`;
+              // }
               if (id.includes('/src/shared/components/')) {
                 return `component-${generateRandomName()}`;
               }
