@@ -1,6 +1,6 @@
 <template>
   <keep-alive>
-    <img src="~/assets/logo.svg" alt="logo" loading="lazy" height="30px" />
+    <img src="~/assets/logo.svg" alt="logo" loading="lazy" />
   </keep-alive>
 </template>
 <script>

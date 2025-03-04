@@ -51,7 +51,7 @@
               <div
                 class="sm:tw-w-[250px] md:tw-w-full tw-flex tw-justify-center"
               >
-                <img
+                <q-img
                   src="~/assets/banner-register.svg"
                   loading="lazy"
                   alt="banner"

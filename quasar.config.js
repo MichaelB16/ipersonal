@@ -11,9 +11,9 @@
 const { configure } = require('quasar/wrappers');
 const env = require('dotenv');
 
-// const generateRandomName = () => {
-//   return Math.random().toString(36).substring(2, 15);
-// };
+const generateRandomName = () => {
+  return Math.random().toString(36).substring(2, 15);
+};
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -50,7 +50,7 @@ module.exports = configure(function (/* ctx */) {
         node: 'node20',
       },
       cssCodeSplit: true,
-      preloadChunks: false,
+      preloadChunks: true,
       sourcemap: true,
       cssMinify: true,
       jsMinify: true,
@@ -79,33 +79,38 @@ module.exports = configure(function (/* ctx */) {
             assetFileNames: '[name]-[hash].[ext]',
           },
           rollupOptions: {
-            // manualChunks(id) {
-            // if (id.includes('node_modules')) {
-            //   const vendorMap = new Map([
-            //     ['quasar', 'vendor-quasar'],
-            //     ['vue', 'vendor-vue'],
-            //     ['vue-router', 'vendor-vue-router'],
-            //     ['axios', 'vendor-axios'],
-            //     ['moment', 'vendor-moment'],
-            //     ['jspdf', 'vendor-jspdf'],
-            //     ['crypto-js', 'vendor-crypto-js'],
-            //     ['html2canvas', 'vendor-html2canvas'],
-            //     ['canvg', 'vendor-canvg'],
-            //   ]);
-            //   const vendor = [...vendorMap.keys()].find((lib) =>
-            //     id.includes(lib)
-            //   );
-            //   if (vendor) return vendorMap.get(vendor);
-            //   const parts = id.split('node_modules/')[1].split('/');
-            //   return `vendor-${parts[0]}`;
-            // }
-            // if (id.includes('/src/shared/components/')) {
-            //   return `component-${generateRandomName()}`;
-            // }
-            // if (id.endsWith('.svg')) {
-            //   return `svg-${generateRandomName()}`;
-            // }
-            // },
+            manualChunks(id) {
+              if (id.includes('node_modules')) {
+                const vendorMap = new Map([
+                  ['quasar', 'vendor-quasar'],
+                  ['vue', 'vendor-vue'],
+                  ['vue-router', 'vendor-vue-router'],
+                  ['axios', 'vendor-axios'],
+                  ['moment', 'vendor-moment'],
+                  ['jspdf', 'vendor-jspdf'],
+                  ['crypto-js', 'vendor-crypto-js'],
+                  ['html2canvas', 'vendor-html2canvas'],
+                  ['canvg', 'vendor-canvg'],
+                ]);
+
+                const vendor = [...vendorMap.keys()].find((lib) => {
+                  return id.includes(lib);
+                });
+
+                if (vendor) return vendorMap.get(vendor);
+
+                const parts = id.split('node_modules/')[1].split('/');
+                return `vendor-${parts[0]}`;
+              }
+
+              if (id.includes('/src/shared/components/')) {
+                return `component-${generateRandomName()}`;
+              }
+
+              if (id.endsWith('.svg')) {
+                return `svg-${generateRandomName()}`;
+              }
+            },
             preserveEntrySignatures: 'strict',
           },
           target: 'esnext',
