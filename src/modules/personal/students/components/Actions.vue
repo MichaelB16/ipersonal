@@ -19,9 +19,12 @@
 <script>
 import { defineComponent } from 'vue';
 import { useStudentStore } from '../store/student.store';
-
+import AppBtnActions from 'src/shared/components/AppBtnActions.vue';
 export default defineComponent({
   name: 'BtnActions',
+  components: {
+    AppBtnActions,
+  },
   props: {
     row: {
       type: Object,

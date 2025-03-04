@@ -10,8 +10,11 @@
 </template>
 <script>
 import { defineComponent } from 'vue';
-
+import AppSkeletonTitle from 'src/shared/components/AppSkeletonTitle.vue';
 export default defineComponent({
-  name: 'DashboardSkeleton'
-})
+  name: 'DashboardSkeleton',
+  components: {
+    AppSkeletonTitle,
+  },
+});
 </script>

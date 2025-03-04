@@ -119,9 +119,14 @@ import { computed, defineComponent, reactive, toRefs } from 'vue';
 import { useCacheStorage } from '../composable/storage';
 import { useAuthStore } from 'src/modules/signin/stores/auth.store';
 import { AppFullscreen } from 'quasar';
-
+import AppFormProfile from './AppFormProfile.vue';
+import AppUserAvatar from './AppUserAvatar.vue';
 export default defineComponent({
   name: 'MenuHeader',
+  components: {
+    AppFormProfile,
+    AppUserAvatar,
+  },
   props: {
     menu: {
       type: Boolean,

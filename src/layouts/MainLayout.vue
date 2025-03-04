@@ -3,7 +3,6 @@
     <app-menu-header :menu="!isMini" @toggle="toggleSidebar" />
     <app-sidebar-left :mini="isMini" v-model="open" />
     <q-page-container class="tw-min-h-[100dvh]">
-      <!-- <app-loading-screen /> -->
       <div id="container">
         <router-view />
       </div>
@@ -22,9 +21,14 @@ import {
   watch,
 } from 'vue';
 import { useSettingStore } from 'src/stores/settings';
-
+import AppMenuHeader from 'src/shared/components/AppMenuHeader.vue';
+import AppSidebarLeft from 'src/shared/components/AppSidebarLeft.vue';
 export default defineComponent({
   name: 'MainLayout',
+  components: {
+    AppMenuHeader,
+    AppSidebarLeft,
+  },
   setup() {
     const settingStore = useSettingStore();
     const { width } = useWindowSize();

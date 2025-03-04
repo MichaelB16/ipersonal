@@ -11,7 +11,7 @@
         <q-card-section>
           <div class="row q-col-gutter-y-md">
             <div class="col-12" v-for="item in 2" :key="item">
-              <q-skeleton height="100px" class="tw-w-full"/>
+              <q-skeleton height="100px" class="tw-w-full" />
             </div>
             <div class="col-12">
               <div class="tw-flex tw-justify-end">
@@ -26,8 +26,11 @@
 </template>
 <script>
 import { defineComponent } from 'vue';
-
+import AppSkeletonTitle from 'src/shared/components/AppSkeletonTitle.vue';
 export default defineComponent({
-  name: 'MessageSkeleton'
-})
+  name: 'MessageSkeleton',
+  components: {
+    AppSkeletonTitle,
+  },
+});
 </script>

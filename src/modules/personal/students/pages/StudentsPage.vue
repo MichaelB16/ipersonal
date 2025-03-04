@@ -113,6 +113,10 @@ import ModalViewDiet from '../components/ModalViewDiet.vue';
 import Actions from '../components/Actions.vue';
 import BtnViews from '../components/BtnViews.vue';
 import BtnPdf from '../components/BtnPdf.vue';
+import AppCardTitle from 'src/shared/components/AppCardTitle.vue';
+import AppTable from 'src/shared/components/AppTable.vue';
+import AppNoData from 'src/shared/components/AppNoData.vue';
+import AppPagination from 'src/shared/components/AppPagination.vue';
 import moment from 'moment';
 import { studentColumns } from 'src/modules/personal/students/helpers';
 import { useStudentStore } from 'src/modules/personal/students/store/student.store';
@@ -133,6 +137,10 @@ export default defineComponent({
     ModalTraining,
     ModalViewDiet,
     ModalViewTraining,
+    AppCardTitle,
+    AppTable,
+    AppNoData,
+    AppPagination,
   },
   setup() {
     const studentStore = useStudentStore();

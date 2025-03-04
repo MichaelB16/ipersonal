@@ -12,9 +12,12 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import { useMenu } from '../composable/menu';
-
+import AppMenuItem from './AppMenuItem.vue';
 export default defineComponent({
   name: 'MenuSidebarLeft',
+  components: {
+    AppMenuItem,
+  },
   emits: ['update:modelValue'],
   props: {
     modelValue: {
@@ -36,7 +39,7 @@ export default defineComponent({
 
     return {
       model,
-      listMenu
+      listMenu,
     };
   },
 });

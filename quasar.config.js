@@ -104,7 +104,7 @@ module.exports = configure(function (/* ctx */) {
               }
 
               if (id.includes('/src/shared/components/')) {
-                return `component-${generateRandomName()}`;
+                return `chunk-${generateRandomName()}`;
               }
 
               if (id.endsWith('.svg')) {
