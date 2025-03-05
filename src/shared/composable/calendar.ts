@@ -1,6 +1,5 @@
 import { computed, reactive, toRefs } from 'vue';
 import { useCacheStorage } from './storage';
-import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
 interface IDateEvent {
@@ -53,6 +52,10 @@ export const useGoogleCalendar = () => {
       });
   };
 
+  const numberRandom = () => {
+    return Math.floor(Math.random() * 1000000);
+  };
+
   const createEventsGoogleCalendar = async (data: ICreateEvent) => {
     state.loadingGoogleCalendar = true;
     await axios
@@ -63,7 +66,7 @@ export const useGoogleCalendar = () => {
           extendedProperties: {
             private: {
               platformId: 'IPersonal',
-              eventId: uuidv4(),
+              eventId: numberRandom(),
             },
           },
         },
