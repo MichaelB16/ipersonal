@@ -111,12 +111,12 @@
         class="tw-flex tw-h-[calc(100dvh_-_45px)] tw-items-center tw-justify-center"
       >
         <template v-if="isLogin">
-          <q-intersection once transition="jump-up" transition-duration="3000">
+          <q-intersection once transition="jump-up" transition-duration="500">
             <form-signin />
           </q-intersection>
         </template>
         <template v-else-if="isRegister">
-          <q-intersection once transition-duration="3000" transition="jump-up">
+          <q-intersection once transition-duration="500" transition="jump-up">
             <form-register />
           </q-intersection>
         </template>

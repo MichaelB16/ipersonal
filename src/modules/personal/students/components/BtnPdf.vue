@@ -23,6 +23,7 @@
 <script>
 import { computed, defineComponent } from 'vue';
 import { usePdf } from 'src/shared/composable/pdf';
+import { useStudentStore } from '../store/student.store';
 export default defineComponent({
   name: 'BtnPdf',
   props: {
@@ -35,6 +36,7 @@ export default defineComponent({
   },
   setup(props) {
     const { exportFile } = usePdf();
+    const studentStore = useStudentStore();
 
     const options = computed(() => {
       return [
@@ -64,27 +66,8 @@ export default defineComponent({
       return props.row.name;
     });
 
-    const trainingData = computed(() => {
-      const list = JSON.parse(props.row.training.training);
-      return list.map((item) => {
-        const exercises = item.exercises
-          .map((item) => {
-            return `${item.name} (${item.series} x ${item.repeat})`;
-          })
-          .join('\n\n');
-        return [item.day, item.focus, exercises];
-      });
-    });
-
-    const exportTraining = () => {
-      const columns = ['Dia', 'Foco', 'Exercícios'];
-      const data = trainingData.value;
-      const filename = `${username.value}-treino.pdf`;
-      const text = `Olá, ${username.value} sua ficha de treino`;
-
-      exportFile(columns, data, filename, (doc) => {
-        doc.text(text, 6, 9).setFontSize(16);
-      });
+    const exportTraining = async () => {
+      await studentStore.REQUEST_GET_TRAINING_PDF(props.row.id);
     };
 
     const exportDiet = () => {

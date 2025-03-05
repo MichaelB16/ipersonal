@@ -103,6 +103,21 @@ export const useStudentStore = defineStore('student', {
           notification.error();
         });
     },
+    async REQUEST_GET_TRAINING_PDF(id: string) {
+      return await trainingService.getTrainingPdf(id).then(({ data }) => {
+        const blob = new Blob([data], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'treino.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      });
+    },
     async SAVE_TRAINING(data: ITraining) {
       this.loading = true;
       return await trainingService
