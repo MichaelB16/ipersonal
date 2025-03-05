@@ -24,6 +24,15 @@ export const configModalTitle = (
   };
 };
 
+export const fileDownload = (url: any, filename: string) => {
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 export const isGrid = (grid: boolean) => {
   return {
     text: `Modo de visualização ${grid ? 'grid' : 'linha'}`,

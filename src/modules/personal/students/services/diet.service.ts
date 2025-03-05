@@ -5,6 +5,9 @@ class dietServiceHttp {
   getDiet(data: IDietFormSearch) {
     return $http.post('diet/generate', data);
   }
+  getDietPdf(id: string) {
+    return $http.get(`diet/pdf/${id}`, { responseType: 'blob' });
+  }
   saveDiet(data: IDiet) {
     return $http.post('diet/save', data);
   }

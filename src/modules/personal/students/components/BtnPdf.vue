@@ -20,9 +20,8 @@
     </q-list>
   </q-btn-dropdown>
 </template>
-<script>
+<script lang="ts">
 import { computed, defineComponent } from 'vue';
-import { usePdf } from 'src/shared/composable/pdf';
 import { useStudentStore } from '../store/student.store';
 export default defineComponent({
   name: 'BtnPdf',
@@ -35,7 +34,6 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { exportFile } = usePdf();
     const studentStore = useStudentStore();
 
     const options = computed(() => {
@@ -49,40 +47,27 @@ export default defineComponent({
       ];
     });
 
-    const dietData = computed(() => {
-      const list = JSON.parse(props.row.diet.diet);
-      return list.map((item) => {
-        const meals = item.meals
-          .map((val) => {
-            return `${val.label}: ${val.description}`;
-          })
-          .join('\n\n');
-
-        return [item.day, meals];
-      });
-    });
-
     const username = computed(() => {
-      return props.row.name;
+      return props.row.name.trim().toLowerCase();
     });
 
     const exportTraining = async () => {
-      await studentStore.REQUEST_GET_TRAINING_PDF(props.row.id);
+      const name = filename('treino');
+      await studentStore.REQUEST_GET_TRAINING_PDF(props.row.id, name);
     };
 
-    const exportDiet = () => {
-      const columns = ['Dia', 'Refeições'];
-      const data = dietData.value;
-      const filename = `${username.value}-dieta.pdf`;
-      const text = `Olá, ${username.value} sua dieta`;
+    const exportDiet = async () => {
+      const name = filename('dieta');
+      await studentStore.REQUEST_GET_DIET_PDF(props.row.id, name);
+    };
 
-      exportFile(columns, data, filename, (doc) => {
-        doc.text(text, 6, 9).setFontSize(16);
-      });
+    const filename = (type: string) => {
+      return `${username.value}-${type}.pdf`;
     };
 
     return {
       options,
+      filename,
     };
   },
 });
