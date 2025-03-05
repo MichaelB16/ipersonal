@@ -91,11 +91,14 @@ export default defineComponent({
     const listObjective = computed(() => {
       return [
         { label: 'Hipertrofia', value: 'hipertrofia' },
-        { label: 'Definição', value: 'definição' },
+        { label: 'Força e Potência', value: 'força e potência' },
+        { label: 'Resistência Muscular', value: 'resistência muscular' },
+        { label: 'Saúde e Bem-estar', value: 'saúde e bem-estar' },
         {
-          label: 'Melhorar a resistência física ou o condicionamento',
-          value: 'Melhorar a resistência física ou o condicionamento',
+          label: 'Condicionamento Físico Geral',
+          value: 'condicionamento físico geral',
         },
+        { label: 'Definição', value: 'definição' },
       ];
     });
 

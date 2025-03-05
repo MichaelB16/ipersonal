@@ -56,29 +56,49 @@
           <app-input-money v-model.lazy="form.price" label="Mensalidade" />
         </div>
         <div class="col-12">
-          <q-toggle
-            :true-value="1"
-            :false-value="0"
-            :color="form.access ? 'green' : 'negative'"
-            keep-color
-            checked-icon="mdi-check"
-            unchecked-icon="mdi-close"
-            v-model.number="form.access"
-            label="Autorizar acesso à área do aluno"
-          />
-          <q-icon
-            class="q-ml-xs text-grey-8 tw-cursor-pointer"
-            name="mdi-information"
-          >
-            <q-tooltip class="bg-primary">
-              Ao acessar o sistema, <br />
-              o aluno poderá visualizar suas informações e configurar suas
-              metas. <br />
-              Certifique-se de inserir o e-mail corretamente para que ele possa
-              <br />
-              concluir o processo de acesso.
-            </q-tooltip>
-          </q-icon>
+          <fieldset>
+            <legend>
+              <q-toggle
+                :true-value="1"
+                :false-value="0"
+                :color="form.access ? 'green' : 'negative'"
+                keep-color
+                dense
+                checked-icon="mdi-check"
+                unchecked-icon="mdi-close"
+                v-model.number="form.access"
+              />
+              Autorizar acesso à área do aluno
+            </legend>
+            <small v-if="form.access">
+              Ao acessar o sistema o aluno poderá visualizar suas informações e
+              configurar suas metas. Certifique-se de inserir o e-mail
+              corretamente para que ele possa concluir o processo de acesso.
+            </small>
+          </fieldset>
+        </div>
+        <div class="col-12">
+          <fieldset>
+            <legend>
+              <q-toggle
+                dense
+                :true-value="1"
+                :false-value="0"
+                checked-icon="mdi-check"
+                unchecked-icon="mdi-close"
+                keep-color
+                :color="form.active ? 'green' : 'negative'"
+                v-model.number="form.active"
+              />
+              Situação do aluno
+            </legend>
+            <small>
+              Seu aluno está
+              <b :class="form.active ? 'text-green' : 'text-negative'">
+                {{ form.active ? 'Ativo' : 'Inativo' }}
+              </b>
+            </small>
+          </fieldset>
         </div>
       </div>
       <app-form-footer />

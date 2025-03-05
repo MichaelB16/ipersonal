@@ -26,6 +26,18 @@
               <q-card>
                 <q-card-section class="q-pa-xs tw-bg-[#f5f5f5c9]">
                   <template v-if="item.exercises.length">
+                    <div class="row q-pa-md justify-center">
+                      <q-btn
+                        icon="mdi-plus"
+                        label="Adicionar treino"
+                        @click="addTraining(index)"
+                        color="primary"
+                        unelevated
+                        no-caps
+                        size="sm"
+                        rounded
+                      />
+                    </div>
                     <div
                       class="row full-width items-center q-col-gutter-x-sm tw-mb-1"
                       v-for="(exercise, key) in item.exercises"
@@ -34,13 +46,17 @@
                       <div class="col-12 q-mt-sm">
                         <fieldset>
                           <legend>
-                            <q-chip color="primary" text-color="white">
+                            <q-chip
+                              color="grey-8"
+                              class="q-ma-none tw-px-[25px] tw-py-[10px]"
+                              text-color="white"
+                            >
                               {{ key + 1 }}º - Treino
                             </q-chip>
                           </legend>
                           <div class="row q-col-gutter-y-sm">
                             <div
-                              class="row q-col-gutter-x-sm full-width items-center justify-between"
+                              class="row q-col-gutter-x-sm full-width justify-between"
                             >
                               <div class="col">
                                 <app-input
@@ -59,12 +75,13 @@
                                   </template>
                                 </app-input>
                               </div>
-                              <div>
+                              <div class="col-1">
                                 <q-btn
                                   round
                                   @click="removeTraining(index, key)"
                                   size="xs"
                                   unelevated
+                                  class="q-mt-sm"
                                   color="negative"
                                   icon="mdi-trash-can"
                                 />
@@ -90,11 +107,9 @@
                                     "
                                   />
                                 </div>
-                                <div
-                                  class="col-auto tw-flex tw-justify-center tw-items-center"
-                                >
+                                <div class="col-auto tw-flex tw-justify-center">
                                   <q-icon
-                                    class="rotate-90"
+                                    class="rotate-90 tw-mt-[15px]"
                                     name="mdi-arrow-up-down"
                                   />
                                 </div>
@@ -163,8 +178,8 @@ export default defineComponent({
       state.listTraining[index].exercises.push({
         name: '',
         focus: '',
-        series: 3,
-        repeat: '8-12',
+        series: '',
+        repeat: '',
       });
     };
 

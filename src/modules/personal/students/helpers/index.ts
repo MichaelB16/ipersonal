@@ -1,4 +1,4 @@
-import {IFormStudent} from 'src/modules/personal/students/model/student.model';
+import { IFormStudent } from 'src/modules/personal/students/model/student.model';
 import { moneyFormatBr } from 'src/shared/utils';
 
 export const setFormStudent = (data: IFormStudent = {} as IFormStudent) => {
@@ -11,9 +11,10 @@ export const setFormStudent = (data: IFormStudent = {} as IFormStudent) => {
     price: data?.price || '0',
     height: data?.height || '',
     id: data?.id || null,
-    access: data?.access || 0
-  }
-}
+    access: data?.access || 0,
+    active: data?.active || 0,
+  };
+};
 
 export const studentColumns = [
   {
@@ -35,7 +36,7 @@ export const studentColumns = [
     label: 'Preço',
     field: 'price',
     align: 'center',
-    format: val => moneyFormatBr(val),
+    format: (val) => moneyFormatBr(val),
     sortable: true,
   },
   {
@@ -49,6 +50,13 @@ export const studentColumns = [
     name: 'access',
     label: 'Aréa do aluno',
     field: 'access',
+    align: 'center',
+    sortable: true,
+  },
+  {
+    name: 'situation',
+    label: 'Situação',
+    field: 'active',
     align: 'center',
     sortable: true,
   },
