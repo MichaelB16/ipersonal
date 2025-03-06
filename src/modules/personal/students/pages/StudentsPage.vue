@@ -72,8 +72,8 @@
                     <q-chip
                       size="sm"
                       class="text-white"
-                      :color="parseInt(row?.situation) ? 'green' : 'red'"
-                      :label="parseInt(row.access) ? 'Ativo' : 'Inativo'"
+                      :color="parseInt(row?.active) ? 'green' : 'red'"
+                      :label="parseInt(row.active) ? 'Ativo' : 'Inativo'"
                     />
                   </q-td>
                 </template>
@@ -172,6 +172,7 @@ export default defineComponent({
         return {
           ...item,
           access: parseInt(item.access.toString()),
+          active: parseInt(item.active.toString()),
           age: moment().diff(moment(item.date_of_birth, 'YYYY-MM-DD'), 'years'),
           date_of_birth: moment(item.date_of_birth).format('DD/MM/YYYY'),
         };
