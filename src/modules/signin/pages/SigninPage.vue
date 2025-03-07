@@ -12,8 +12,8 @@
               >
                 <q-img
                   src="~/assets/banner-login.svg"
-                  loading="lazy"
                   alt="banner"
+                  spinner-color="white"
                 />
               </div>
             </div>
@@ -53,8 +53,8 @@
               >
                 <q-img
                   src="~/assets/banner-register.svg"
-                  loading="lazy"
                   alt="banner"
+                  spinner-color="white"
                 />
               </div>
             </div>

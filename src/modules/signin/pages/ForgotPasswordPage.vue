@@ -16,7 +16,7 @@
               <q-img
                 src="~/assets/banner-forgot-password.svg"
                 alt="banner"
-                loading="lazy"
+                spinner-color="white"
               />
             </div>
           </div>
