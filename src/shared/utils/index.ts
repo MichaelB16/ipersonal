@@ -1,5 +1,5 @@
-import moment from 'moment';
 import { IPagination } from '../model/paginate.type';
+import dayjs from 'dayjs';
 
 export const configPagination = (paginate = {} as any): IPagination => {
   return {
@@ -46,7 +46,7 @@ export const formRules = (otherRules: any = []) => {
 
 export const rulesDate = (otherRules: any = []) => {
   return formRules([
-    (val: any) => moment(val, 'DD/MM/YYYY').isValid() || 'Data inválida!',
+    (val: any) => dayjs(val, 'DD/MM/YYYY', true).isValid() || 'Data inválida!',
     ...otherRules,
   ]);
 };

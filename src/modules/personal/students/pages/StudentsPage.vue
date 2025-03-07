@@ -127,12 +127,12 @@ import AppCardTitle from 'src/shared/components/AppCardTitle.vue';
 import AppTable from 'src/shared/components/AppTable.vue';
 import AppNoData from 'src/shared/components/AppNoData.vue';
 import AppPagination from 'src/shared/components/AppPagination.vue';
-import moment from 'moment';
 import { studentColumns } from 'src/modules/personal/students/helpers';
 import { useStudentStore } from 'src/modules/personal/students/store/student.store';
 import { IFormStudent } from '../model/student.model';
 import { useNotification } from 'src/shared/composable/notification';
 import { isGrid } from 'src/shared/utils';
+import dayjs from 'dayjs';
 
 export default defineComponent({
   name: 'StudentsPage',
@@ -169,12 +169,13 @@ export default defineComponent({
 
     const data = computed(() => {
       return studentStore.listStudent.map((item: IFormStudent) => {
+        const date_of_birth = dayjs(item.date_of_birth, 'YYYY-MM-DD');
         return {
           ...item,
           access: parseInt(item.access.toString()),
           active: parseInt(item.active.toString()),
-          age: moment().diff(moment(item.date_of_birth, 'YYYY-MM-DD'), 'years'),
-          date_of_birth: moment(item.date_of_birth).format('DD/MM/YYYY'),
+          age: dayjs().diff(date_of_birth, 'year'),
+          date_of_birth,
         };
       });
     });

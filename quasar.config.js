@@ -86,8 +86,6 @@ module.exports = configure(function (/* ctx */) {
                   ['vue', 'vendor-vue'],
                   ['vue-router', 'vendor-vue-router'],
                   ['axios', 'vendor-axios'],
-                  ['moment', 'vendor-moment'],
-                  ['jspdf', 'vendor-jspdf'],
                   ['crypto-js', 'vendor-crypto-js'],
                   ['html2canvas', 'vendor-html2canvas'],
                   ['canvg', 'vendor-canvg'],

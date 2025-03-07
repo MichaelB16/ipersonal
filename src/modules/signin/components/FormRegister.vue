@@ -117,7 +117,7 @@ import {
 import { useAuthStore } from '../stores/auth.store';
 import { formRules, rulesDate, rulesEmail } from 'src/shared/utils';
 import AppBtnGoogle from 'src/shared/components/AppBtnGoogle.vue';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export default defineComponent({
   name: 'FormSignin',
@@ -163,12 +163,11 @@ export default defineComponent({
     const handleSubmit = () => {
       formRef.value.validate().then(async (success: boolean) => {
         if (success) {
-          const date = moment(state.form.date_of_birth, 'DD/MM/YYYY').format(
-            'YYYY-MM-DD'
-          );
           const result = await storeAuth.REQUEST_CREATE_USER({
             ...state.form,
-            date_of_birth: date,
+            date_of_birth: dayjs(state.form.date_of_birth, 'DD/MM/YYYY').format(
+              'YYYY-MM-DD'
+            ),
           });
 
           if (result) {
