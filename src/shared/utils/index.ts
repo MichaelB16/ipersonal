@@ -1,5 +1,8 @@
 import { IPagination } from '../model/paginate.type';
 import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(customParseFormat);
 
 export const configPagination = (paginate = {} as any): IPagination => {
   return {
@@ -46,7 +49,10 @@ export const formRules = (otherRules: any = []) => {
 
 export const rulesDate = (otherRules: any = []) => {
   return formRules([
-    (val: any) => dayjs(val, 'DD/MM/YYYY', true).isValid() || 'Data inválida!',
+    (val: any) => {
+      const checkdate = dayjs(val, 'DD/MM/YYYY', true).isValid();
+      return checkdate || 'Data inválida!';
+    },
     ...otherRules,
   ]);
 };
