@@ -12,7 +12,9 @@ export const studentRoutes: RouteRecordRaw[] = [
         name: 'student.dashboard',
         meta: { auth: true },
         component: () =>
-          import('src/modules/student/dashboard/pages/StudentDashboard.vue'),
+          import(
+            'src/modules/student/dashboard/pages/StudentDashboardPage.vue'
+          ),
       },
     ],
   },
