@@ -153,7 +153,6 @@ export default defineComponent({
       } else {
         name = router.resolve({ name: 'dashboard' });
       }
-      console.log(name);
       window.location.href = name.href;
     };
 
