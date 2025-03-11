@@ -141,14 +141,17 @@ export default defineComponent({
       formRef.value.validate().then(async (success: boolean) => {
         if (success) {
           const result: boolean = await storeAuth.REQUEST_LOGIN(state.form);
-          result && redirect();
+          result && redirect(result);
         }
       });
     };
 
-    const redirect = () => {
-      const name = router.resolve({ name: 'dashboard' });
-      window.location.href = name.href;
+    const redirect = (result: any) => {
+      if (result.type === 'student') {
+        router.push({ name: 'student.dashboard' });
+      } else {
+        router.push({ name: 'dashboard' });
+      }
     };
 
     return {

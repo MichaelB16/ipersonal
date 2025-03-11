@@ -19,7 +19,7 @@ export const useAuthStore = defineStore('auth', {
         .then(({ data }) => {
           storage.setItemStorage('user-storage', data.user);
           storage.setItemStorage('user-token', data.token);
-          return true;
+          return data;
         })
         .finally(() => {
           this.loading = false;

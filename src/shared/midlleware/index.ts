@@ -1,4 +1,5 @@
-import { personalRoutes } from 'src/router/personal';
+import { personalRoutes } from 'src/router/types/personal';
+import { studentRoutes } from 'src/router/types/student';
 import { useCacheStorage } from '../composable/storage';
 const storage = useCacheStorage();
 const user = storage.getItemStorage('user-storage');
@@ -19,5 +20,5 @@ export const middlewareRoute = () => {
   if (user?.type === 'personal') {
     return personalRoutes;
   }
-  return personalRoutes;
+  return studentRoutes;
 };

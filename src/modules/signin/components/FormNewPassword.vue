@@ -113,6 +113,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    studentId: {
+      type: [String],
+      default: null,
+    },
     userId: {
       type: [String],
       default: null,
@@ -141,6 +145,10 @@ export default defineComponent({
       reset();
     });
 
+    const id = computed(() => {
+      return parseInt(props.userId || props.studentId);
+    });
+
     const textTitle = computed(() => {
       const text_form =
         'Defina uma senha segura para começar a acessar a plataforma.';
@@ -166,7 +174,7 @@ export default defineComponent({
       formRef.value.validate().then(async (success: boolean) => {
         if (success) {
           const result = await newPasswordStore.REQUEST_UPDATE_PASSWORD(
-            parseInt(props.userId),
+            id.value,
             {
               password: state.form.password,
             }

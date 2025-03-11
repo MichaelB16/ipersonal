@@ -47,7 +47,8 @@ export default defineComponent({
 
     const isMobile = computed(() => width.value <= 600);
 
-    onMounted(() => {
+    onMounted(async () => {
+      await settingStore.requestSetting();
       state.open = isMobile.value ? false : true;
     });
 

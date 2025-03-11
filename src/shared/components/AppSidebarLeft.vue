@@ -11,8 +11,8 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-import { useMenu } from '../composable/menu';
 import AppMenuItem from './AppMenuItem.vue';
+import { useSettingStore } from 'src/stores/settings';
 export default defineComponent({
   name: 'MenuSidebarLeft',
   components: {
@@ -26,8 +26,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const listMenu = useMenu();
-
+    const settingStore = useSettingStore();
     const model = computed({
       get() {
         return props.modelValue;
@@ -35,6 +34,10 @@ export default defineComponent({
       set(value: boolean) {
         emit('update:modelValue', value);
       },
+    });
+
+    const listMenu = computed(() => {
+      return settingStore.setting.menu;
     });
 
     return {

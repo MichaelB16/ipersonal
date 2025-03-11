@@ -40,7 +40,11 @@
           </template>
           <template v-else>
             <template v-if="tokenIsValid">
-              <form-new-password :user-id="userId" :username="name" />
+              <form-new-password
+                :user-id="userId"
+                :student-id="studentId"
+                :username="name"
+              />
             </template>
             <template v-else>
               <div
@@ -77,6 +81,7 @@ export default defineComponent({
       tokenIsValid: true,
       name: '',
       userId: '',
+      studentId: '',
     });
 
     onMounted(async () => {
@@ -84,8 +89,9 @@ export default defineComponent({
       const result = await newPasswordStore.REQUEST_CHECK_TOKEN(token);
       state.tokenIsValid = !!result;
       if (result) {
-        state.name = result?.user?.name;
+        state.name = result?.user?.name || result?.student?.name;
         state.userId = result?.user?.id;
+        state.studentId = result?.student?.id;
       }
     });
 
