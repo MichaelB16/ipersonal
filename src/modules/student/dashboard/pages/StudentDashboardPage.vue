@@ -3,121 +3,107 @@
     <div class="col-12">
       <app-title-page
         icon="mdi-speedometer"
-        title="Dashboard"
+        title="Área do Aluno"
         subtitle="Aqui estão seus treinos e suas dietas"
       />
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-6">
-      <card-dashboard title="Treino do dia" icon="mdi-weight-lifter">
-      </card-dashboard>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-6">
-      <card-dashboard
-        title="Dieta do dia"
-        color="red-10"
-        icon="mdi-food-steak"
-      />
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-6">
-      <card-dashboard title="Treino Semanal" icon="mdi-weight-lifter">
-        <div
-          class="row tw-py-4 tw-px-3 tw-max-h-[420px] tw-overflow-y-auto scroll"
-        >
-          <q-timeline
-            color="grey-6"
-            v-for="(item, index) in training"
-            :key="index"
-            class="tw-px-[12px] tw-py-[0px]"
-          >
-            <q-timeline-entry
-              icon="mdi-calendar"
-              :subtitle="`${item.day} - ${item.focus}`"
-            >
-              <div class="row q-col-gutter-y-sm">
-                <div
-                  class="col-12"
-                  v-for="(exercise, m) in item.exercises"
-                  :key="m"
-                >
-                  <q-card bordered class="no-shadow" dense>
-                    <q-card-section class="tw-p-3 tw-h-[45px]">
-                      <div class="row">
-                        <div class="col-12">
-                          <b class="text-grey-8">
-                            <q-icon
-                              size="25px"
-                              color="primary"
-                              :name="`mdi-numeric-${m + 1}-circle`"
-                            />
-                            {{ exercise.name }}
-                          </b>
-                          <small class="q-ml-sm tw-leading-2 tw-text-[12px]">
-                            {{ exercise.series }} x {{ exercise.repeat }}
-                          </small>
-                        </div>
-                      </div>
-                    </q-card-section>
-                  </q-card>
-                </div>
-              </div>
-            </q-timeline-entry>
-          </q-timeline>
-        </div>
-      </card-dashboard>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-6">
-      <card-dashboard
-        title="Dieta Semanal"
-        color="red-10"
-        icon="mdi-food-steak"
-      >
-        <div class="row tw-py-4 tw-px-3 tw-max-h-[420px] tw-overflow-y-auto">
-          <q-timeline
-            color="grey-8"
-            v-for="(item, index) in diet"
-            :key="index"
-            class="tw-px-[12px] tw-py-[0px]"
-          >
-            <q-timeline-entry icon="mdi-calendar" :subtitle="item.day">
-              <div class="row q-col-gutter-x-md q-col-gutter-y-md">
-                <div
-                  class="col-xs-12 col-sm-12 col-md-6"
-                  v-for="(meal, m) in item.meals"
-                  :key="m"
-                >
-                  <q-card bordered class="no-shadow" dense>
-                    <q-card-section class="tw-p-3 tw-h-[125px]">
-                      <div class="row">
-                        <div class="col-12">
-                          <b class="text-grey-8">{{ meal.label }}</b>
-                        </div>
-                        <div class="col-12">
-                          <span class="tw-leading-2 tw-text-[12px]">
-                            {{ meal.description }}
-                          </span>
-                        </div>
-                      </div>
-                    </q-card-section>
-                  </q-card>
-                </div>
-              </div>
-            </q-timeline-entry>
-          </q-timeline>
-        </div>
-      </card-dashboard>
-    </div>
   </div>
+  <fieldset class="q-mt-sm q-mb-md">
+    <legend>
+      <q-chip color="green-10">
+        <b class="tw-text-white">Hoje</b>
+      </q-chip>
+    </legend>
+    <div class="row q-col-gutter-x-md q-col-gutter-y-md">
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <card-dashboard
+          :title="`Treino - ${todayTraining.focus}`"
+          color="green-10"
+          icon="mdi-weight-lifter"
+        >
+          <card-exercises
+            class="tw-p-4 tw-h-[425px] tw-overflow-y-auto"
+            show-btn-view
+            :exercises="todayTraining.exercises"
+          />
+        </card-dashboard>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <card-dashboard title="Dieta" color="green-10" icon="mdi-food-steak">
+          <card-diet
+            class="tw-p-4 tw-h-[432px] tw-overflow-y-auto"
+            grid="col-12"
+            height="tw-h-[75px]"
+            :meals="todayDiet.meals"
+          />
+        </card-dashboard>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="q-mt-sm q-mb-md">
+    <legend>
+      <q-chip color="blue-grey-6">
+        <b class="tw-text-white">Semanal</b>
+      </q-chip>
+    </legend>
+    <div class="row q-col-gutter-x-md q-col-gutter-y-md">
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <card-dashboard
+          title="Treino"
+          color="blue-grey-6"
+          icon="mdi-weight-lifter"
+        >
+          <div
+            class="row tw-py-3 tw-px-3 tw-max-h-[420px] tw-overflow-y-auto scroll"
+          >
+            <q-timeline class="tw-px-[12px] tw-py-[0px]">
+              <q-timeline-entry
+                v-for="(item, index) in training"
+                :key="index"
+                icon="mdi-calendar"
+                color="blue-grey-6"
+                :subtitle="`${item.day} - ${item.focus}`"
+              >
+                <card-exercises :exercises="item.exercises" />
+              </q-timeline-entry>
+            </q-timeline>
+          </div>
+        </card-dashboard>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <card-dashboard title="Dieta" color="blue-grey-6" icon="mdi-food-steak">
+          <div class="row tw-py-4 tw-px-3 tw-max-h-[420px] tw-overflow-y-auto">
+            <q-timeline color="blue-grey-6" class="tw-px-[12px] tw-py-[0px]">
+              <q-timeline-entry
+                v-for="(item, index) in diet"
+                :key="index"
+                icon="mdi-calendar"
+                :subtitle="item.day"
+              >
+                <card-diet :meals="item.meals" />
+              </q-timeline-entry>
+            </q-timeline>
+          </div>
+        </card-dashboard>
+      </div>
+    </div>
+  </fieldset>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, computed } from 'vue';
 import CardDashboard from '../components/CardDashboard.vue';
+import CardExercises from '../components/CardExercises.vue';
+import CardDiet from '../components/CardDiet.vue';
 import { useDashboardStore } from 'src/modules/personal/dashboard/stores/dashboard.store';
 
 export default defineComponent({
   name: 'StudentDashboard',
   components: {
     CardDashboard,
+    CardExercises,
+    CardDiet,
   },
   setup() {
     const dashboardStore = useDashboardStore();
@@ -130,6 +116,33 @@ export default defineComponent({
       return dashboardStore.listStudentDashboard.weekly_training;
     });
 
+    const todayTraining = computed<any>(() => {
+      const data = dashboardStore?.listStudentDashboard;
+      console.log(data);
+      let exercises = [];
+      let day = '';
+      let focus = '';
+      if (data?.today_training) {
+        const value = Object.values(data.today_training) as any[];
+        exercises = value?.[0]?.exercises || [];
+        day = value?.[0]?.day || '';
+        focus = value?.[0]?.focus || '';
+      }
+      return { exercises, day, focus };
+    });
+
+    const todayDiet = computed<any>(() => {
+      const data = dashboardStore?.listStudentDashboard;
+      let meals = [];
+      let day = '';
+      if (data?.today_diet) {
+        const value = Object.values(data.today_diet) as any[];
+        meals = value?.[0]?.meals || [];
+        day = value?.[0]?.day || '';
+      }
+      return { meals, day };
+    });
+
     const diet = computed(() => {
       return dashboardStore.listStudentDashboard.weekly_diet;
     });
@@ -137,7 +150,25 @@ export default defineComponent({
     return {
       training,
       diet,
+      todayTraining,
+      todayDiet,
     };
   },
 });
 </script>
+<style scoped>
+fieldset {
+  border-radius: 10px;
+  padding: 10px;
+  &:first-of-type {
+    margin-top: 10px;
+    border: 1.5px dashed #1a5e20;
+  }
+  &:last-of-type {
+    border: 1.5px dashed #607d8b;
+  }
+  legend {
+    padding: 0 36px 0 36px;
+  }
+}
+</style>

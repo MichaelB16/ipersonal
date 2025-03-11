@@ -1,6 +1,6 @@
 <template>
   <q-card bordered class="no-shadow">
-    <q-card-section class="tw-border tw-border-grey-2">
+    <q-card-section class="tw-border tw-p-[10px] tw-border-grey-2">
       <div class="row items-center q-col-gutter-x-md">
         <div class="col-auto">
           <q-avatar :color="color" size="35px">
@@ -25,7 +25,7 @@ export default defineComponent({
   props: {
     title: { type: String, required: true, default: '' },
     icon: { type: String, required: true, default: '' },
-    color: { type: String, required: true, default: 'grey-6' },
+    color: { type: String, default: 'grey-6' },
   },
 });
 </script>

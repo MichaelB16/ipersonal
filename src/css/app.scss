@@ -1,87 +1,103 @@
 // app global css in SCSS form
+@mixin scroll($width) {
+     ::-webkit-scrollbar {
+        width: $width;
+    }
+     ::-webkit-scrollbar-track {
+        background: rgb(241, 241, 241);
+        border-radius: 0px;
+    }
+     ::-webkit-scrollbar-thumb {
+        background-color: rgb(223, 223, 223);
+        border-radius: 6px;
+        border: 2px solid rgb(223, 223, 223);
+    }
+     ::-webkit-scrollbar-thumb:hover {
+        background: rgb(223, 223, 223);
+    }
+}
+
 body {
-  #container {
-    background: #efefefe0;
-    height: calc(100vh - 75px);
-    border-radius: 10px;
-    margin-right: 16px;
-    margin-left: 16px;
-    padding: 20px;
-    overflow-y: auto;
-  }
-
-  fieldset {
-    border: 1px solid #81777747;
-    border-radius: 6px;
-    margin: 0px 8px 0px 8px;
-    padding: 0.4em 0.75em 0.8em;
-    legend {
-      padding: 0 10px 0 10px;
-      color: #636363;
-      font-weight: 600;
+    @include scroll(6px);
+    #container {
+        background: #efefefe0;
+        height: calc(100vh - 75px);
+        border-radius: 10px;
+        margin-right: 16px;
+        margin-left: 16px;
+        padding: 20px;
+        overflow-y: auto;
     }
-  }
-
-  .q-notifications__list {
-    .notification-confirm {
-      .q-notification__content {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        .q-icon {
-          font-size: 60px;
+    fieldset {
+        border: 1px solid #81777747;
+        border-radius: 6px;
+        margin: 0px 8px 0px 8px;
+        padding: 0.4em 0.75em 0.8em;
+        legend {
+            padding: 0 10px 0 10px;
+            color: #636363;
+            font-weight: 600;
         }
-        .q-notification__wrapper {
-          width: 300px;
-          height: 150px;
-        }
-        .q-notification__message {
-          div {
-            &:first-child {
-              color: #7c7c7b;
-              font-size: 16px;
-              font-weight: 700;
+    }
+    .q-notifications__list {
+        .notification-confirm {
+            .q-notification__content {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                .q-icon {
+                    font-size: 60px;
+                }
+                .q-notification__wrapper {
+                    width: 300px;
+                    height: 150px;
+                }
+                .q-notification__message {
+                    div {
+                        &:first-child {
+                            color: #7c7c7b;
+                            font-size: 16px;
+                            font-weight: 700;
+                        }
+                        &:last-child {
+                            color: #8c8c8c;
+                            font-size: 14px;
+                        }
+                    }
+                }
             }
-            &:last-child {
-              color: #8c8c8c;
-              font-size: 14px;
+        }
+    }
+    .q-drawer--standard {
+        .sidebar-left {
+            .q-item {
+                &.q-router-link--exact-active {
+                    border-left: 4px solid $primary;
+                }
             }
-          }
         }
-      }
     }
-  }
-
-  .q-drawer--standard {
-    .sidebar-left {
-      .q-item {
-        &.q-router-link--exact-active {
-          border-left: 4px solid $primary;
+    .q-drawer--mini {
+        .sidebar-left {
+            .q-item {
+                &.q-router-link--exact-active {
+                    border-radius: 100px;
+                    background-color: $primary !important;
+                    color: #fff !important;
+                }
+            }
         }
-      }
     }
-  }
-  .q-drawer--mini {
-    .sidebar-left {
-      .q-item {
-        &.q-router-link--exact-active {
-          border-radius: 100px;
-          background-color: $primary !important;
-          color: #fff !important;
+    .app-table {
+        td {
+            height: 43px;
         }
-      }
     }
-  }
-  .app-table {
-    td {
-      height: 43px;
+    .app-btn-actions {
+        .q-item__section--avatar {
+            min-width: 25px !important;
+        }
     }
-  }
-  .app-btn-actions {
-    .q-item__section--avatar {
-      min-width: 25px !important;
-    }
-  }
 }
