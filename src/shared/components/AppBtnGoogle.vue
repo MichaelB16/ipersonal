@@ -83,9 +83,7 @@ export default defineComponent({
     };
 
     const redirect = () => {
-      const name = router.resolve({ name: 'dashboard' });
-      console.log(name);
-      window.location.href = name.href;
+      router.push({ name: 'dashboard' });
     };
 
     return {
