@@ -147,11 +147,14 @@ export default defineComponent({
     };
 
     const redirect = (result: any) => {
+      let name: any = { url: '' };
       if (result?.type === 'student') {
-        router.push({ name: 'student.dashboard' });
+        name = router.resolve({ name: 'student.dashboard' });
       } else {
-        router.push({ name: 'dashboard' });
+        name = router.resolve({ name: 'dashboard' });
       }
+      console.log(name);
+      window.location.href = name.url;
     };
 
     return {

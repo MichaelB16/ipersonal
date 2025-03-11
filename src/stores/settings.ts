@@ -14,7 +14,6 @@ export const useSettingStore = defineStore('setting', {
     },
     async requestSetting() {
       await $http.get('/setting').then(({ data }) => {
-        console.log(data);
         this.setting = data;
       });
     },
