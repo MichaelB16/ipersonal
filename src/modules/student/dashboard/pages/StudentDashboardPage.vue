@@ -7,18 +7,18 @@
         subtitle="Aqui estão seus treinos e suas dietas"
       />
     </div>
-    <div class="col-6">
+    <div class="col-xs-12 col-sm-12 col-md-6">
       <card-dashboard title="Treino do dia" icon="mdi-weight-lifter">
       </card-dashboard>
     </div>
-    <div class="col-6">
+    <div class="col-xs-12 col-sm-12 col-md-6">
       <card-dashboard
         title="Dieta do dia"
         color="red-10"
         icon="mdi-food-steak"
       />
     </div>
-    <div class="col-6">
+    <div class="col-xs-12 col-sm-12 col-md-6">
       <card-dashboard title="Treino Semanal" icon="mdi-weight-lifter">
         <div
           class="row tw-py-4 tw-px-3 tw-max-h-[420px] tw-overflow-y-auto scroll"
@@ -65,7 +65,7 @@
         </div>
       </card-dashboard>
     </div>
-    <div class="col-6">
+    <div class="col-xs-12 col-sm-12 col-md-6">
       <card-dashboard
         title="Dieta Semanal"
         color="red-10"
@@ -80,7 +80,11 @@
           >
             <q-timeline-entry icon="mdi-calendar" :subtitle="item.day">
               <div class="row q-col-gutter-x-md q-col-gutter-y-md">
-                <div class="col-6" v-for="(meal, m) in item.meals" :key="m">
+                <div
+                  class="col-xs-12 col-sm-12 col-md-6"
+                  v-for="(meal, m) in item.meals"
+                  :key="m"
+                >
                   <q-card bordered class="no-shadow" dense>
                     <q-card-section class="tw-p-3 tw-h-[125px]">
                       <div class="row">
