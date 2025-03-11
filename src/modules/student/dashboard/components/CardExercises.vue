@@ -1,5 +1,5 @@
 <template>
-  <div class="row tw-px-4 q-col-gutter-y-sm">
+  <div class="row q-col-gutter-y-sm">
     <div class="col-12" v-for="(exercise, m) in exercises" :key="m">
       <div class="row tw-gap-2 items-center">
         <div class="col-auto">
@@ -29,9 +29,10 @@
                     @click="$emit('viewExercise', exercise)"
                     color="grey-4"
                     text-color="grey-8"
-                    size="sm"
+                    size="xs"
                     disable
-                    label="Visualizar"
+                    round
+                    icon="mdi-eye-outline"
                   />
                 </div>
               </div>

@@ -4,6 +4,7 @@
     show-if-above
     v-model="model"
     :breakpoint="500"
+    :width="250"
     class="sidebar-left tw-min-w-[70px]"
   >
     <app-menu-item class="tw-mx-3" :list-menu="listMenu" />

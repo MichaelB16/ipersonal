@@ -175,8 +175,8 @@ export default defineComponent({
 .logo-img {
   @apply tw-py-2 tw-justify-start tw-items-center;
   @apply xs:tw-w-[42px] xs:tw-h-[40px];
-  @apply sm:tw-w-[280px] sm:tw-h-[60px];
-  @apply md:tw-w-[280px] md:tw-h-[60px];
-  @apply lg:tw-w-[280px] lg:tw-h-[60px];
+  @apply sm:tw-w-[230px] sm:tw-h-[60px];
+  @apply md:tw-w-[230px] md:tw-h-[60px];
+  @apply lg:tw-w-[230px] lg:tw-h-[60px];
 }
 </style>

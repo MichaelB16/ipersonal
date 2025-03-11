@@ -30,7 +30,7 @@ export default defineComponent({
     },
     height: {
       type: String,
-      default: 'tw-h-[125px]',
+      default: 'tw-h-[132px]',
     },
     meals: {
       type: Array as PropType<any[]>,
