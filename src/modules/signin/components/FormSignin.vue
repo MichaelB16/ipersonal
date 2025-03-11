@@ -147,7 +147,7 @@ export default defineComponent({
     };
 
     const redirect = (result: any) => {
-      if (result.type === 'student') {
+      if (result?.type === 'student') {
         router.push({ name: 'student.dashboard' });
       } else {
         router.push({ name: 'dashboard' });
