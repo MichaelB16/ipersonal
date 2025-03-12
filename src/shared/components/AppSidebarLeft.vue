@@ -7,7 +7,16 @@
     :width="250"
     class="sidebar-left tw-min-w-[70px]"
   >
-    <app-menu-item class="tw-mx-3" :list-menu="listMenu" />
+    <template v-if="loading">
+      <div class="row tw-px-3 q-col-gutter-y-md">
+        <div class="col-12" v-for="value in 4" :key="value">
+          <q-skeleton type="rect" class="tw-w-full tw-h-10" />
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <app-menu-item class="tw-mx-3" :list-menu="listMenu" />
+    </template>
   </q-drawer>
 </template>
 <script lang="ts">
@@ -37,6 +46,10 @@ export default defineComponent({
       },
     });
 
+    const loading = computed(() => {
+      return settingStore.loadingSetting;
+    });
+
     const listMenu = computed(() => {
       return settingStore.setting.menu;
     });
@@ -44,6 +57,7 @@ export default defineComponent({
     return {
       model,
       listMenu,
+      loading,
     };
   },
 });

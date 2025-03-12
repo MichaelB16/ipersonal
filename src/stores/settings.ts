@@ -4,6 +4,7 @@ import { IMenu } from 'src/shared/model/menu.type';
 export const useSettingStore = defineStore('setting', {
   state: () => ({
     widthPage: 0,
+    loadingSetting: false,
     setting: {
       menu: [] as IMenu[],
     },
@@ -13,9 +14,15 @@ export const useSettingStore = defineStore('setting', {
       this.widthPage = value;
     },
     async requestSetting() {
-      await $http.get('/setting').then(({ data }) => {
-        this.setting = data;
-      });
+      this.loadingSetting = true;
+      await $http
+        .get('/setting')
+        .then(({ data }) => {
+          this.setting = data;
+        })
+        .finally(() => {
+          this.loadingSetting = false;
+        });
     },
   },
 });
