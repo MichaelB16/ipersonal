@@ -86,6 +86,7 @@ export default defineComponent({
 
     const redirect = async () => {
       const name = await router.resolve({ name: 'dashboard' });
+      console.log(name);
       window.location.href = name.href;
     };
 
