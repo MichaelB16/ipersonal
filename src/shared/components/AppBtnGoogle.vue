@@ -78,9 +78,10 @@ export default defineComponent({
 
     const oauth2Callback = async (params) => {
       const result = await authStore.REQUEST_LOGIN_GOOGLE(params);
-      console.log(result);
-      console.log(router);
-      result && router.push({ name: 'dashboard' });
+      if (result) {
+        const name: any = router.resolve({ name: 'dashboard' });
+        window.location.href = name.href;
+      }
     };
 
     return {
