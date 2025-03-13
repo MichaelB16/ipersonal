@@ -22,7 +22,7 @@
                   <q-skeleton height="35px" width="35px" type="circle" />
                 </div>
                 <div class="col">
-                  <q-skeleton height="30px" type="text" />
+                  <q-skeleton height="30px" width="218px" type="text" />
                 </div>
               </div>
             </div>
