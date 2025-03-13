@@ -128,7 +128,6 @@ export default defineComponent({
 
     const todayTraining = computed<any>(() => {
       const data = dashboardStore?.listStudentDashboard;
-      console.log(data);
       let exercises = [];
       let day = '';
       let focus = '';
