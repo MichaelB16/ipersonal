@@ -8,7 +8,7 @@
           </q-avatar>
         </div>
         <div class="col-auto">
-          <b class="tw-text-[18px] text-grey-8"> {{ title }} </b>
+          <b class="tw-text-[16px] text-grey-8"> {{ title }} </b>
         </div>
       </div>
     </q-card-section>

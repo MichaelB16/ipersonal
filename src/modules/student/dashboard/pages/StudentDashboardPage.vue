@@ -16,33 +16,48 @@
     </legend>
     <div class="row q-col-gutter-x-md q-col-gutter-y-md">
       <div class="col-xs-12 col-sm-12 col-md-6">
-        <card-dashboard
-          :title="`Treino - ${todayTraining.focus}`"
-          color="green-10"
-          icon="mdi-weight-lifter"
-          height="tw-h-[425px]"
-        >
-          <card-exercises
-            class="tw-p-4"
-            show-btn-view
-            :exercises="todayTraining.exercises"
-          />
-        </card-dashboard>
+        <template v-if="loading">
+          <skeleton-card-dashboard height="tw-h-[425px]" />
+        </template>
+        <template v-else>
+          <card-dashboard
+            :title="`Treino - ${todayTraining.focus}`"
+            color="green-10"
+            icon="mdi-weight-lifter"
+            height="tw-h-[425px]"
+          >
+            <card-exercises
+              class="tw-p-4"
+              show-btn-view
+              :exercises="todayTraining.exercises"
+            />
+          </card-dashboard>
+        </template>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-6">
-        <card-dashboard
-          height="tw-h-[432px]"
-          title="Dieta"
-          color="green-10"
-          icon="mdi-food-steak"
-        >
-          <card-diet
-            class="tw-p-4"
-            grid="col-12"
-            height="tw-h-[75px]"
-            :meals="todayDiet.meals"
+        <template v-if="loading">
+          <skeleton-card-dashboard
+            grid-diet="col-12"
+            grid-height="75px"
+            type="diet"
+            height="tw-h-[420px]"
           />
-        </card-dashboard>
+        </template>
+        <template v-else>
+          <card-dashboard
+            height="tw-h-[432px]"
+            title="Dieta"
+            color="green-10"
+            icon="mdi-food-steak"
+          >
+            <card-diet
+              class="tw-p-4"
+              grid="col-12"
+              height="tw-h-[75px]"
+              :meals="todayDiet.meals"
+            />
+          </card-dashboard>
+        </template>
       </div>
     </div>
   </fieldset>
@@ -55,57 +70,73 @@
     </legend>
     <div class="row q-col-gutter-x-md q-col-gutter-y-md">
       <div class="col-xs-12 col-sm-12 col-md-6">
-        <card-dashboard
-          title="Treino"
-          color="blue-grey-6"
-          icon="mdi-weight-lifter"
-          height="tw-max-h-[420px]"
-        >
-          <div class="row tw-py-3 tw-px-3">
-            <q-timeline class="tw-px-[12px] tw-py-[0px]">
-              <q-timeline-entry
-                v-for="(item, index) in training"
-                :key="index"
-                icon="mdi-calendar"
-                color="blue-grey-6"
-                :subtitle="`${item.day} - ${item.focus}`"
-              >
-                <card-exercises :exercises="item.exercises" />
-              </q-timeline-entry>
-            </q-timeline>
-          </div>
-        </card-dashboard>
+        <template v-if="loading">
+          <skeleton-card-dashboard height="tw-h-[420px]" />
+        </template>
+        <template v-else>
+          <card-dashboard
+            title="Treino"
+            color="blue-grey-6"
+            icon="mdi-weight-lifter"
+            height="tw-max-h-[420px]"
+          >
+            <div class="row tw-py-3 tw-px-3">
+              <q-timeline class="tw-px-[12px] tw-py-[0px]">
+                <q-timeline-entry
+                  v-for="(item, index) in training"
+                  :key="index"
+                  icon="mdi-calendar"
+                  color="blue-grey-6"
+                  :subtitle="`${item.day} - ${item.focus}`"
+                >
+                  <card-exercises :exercises="item.exercises" />
+                </q-timeline-entry>
+              </q-timeline>
+            </div>
+          </card-dashboard>
+        </template>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-6">
-        <card-dashboard
-          title="Dieta"
-          height="tw-max-h-[420px]"
-          color="blue-grey-6"
-          icon="mdi-food-steak"
-        >
-          <div class="row tw-py-4 tw-px-3">
-            <q-timeline color="blue-grey-6" class="tw-px-[12px] tw-py-[0px]">
-              <q-timeline-entry
-                v-for="(item, index) in diet"
-                :key="index"
-                icon="mdi-calendar"
-                :subtitle="item.day"
-              >
-                <card-diet :meals="item.meals" />
-              </q-timeline-entry>
-            </q-timeline>
-          </div>
-        </card-dashboard>
+        <template v-if="loading">
+          <skeleton-card-dashboard
+            show-timeline
+            type="diet"
+            grid-height="140px"
+            height="tw-h-[420px]"
+          />
+        </template>
+        <template v-else>
+          <card-dashboard
+            title="Dieta"
+            height="tw-max-h-[420px]"
+            color="blue-grey-6"
+            icon="mdi-food-steak"
+          >
+            <div class="row tw-py-4 tw-px-3">
+              <q-timeline color="blue-grey-6" class="tw-px-[12px] tw-py-[0px]">
+                <q-timeline-entry
+                  v-for="(item, index) in diet"
+                  :key="index"
+                  icon="mdi-calendar"
+                  :subtitle="item.day"
+                >
+                  <card-diet :meals="item.meals" />
+                </q-timeline-entry>
+              </q-timeline>
+            </div>
+          </card-dashboard>
+        </template>
       </div>
     </div>
   </fieldset>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, computed } from 'vue';
+import { defineComponent, onMounted, computed, reactive, toRefs } from 'vue';
 import CardDashboard from '../components/CardDashboard.vue';
 import CardExercises from '../components/CardExercises.vue';
 import CardDiet from '../components/CardDiet.vue';
+import SkeletonCardDashboard from '../components/SkeletonCardDashboard.vue';
 import { useDashboardStore } from 'src/modules/personal/dashboard/stores/dashboard.store';
 
 export default defineComponent({
@@ -114,12 +145,18 @@ export default defineComponent({
     CardDashboard,
     CardExercises,
     CardDiet,
+    SkeletonCardDashboard,
   },
   setup() {
     const dashboardStore = useDashboardStore();
+    const state = reactive({
+      loading: true,
+    });
 
     onMounted(async () => {
+      state.loading = true;
       await dashboardStore.REQUEST_GET_STUDENT_DASHBOARD();
+      state.loading = false;
     });
 
     const training = computed(() => {
@@ -161,6 +198,7 @@ export default defineComponent({
       diet,
       todayTraining,
       todayDiet,
+      ...toRefs(state),
     };
   },
 });
