@@ -166,7 +166,7 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
+<style lang="scss" scoped>
 fieldset {
   border-radius: 10px;
   padding: 10px;
