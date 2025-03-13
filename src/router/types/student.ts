@@ -9,7 +9,7 @@ export const studentRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: 'dashboard',
-        name: 'student.dashboard',
+        name: 'studet.dashboard',
         meta: { auth: true },
         component: () =>
           import(
