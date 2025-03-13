@@ -49,39 +49,36 @@ export default defineComponent({
     };
 
     const requestInfoUserGoogle = async (code: string) => {
-      await axios
-        .post('https://oauth2.googleapis.com/token', {
-          code: code,
-          client_id: token,
-          redirect_uri: 'postmessage',
-          client_secret: process.env.GOOGLE_KEY_SECRET,
-          grant_type: 'authorization_code',
-        })
-        .then(async ({ data }) => {
-          const access_token = data.access_token;
-          await axios
-            .get('https://www.googleapis.com/oauth2/v3/userinfo', {
-              headers: {
-                Authorization: `Bearer ${access_token}`,
-              },
-            })
-            .then(async ({ data }) => {
-              await oauth2Callback({
-                name: data.name,
-                email: data.email,
-                picture: data.picture,
-                sub: data.sub,
-                google_access_token: access_token,
-              });
-            });
-        });
+      const { data } = await axios.post('https://oauth2.googleapis.com/token', {
+        code: code,
+        client_id: token,
+        redirect_uri: 'postmessage',
+        client_secret: process.env.GOOGLE_KEY_SECRET,
+        grant_type: 'authorization_code',
+      });
+
+      const { data: info } = await axios.get(
+        'https://www.googleapis.com/oauth2/v3/userinfo',
+        {
+          headers: {
+            Authorization: `Bearer ${data.access_token}`,
+          },
+        }
+      );
+      await oauth2Callback({
+        name: info.name,
+        email: info.email,
+        picture: info.picture,
+        sub: info.sub,
+        google_access_token: data.access_token,
+      });
     };
 
     const oauth2Callback = async (params) => {
       const result = await authStore.REQUEST_LOGIN_GOOGLE(params);
-      if (result) {
-        router.push({ name: 'dashboard' });
-      }
+      console.log(result);
+      console.log(router);
+      result && router.push({ name: 'dashboard' });
     };
 
     return {
