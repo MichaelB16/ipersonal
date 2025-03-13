@@ -18,12 +18,10 @@ import { computed, defineComponent } from 'vue';
 import { googleSdkLoaded } from 'vue3-google-login';
 import axios from 'axios';
 import { useAuthStore } from 'src/modules/signin/stores/auth.store';
-import { useRouter } from 'vue-router';
 
 export default defineComponent({
   setup() {
     const authStore = useAuthStore();
-    const router = useRouter();
     const token: string | undefined = process.env.GOOGLE_CLIENT_ID;
 
     const loading = computed(() => {
@@ -85,9 +83,7 @@ export default defineComponent({
     };
 
     const redirect = async () => {
-      const name = await router.resolve({ name: 'dashboard' });
-      console.log(name);
-      window.location.href = name.href;
+      window.location.href = '/personal/dashboard';
     };
 
     return {

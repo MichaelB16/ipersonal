@@ -12,7 +12,7 @@
         </div>
       </div>
     </q-card-section>
-    <q-card-section class="q-pa-none">
+    <q-card-section class="q-pa-none tw-overflow-y-auto scroll" :class="height">
       <slot />
     </q-card-section>
   </q-card>
@@ -25,6 +25,7 @@ export default defineComponent({
   props: {
     title: { type: String, required: true, default: '' },
     icon: { type: String, required: true, default: '' },
+    height: { type: String, default: '' },
     color: { type: String, default: 'grey-6' },
   },
 });

@@ -20,18 +20,24 @@
           :title="`Treino - ${todayTraining.focus}`"
           color="green-10"
           icon="mdi-weight-lifter"
+          height="tw-h-[425px]"
         >
           <card-exercises
-            class="tw-p-4 tw-h-[425px] tw-overflow-y-auto"
+            class="tw-p-4"
             show-btn-view
             :exercises="todayTraining.exercises"
           />
         </card-dashboard>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-6">
-        <card-dashboard title="Dieta" color="green-10" icon="mdi-food-steak">
+        <card-dashboard
+          height="tw-h-[432px]"
+          title="Dieta"
+          color="green-10"
+          icon="mdi-food-steak"
+        >
           <card-diet
-            class="tw-p-4 tw-h-[432px] tw-overflow-y-auto"
+            class="tw-p-4"
             grid="col-12"
             height="tw-h-[75px]"
             :meals="todayDiet.meals"
@@ -53,10 +59,9 @@
           title="Treino"
           color="blue-grey-6"
           icon="mdi-weight-lifter"
+          height="tw-max-h-[420px]"
         >
-          <div
-            class="row tw-py-3 tw-px-3 tw-max-h-[420px] tw-overflow-y-auto scroll"
-          >
+          <div class="row tw-py-3 tw-px-3">
             <q-timeline class="tw-px-[12px] tw-py-[0px]">
               <q-timeline-entry
                 v-for="(item, index) in training"
@@ -72,8 +77,13 @@
         </card-dashboard>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-6">
-        <card-dashboard title="Dieta" color="blue-grey-6" icon="mdi-food-steak">
-          <div class="row tw-py-4 tw-px-3 tw-max-h-[420px] tw-overflow-y-auto">
+        <card-dashboard
+          title="Dieta"
+          height="tw-max-h-[420px]"
+          color="blue-grey-6"
+          icon="mdi-food-steak"
+        >
+          <div class="row tw-py-4 tw-px-3">
             <q-timeline color="blue-grey-6" class="tw-px-[12px] tw-py-[0px]">
               <q-timeline-entry
                 v-for="(item, index) in diet"
