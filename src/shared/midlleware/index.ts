@@ -17,8 +17,12 @@ export const middlewareConfig = (to, next) => {
 };
 
 export const middlewareRoute = () => {
-  if (user?.type === 'personal') {
-    return personalRoutes;
+  if (user) {
+    if (user?.type === 'personal') {
+      return personalRoutes;
+    }
+    return studentRoutes;
   }
-  return studentRoutes;
+
+  return [...studentRoutes, ...personalRoutes];
 };
