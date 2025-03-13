@@ -26,6 +26,8 @@ export default defineComponent({
     const router = useRouter();
     const token: string | undefined = process.env.GOOGLE_CLIENT_ID;
 
+    console.log(router);
+
     const loading = computed(() => {
       return authStore.loadingGoogle;
     });
