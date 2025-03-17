@@ -116,9 +116,9 @@
 </template>
 <script>
 import { computed, defineComponent, reactive, toRefs } from 'vue';
-import { useCacheStorage } from '../composable/storage';
 import { useAuthStore } from 'src/modules/signin/stores/auth.store';
 import { AppFullscreen } from 'quasar';
+import { useSettingStore } from 'src/stores/settings';
 import AppFormProfile from './AppFormProfile.vue';
 import AppUserAvatar from './AppUserAvatar.vue';
 export default defineComponent({
@@ -135,15 +135,13 @@ export default defineComponent({
   },
   setup() {
     const authStore = useAuthStore();
-    const storage = useCacheStorage();
+    const settingStore = useSettingStore();
     const state = reactive({
       loading: false,
     });
 
-    const user = Object.freeze(storage.getItemStorage('user-storage'));
-
     const profile = computed(() => {
-      return user;
+      return settingStore.userData;
     });
 
     const activeFullscreen = computed(() => {

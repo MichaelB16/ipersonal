@@ -1,51 +1,52 @@
 {
-  "name": "IPersonal",
-  "version": "0.0.1",
-  "description": "IPersonal",
-  "productName": "IPersonal",
-  "author": "michaelbatistasousa@gmail.com",
-  "private": true,
-  "scripts": {
-    "lint": "eslint --ext .js,.ts,.vue ./",
-    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev",
-    "build": "quasar build"
-  },
-  "dependencies": {
-    "@quasar/extras": "^1.16.4",
-    "@vueuse/core": "^11.1.0",
-    "axios": "^1.2.1",
-    "crypto-js": "^4.2.0",
-    "dayjs": "^1.11.13",
-    "dotenv": "^16.4.5",
-    "pinia": "^2.0.11",
-    "quasar": "^2.16.0",
-    "v-money3": "^3.24.1",
-    "vue": "^3.4.18",
-    "vue-router": "^4.0.12",
-    "vue3-google-login": "^2.0.33"
-  },
-  "devDependencies": {
-    "@quasar/app-vite": "^1.9.0",
-    "@types/node": "^22.10.3",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-vue": "^9.0.0",
-    "postcss": "^8.4.47",
-    "prettier": "^2.5.1",
-    "tailwindcss": "^3.4.13",
-    "typescript": "^5.7.2",
-    "vite-plugin-checker": "^0.8.0",
-    "vite-tsconfig-paths": "^5.0.1",
-    "vue-tsc": "^2.0.29"
-  },
-  "engines": {
-    "node": "^20 || ^18 || ^16",
-    "npm": ">= 6.13.4",
-    "yarn": ">= 1.21.1"
-  }
+    "name": "ipersonal",
+    "version": "0.0.1",
+    "description": "IPersonal",
+    "productName": "IPersonal",
+    "author": "michaelbatistasousa@gmail.com",
+    "private": true,
+    "scripts": {
+        "lint": "eslint --ext .js,.ts,.vue ./",
+        "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+        "test": "echo \"No test specified\" && exit 0",
+        "dev": "quasar dev",
+        "build": "quasar build"
+    },
+    "dependencies": {
+        "@quasar/extras": "^1.16.4",
+        "@vueuse/core": "^11.1.0",
+        "axios": "^1.2.1",
+        "crypto-js": "^4.2.0",
+        "dayjs": "^1.11.13",
+        "dotenv": "^16.4.5",
+        "pinia": "^2.0.11",
+        "quasar": "^2.16.0",
+        "v-money3": "^3.24.1",
+        "vue": "^3.4.18",
+        "vue-advanced-cropper": "^2.8.9",
+        "vue-router": "^4.0.12",
+        "vue3-google-login": "^2.0.33"
+    },
+    "devDependencies": {
+        "@quasar/app-vite": "^1.9.0",
+        "@types/node": "^22.10.3",
+        "@typescript-eslint/eslint-plugin": "^7.16.0",
+        "@typescript-eslint/parser": "^7.16.0",
+        "autoprefixer": "^10.4.20",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-vue": "^9.0.0",
+        "postcss": "^8.4.47",
+        "prettier": "^2.5.1",
+        "tailwindcss": "^3.4.13",
+        "typescript": "^5.7.2",
+        "vite-plugin-checker": "^0.8.0",
+        "vite-tsconfig-paths": "^5.0.1",
+        "vue-tsc": "^2.0.29"
+    },
+    "engines": {
+        "node": "^20 || ^18 || ^16",
+        "npm": ">= 6.13.4",
+        "yarn": ">= 1.21.1"
+    }
 }
