@@ -10,7 +10,13 @@
                   <q-icon color="grey" size="20px" name="mdi-calendar" />
                 </q-item-section>
                 <q-item-section>
-                  <b>{{ item.day }}</b>
+                  <app-input
+                    label="Dia"
+                    rounded
+                    borderless
+                    :outlined="false"
+                    v-model="listTraining[index].day"
+                  />
                 </q-item-section>
                 <q-item-section side>
                   <app-input
