@@ -150,6 +150,7 @@ export default defineComponent({
       let name: any = { href: '' };
       if (result?.type === 'student') {
         name = router.resolve({ name: 'student.dashboard' });
+        console.log(name);
       } else {
         name = router.resolve({ name: 'dashboard' });
       }

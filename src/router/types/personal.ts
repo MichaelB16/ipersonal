@@ -21,7 +21,13 @@ export const personalRoutes: RouteRecordRaw[] = [
         component: () =>
           import('src/modules/personal/students/pages/StudentsPage.vue'),
       },
-
+      {
+        path: 'message',
+        name: 'message',
+        meta: { auth: true },
+        component: () =>
+          import('src/modules/personal/message/pages/MessagePage.vue'),
+      },
       {
         path: 'settings',
         name: 'settings',
