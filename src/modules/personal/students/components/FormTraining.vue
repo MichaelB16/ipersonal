@@ -1,14 +1,10 @@
 <template>
   <q-form ref="formTraning" @submit.prevent="saveTraining">
-    <div class="row q-col-gutter-y-sm">
-      <draggable
-        class="col-12 row q-col-gutter-y-sm"
-        @change="changeList"
-        v-model="listTraining"
-      >
+    <div class="row">
+      <draggable class="col-12" @change="updateList" v-model="listTraining">
         <transition-group>
           <div
-            class="col-12"
+            class="col-12 q-mb-sm tw-border-2 tw-border-dashed q-px-sm q-py-sm"
             v-for="(item, index) in listTraining"
             :key="index"
           >
@@ -200,7 +196,7 @@ export default defineComponent({
       state.listTraining = studentStore.listViewTraining;
     });
 
-    const changeList = () => {
+    const updateList = () => {
       state.listTraining = state.listTraining.map((item, index) => {
         return {
           ...item,
@@ -238,7 +234,7 @@ export default defineComponent({
       formTraning,
       removeTraining,
       addTraining,
-      changeList,
+      updateList,
       saveTraining,
       formRules,
       ...toRefs(state),
