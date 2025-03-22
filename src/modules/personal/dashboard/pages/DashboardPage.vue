@@ -67,7 +67,7 @@ import DashboardSkeleton from '../components/DashboardSkeleton.vue';
 export default defineComponent({
   name: 'DashboardPage',
   components: {
-    DashboardSkeleton
+    DashboardSkeleton,
   },
   setup() {
     const state = reactive({
@@ -95,7 +95,7 @@ export default defineComponent({
           icon: 'mdi-finance',
           total: moneyFormatBr(parseFloat(summary?.student?.total_price || 0)),
         },
-        { label: 'lorem ipsum', icon: 'mdi-calendar', total: 0 },
+        { label: 'Total de treinos', icon: 'mdi-calendar', total: 0 },
       ];
     });
 

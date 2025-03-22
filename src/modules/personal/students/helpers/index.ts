@@ -12,7 +12,6 @@ export const setFormStudent = (data: IFormStudent = {} as IFormStudent) => {
     height: data?.height || '',
     id: data?.id || null,
     access: data?.access || 0,
-    active: data?.active || 0,
   };
 };
 

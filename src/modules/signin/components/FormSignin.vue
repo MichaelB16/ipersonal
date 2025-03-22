@@ -90,11 +90,14 @@ import {
   reactive,
   toRefs,
   onBeforeUnmount,
+  onMounted,
 } from 'vue';
 import { useAuthStore } from '../stores/auth.store';
 import { useRouter } from 'vue-router';
 import { formRules } from 'src/shared/utils';
+import { useCacheStorage } from 'src/shared/composable/storage';
 import AppBtnGoogle from 'src/shared/components/AppBtnGoogle.vue';
+
 export default defineComponent({
   name: 'FormSignin',
   components: {
@@ -102,6 +105,7 @@ export default defineComponent({
   },
   setup() {
     const formRef = ref();
+    const storage = useCacheStorage();
     const router = useRouter();
     const storeAuth = useAuthStore();
 
@@ -111,6 +115,10 @@ export default defineComponent({
         email: '',
         password: '',
       },
+    });
+
+    onMounted(() => {
+      localStorage.clear();
     });
 
     onBeforeUnmount(() => {
@@ -140,21 +148,18 @@ export default defineComponent({
     const handleSubmit = () => {
       formRef.value.validate().then(async (success: boolean) => {
         if (success) {
-          const result: boolean = await storeAuth.REQUEST_LOGIN(state.form);
-          result && redirect(result);
+          const result = await storeAuth.REQUEST_LOGIN(state.form);
+          result && redirect();
         }
       });
     };
 
-    const redirect = (result: any) => {
-      let name: any = { href: '' };
-      if (result?.type === 'student') {
-        name = router.resolve({ name: 'student.dashboard' });
-        console.log(name);
-      } else {
-        name = router.resolve({ name: 'dashboard' });
-      }
-      window.location.href = name.href;
+    const redirect = () => {
+      const user = storage.getItemStorage('user-storage');
+      const isStudent = user.type === 'student';
+      const name = isStudent ? 'student.dashboard' : 'dashboard';
+      const url = router.resolve({ name });
+      window.location.href = url.href;
     };
 
     return {

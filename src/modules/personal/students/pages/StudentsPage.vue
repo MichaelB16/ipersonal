@@ -173,7 +173,6 @@ export default defineComponent({
         return {
           ...item,
           access: parseInt(item.access.toString()),
-          active: parseInt(item.active.toString()),
           age: dayjs().diff(date_of_birth, 'year'),
           date_of_birth,
         };

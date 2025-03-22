@@ -7,6 +7,5 @@ export interface IFormStudent {
   price: string;
   height: number | string;
   access: number;
-  active: number;
   id: number | null;
 }

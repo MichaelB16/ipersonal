@@ -77,29 +77,6 @@
             </small>
           </fieldset>
         </div>
-        <div class="col-12">
-          <fieldset>
-            <legend>
-              <q-toggle
-                dense
-                :true-value="1"
-                :false-value="0"
-                checked-icon="mdi-check"
-                unchecked-icon="mdi-close"
-                keep-color
-                :color="form.active ? 'green' : 'negative'"
-                v-model.number="form.active"
-              />
-              Situação do aluno
-            </legend>
-            <small>
-              Seu aluno está
-              <b :class="form.active ? 'text-green' : 'text-negative'">
-                {{ form.active ? 'Ativo' : 'Inativo' }}
-              </b>
-            </small>
-          </fieldset>
-        </div>
       </div>
       <app-form-footer />
     </q-form>

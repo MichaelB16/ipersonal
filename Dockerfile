@@ -1,28 +1,27 @@
-# Stage de desenvolvimento
-FROM node:20-alpine AS develop-stage
+# Stage de build
+FROM node:20-alpine AS build-stage
 WORKDIR /app
 
-# Copiar somente os arquivos necessários para instalar dependências
+# Copia apenas arquivos de dependência para cache otimizado
 COPY package.json package-lock.json ./
 
-# Limpar cache e instalar as dependências
-RUN npm cache clean --force && npm install
+# Instala as dependências necessárias para build e remove cache
+RUN npm ci --prefer-offline --no-audit --progress=false
 
-# Copiar o código fonte
+# Copia o restante do código
 COPY . .
 
-# Stage de build
-FROM develop-stage AS build-stage
-# Instalar as dependências globais necessárias e fazer o build
-RUN npm install -g @vue/cli @quasar/cli && quasar build
+# Faz o build usando npx (evita global)
+RUN npx quasar build
 
-# Stage de produção
+# Stage de produção final
 FROM nginx:1.27.0-alpine AS production-stage
-# Copiar os arquivos de build para o Nginx
+
+# Copia o build final pro Nginx
 COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
 
-# Expor a porta
-EXPOSE 3000
+# Expor a porta padrão do Nginx
+EXPOSE 80
 
-# Rodar o Nginx
+# Comando padrão
 CMD ["nginx", "-g", "daemon off;"]

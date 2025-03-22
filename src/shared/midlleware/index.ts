@@ -2,9 +2,9 @@ import { personalRoutes } from 'src/router/types/personal';
 import { studentRoutes } from 'src/router/types/student';
 import { useCacheStorage } from '../composable/storage';
 const storage = useCacheStorage();
-const user = storage.getItemStorage('user-storage');
 
 export const middlewareConfig = (to, next) => {
+  const user = storage.getItemStorage('user-storage');
   const hasMeta = to.matched.some((record) => record.meta.auth);
   if (user) {
     return to.path === '/' ? next({ name: 'dashboard' }) : next();
@@ -19,6 +19,7 @@ export const middlewareConfig = (to, next) => {
 };
 
 export const middlewareRoute = () => {
+  const user = storage.getItemStorage('user-storage');
   if (user) {
     if (user?.type === 'personal') {
       return personalRoutes;
@@ -26,5 +27,5 @@ export const middlewareRoute = () => {
     return studentRoutes;
   }
 
-  return [...studentRoutes, ...personalRoutes];
+  return [...personalRoutes, ...studentRoutes];
 };
