@@ -65,7 +65,7 @@ export const useGoogleCalendar = () => {
           ...data,
           extendedProperties: {
             private: {
-              platformId: 'IPersonal',
+              platformId: 'SmartPersonal',
               eventId: numberRandom(),
             },
           },

@@ -5,20 +5,18 @@
         <q-item dense>
           <q-item-section v-if="menu">
             <div class="tw-flex logo-img">
-              <img
+              <app-logo
                 class="tw-h-[40px] tw-w-full xs:tw-hidden sm:tw-block md:tw-block lg:tw-block"
-                src="~/assets/logo.svg"
-                alt="logo"
               />
-              <img
-                src="~/assets/logo-mini.svg"
+
+              <app-logo
+                type="mini"
                 class="xs:tw-block sm:tw-h-auto md:tw-h-auto sm:tw-hidden md:tw-hidden lg:tw-hidden"
-                alt="mini logo"
               />
             </div>
           </q-item-section>
           <q-item-section class="tw-h-[60px] tw-w-[60px]" avatar v-else>
-            <img src="~/assets/logo-mini.svg" alt="mini logo" />
+            <app-logo type="mini" />
           </q-item-section>
         </q-item>
         <q-btn
@@ -50,21 +48,11 @@
           flat
         >
           <template v-slot:label>
-            <div class="row q-gutter-x-sm tw-items-center no-wrap">
-              <app-user-avatar />
-              <div
-                class="text-left tw-mb-0 tw-w-[80px] q-mt-sm tw-flex text-white tw-h-full column"
-              >
-                <b
-                  class="tw-leading-[8.5px] tw-text-primary ellipsis tw-w-[80px]"
-                >
-                  {{ profile.name }}
-                </b>
-                <div class="tw-w-[80px] tw-text-primary ellipsis">
-                  {{ profile.email }}
-                </div>
-              </div>
-            </div>
+            <app-profile
+              :loading="loadingPage"
+              :name="profile.name"
+              :email="profile.email"
+            />
           </template>
           <q-list class="xs:tw-w-[345px] sm:tw-w-[450px]">
             <div class="row tw-w-full bg-grey-2 q-pa-sm">
@@ -121,10 +109,13 @@ import { AppFullscreen } from 'quasar';
 import { useSettingStore } from 'src/stores/settings';
 import AppFormProfile from './AppFormProfile.vue';
 import AppUserAvatar from './AppUserAvatar.vue';
+
+import AppProfile from './AppProfile.vue';
 export default defineComponent({
-  name: 'MenuHeader',
+  name: 'AppMenuHeader',
   components: {
     AppFormProfile,
+    AppProfile,
     AppUserAvatar,
   },
   props: {
@@ -138,6 +129,10 @@ export default defineComponent({
     const settingStore = useSettingStore();
     const state = reactive({
       loading: false,
+    });
+
+    const loadingPage = computed(() => {
+      return settingStore.loadingSetting;
     });
 
     const profile = computed(() => {
@@ -159,6 +154,7 @@ export default defineComponent({
     };
 
     return {
+      loadingPage,
       profile,
       activeFullscreen,
       ...toRefs(state),

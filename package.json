@@ -1,8 +1,8 @@
 {
-    "name": "ipersonal",
+    "name": "smartpersonal",
     "version": "0.0.1",
-    "description": "IPersonal",
-    "productName": "IPersonal",
+    "description": "Smart Personal",
+    "productName": "Smart Personal",
     "author": "michaelbatistasousa@gmail.com",
     "private": true,
     "scripts": {
