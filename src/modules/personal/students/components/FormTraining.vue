@@ -31,19 +31,19 @@
                   </template>
                   <q-card>
                     <q-card-section class="q-pa-xs tw-bg-[#f5f5f5c9]">
+                      <div class="row q-pa-md justify-center">
+                        <q-btn
+                          icon="mdi-plus"
+                          label="Adicionar treino"
+                          @click="addTraining(index)"
+                          color="primary"
+                          unelevated
+                          no-caps
+                          size="sm"
+                          rounded
+                        />
+                      </div>
                       <template v-if="item.exercises.length">
-                        <div class="row q-pa-md justify-center">
-                          <q-btn
-                            icon="mdi-plus"
-                            label="Adicionar treino"
-                            @click="addTraining(index)"
-                            color="primary"
-                            unelevated
-                            no-caps
-                            size="sm"
-                            rounded
-                          />
-                        </div>
                         <div
                           class="row full-width items-center q-col-gutter-x-sm tw-mb-1"
                           v-for="(exercise, key) in item.exercises"
