@@ -67,16 +67,6 @@
                     />
                   </q-td>
                 </template>
-                <template v-slot:body-cell-situation="{ row }">
-                  <q-td width="100px" class="text-center">
-                    <q-chip
-                      size="sm"
-                      class="text-white"
-                      :color="parseInt(row?.active) ? 'green' : 'red'"
-                      :label="parseInt(row.active) ? 'Ativo' : 'Inativo'"
-                    />
-                  </q-td>
-                </template>
                 <template v-slot:body-cell-actions="{ row }">
                   <q-td width="100px" class="text-center tw-w-5 q-gutter-x-xs">
                     <btn-views :row="row" />
