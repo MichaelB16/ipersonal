@@ -1,14 +1,16 @@
 <template>
   <q-card bordered class="no-shadow">
     <q-card-section class="tw-border tw-p-[10px] tw-border-grey-2">
-      <div class="row items-center q-col-gutter-x-md">
+      <div class="row items-center no-wrap q-col-gutter-x-md">
         <div class="col-auto">
           <q-avatar :color="color" size="35px">
             <q-icon size="20px" color="white" :name="icon" />
           </q-avatar>
         </div>
-        <div class="col-auto">
-          <b class="tw-text-[16px] text-grey-8"> {{ title }} </b>
+        <div class="col tw-text-ellipsis">
+          <b class="tw-text-[16px] text-grey-8">
+            {{ title }}
+          </b>
         </div>
       </div>
     </q-card-section>

@@ -11,7 +11,7 @@
         </div>
         <div class="col">
           <q-card bordered class="no-shadow tw-border-l-8 full-width" dense>
-            <q-card-section class="tw-p-3 tw-h-[45px]">
+            <q-card-section class="tw-p-3 sm:tw-h-[45px]">
               <div class="row items-center">
                 <div class="col">
                   <b class="text-grey-8">
