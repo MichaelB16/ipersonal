@@ -32,7 +32,7 @@
                 <div
                   v-for="(item, index) in loginTips"
                   :key="index"
-                  class="tw-font-medium text-center tw-italic tw-border tw-mb-3 tw-p-2 tw-rounded-full"
+                  class="tw-font-medium tw-text-[14px] text-center tw-italic tw-border-b tw-border-dashed tw-border-[#1fcb63;] tw-mb-3 tw-p-2 tw-rounded-full"
                 >
                   {{ item }}
                 </div>

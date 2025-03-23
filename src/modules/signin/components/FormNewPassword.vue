@@ -32,7 +32,7 @@
         placeholder="Senha"
       >
         <template v-slot:prepend>
-          <q-icon size="xs" name="mdi-lock-outline" />
+          <q-icon size="sm" name="mdi-lock-outline" />
         </template>
         <template v-slot:append>
           <q-btn
@@ -40,7 +40,7 @@
             @click="password_1 = !password_1"
             flat
             round
-            size="xs"
+            size="sm"
           />
         </template>
       </q-input>
@@ -63,7 +63,7 @@
             @click="password_2 = !password_2"
             flat
             round
-            size="xs"
+            size="sm"
           />
         </template>
       </q-input>

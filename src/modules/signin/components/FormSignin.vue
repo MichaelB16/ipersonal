@@ -54,7 +54,7 @@
       </template>
       <template v-slot:append>
         <q-btn
-          size="xs"
+          size="sm"
           @click="showPassword = !showPassword"
           round
           flat
