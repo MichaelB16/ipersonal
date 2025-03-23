@@ -164,7 +164,7 @@ export default defineComponent({
           ...item,
           access: parseInt(item.access.toString()),
           age: dayjs().diff(date_of_birth, 'year'),
-          date_of_birth,
+          date_of_birth: dayjs(item.date_of_birth).format('DD/MM/YYYY'),
         };
       });
     });
