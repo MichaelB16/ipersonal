@@ -61,7 +61,7 @@
               <q-toggle
                 :true-value="1"
                 :false-value="0"
-                :color="form.access ? 'green' : 'negative'"
+                :color="form.access ? 'secondary' : 'negative'"
                 keep-color
                 dense
                 checked-icon="mdi-check"

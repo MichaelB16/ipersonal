@@ -5,7 +5,6 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import logoWhite from 'src/assets/logo-smart-white.svg';
 import logoBlue from 'src/assets/logo-smart-blue.svg';
 import logoMini from 'src/assets/logo-smart-mini.svg';
 export default defineComponent({
@@ -19,14 +18,13 @@ export default defineComponent({
       type: String,
       default: 'blue',
       validator: (val: string) => {
-        return ['white', 'blue', 'mini'].includes(val);
+        return ['blue', 'mini'].includes(val);
       },
     },
   },
   setup(props) {
     const allLogos = {
       mini: logoMini,
-      white: logoWhite,
       blue: logoBlue,
     };
 
@@ -42,7 +40,6 @@ export default defineComponent({
     const getLogo = (type: logoType) => {
       const logos = {
         mini: logoMini,
-        white: logoWhite,
         blue: logoBlue,
       };
 

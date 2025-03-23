@@ -76,7 +76,7 @@ body {
                 min-height: 46px;
                 width: unset;
                 &.q-router-link--exact-active {
-                    border-left: 4px solid $primary;
+                    border-left: 4px solid $secondary;
                 }
             }
         }
@@ -88,7 +88,7 @@ body {
                 width: 40px;
                 &.q-router-link--exact-active {
                     border-radius: 100px;
-                    background-color: $primary !important;
+                    background-color: $secondary !important;
                     color: #fff !important;
                 }
             }

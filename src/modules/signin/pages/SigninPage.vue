@@ -87,21 +87,19 @@
         <q-btn-group unelevated rounded>
           <q-btn
             size="sm"
-            color="primary"
+            color="secondary"
             :outline="!isLogin"
             no-caps
-            glossy
             @click="toggleLogin"
             label="Login"
             unelevated
           />
           <q-btn
             size="sm"
-            color="primary"
+            color="secondary"
             :outline="!isRegister"
             @click="toggleRegister"
             no-caps
-            glossy
             label="Cadastra-se"
             unelevated
           />

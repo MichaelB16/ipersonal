@@ -105,7 +105,7 @@
                               size="sm"
                               unelevated
                               class="tw-w-[300px] tw-mt-2 tw-h-[30px]"
-                              :color="form.logo ? 'green' : 'red'"
+                              :color="form.logo ? 'secondary' : 'red'"
                               icon="mdi-crop"
                               no-caps
                               label="Cortar imagem"

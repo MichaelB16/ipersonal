@@ -36,7 +36,7 @@
             <q-chip
               size="sm"
               class="text-white"
-              :color="parseInt(row.access) ? 'green' : 'red'"
+              :color="parseInt(row.access) ? 'secondary' : 'red'"
               :label="parseInt(row.access) ? 'Com acesso' : 'Sem acesso'"
             />
           </span>

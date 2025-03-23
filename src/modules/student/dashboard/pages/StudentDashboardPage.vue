@@ -10,7 +10,7 @@
   </div>
   <fieldset class="q-mt-sm q-mb-md">
     <legend>
-      <q-chip color="green-10">
+      <q-chip color="secondary">
         <b class="tw-text-white">Hoje</b>
       </q-chip>
     </legend>
@@ -22,7 +22,7 @@
         <template v-else>
           <card-dashboard
             :title="`Treino - ${todayTraining.focus}`"
-            color="green-10"
+            color="secondary"
             icon="mdi-weight-lifter"
             height="tw-h-[425px]"
           >
@@ -47,7 +47,7 @@
           <card-dashboard
             height="tw-h-[432px]"
             title="Dieta"
-            color="green-10"
+            color="secondary"
             icon="mdi-food-steak"
           >
             <card-diet
@@ -209,7 +209,7 @@ fieldset {
   padding: 10px;
   &:first-of-type {
     margin-top: 10px;
-    border: 1.5px dashed #1a5e20;
+    border: 1.5px dashed $secondary;
   }
   &:last-of-type {
     border: 1.5px dashed #607d8b;

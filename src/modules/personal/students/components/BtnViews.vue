@@ -15,7 +15,7 @@
   <q-btn
     round
     size="xs"
-    :color="row.training ? 'green' : 'grey-5'"
+    :color="row.training ? 'secondary' : 'grey-5'"
     flat
     @click="viewTraining"
     :disable="!row.training"
@@ -26,7 +26,7 @@
     </q-tooltip>
   </q-btn>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { useStudentStore } from '../store/student.store';
 export default defineComponent({
@@ -55,8 +55,8 @@ export default defineComponent({
 
     return {
       viewTraining,
-      viewDiet
-    }
-  }
+      viewDiet,
+    };
+  },
 });
 </script>
