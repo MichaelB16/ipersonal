@@ -14,11 +14,7 @@
         </div>
         <div class="col-12">
           <div class="row">
-            <div
-              class="col-xs-12 col-md-3 col-sm-6"
-              v-for="(item, index) in card"
-              :key="index"
-            >
+            <div v-for="(item, index) in card" :key="index" :class="item.col">
               <q-card
                 bordered
                 class="no-shadow tw-h-[95px]"
@@ -83,19 +79,34 @@ export default defineComponent({
 
     const card = computed(() => {
       const summary = dashboardStore.listSummary as any;
+      const { student } = summary;
+      const trainings = student?.total_trainings || 0;
+      const diets = student?.total_diets || 0;
       return [
         {
-          label: 'Total de Alunos',
+          label: 'Totais de Alunos',
           icon: 'mdi-account-group',
-          total: summary?.student?.total_students || 0,
+          total: student?.total_students || 0,
+          col: 'col-xs-12 col-md-3 col-sm-6',
         },
-        { label: 'Aulas hoje', icon: 'mdi-calendar', total: 0 },
+        {
+          label: 'Aulas hoje',
+          icon: 'mdi-calendar',
+          total: 0,
+          col: 'col-xs-12 col-md-3 col-sm-6',
+        },
         {
           label: 'Renda mensal',
           icon: 'mdi-finance',
-          total: moneyFormatBr(parseFloat(summary?.student?.total_price || 0)),
+          total: moneyFormatBr(parseFloat(student?.total_price || 0)),
+          col: 'col-xs-12 col-md-3 col-sm-6',
         },
-        { label: 'Total de treinos', icon: 'mdi-calendar', total: 0 },
+        {
+          label: 'Treinos & Dietas',
+          icon: 'mdi-weight-lifter',
+          total: `${trainings} | ${diets}`,
+          col: 'col-xs-12 col-md-3 col-sm-6',
+        },
       ];
     });
 
