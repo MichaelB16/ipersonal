@@ -55,29 +55,75 @@
                     @remove="remove(row)"
                   />
                 </template>
-                <template v-slot:body-cell-access="{ row }">
-                  <q-td class="text-center">
-                    <q-chip
-                      size="sm"
-                      class="text-white"
-                      :color="parseInt(row.access) ? 'secondary' : 'red'"
-                      :label="
-                        parseInt(row.access) ? 'Com acesso' : 'Sem acesso'
-                      "
-                    />
-                  </q-td>
+                <template v-slot:body="{ row, pageIndex }">
+                  <q-tr>
+                    <td class="text-left">{{ row.name }}</td>
+                    <td class="text-left">{{ row.email }}</td>
+                    <td class="text-left">{{ row.price }}</td>
+                    <td class="text-left">{{ row.phone }}</td>
+                    <q-td class="text-center">
+                      <q-btn
+                        no-caps
+                        :color="parseInt(row.access) ? 'secondary' : 'red'"
+                        unelevated
+                        rounded
+                        size="sm"
+                        :label="
+                          parseInt(row.access) ? 'Com acesso' : 'Sem acesso'
+                        "
+                      />
+                    </q-td>
+                    <q-td class="text-center">
+                      <q-btn
+                        no-caps
+                        :color="row.evaluations_actual ? 'secondary' : 'red'"
+                        unelevated
+                        rounded
+                        :outline="row.expand"
+                        no-wrap
+                        :icon="
+                          row.expand ? 'mdi-chevron-up' : 'mdi-chevron-down'
+                        "
+                        size="sm"
+                        @click="expand(pageIndex, !row.expand)"
+                        :label="
+                          row.evaluations_actual
+                            ? 'Avaliação mensal feita!'
+                            : 'Adicionar avaliação'
+                        "
+                      />
+                    </q-td>
+                    <q-td
+                      width="100px"
+                      class="text-center tw-w-5 q-gutter-x-xs"
+                    >
+                      <btn-views :row="row" />
+                      <btn-pdf :row="row" />
+                      <actions
+                        :row="row"
+                        @edit="edit(row)"
+                        @remove="remove(row)"
+                      />
+                    </q-td>
+                  </q-tr>
+                  <q-tr v-if="row.expand" class="bg-grey-3">
+                    <td colspan="7">
+                      <evaluation-card
+                        :weight="row.evaluations_actual.weight"
+                        :percent-weight="row.evaluations_actual.percent_weight"
+                        :data-chart="configDataChart(row)"
+                      />
+                      <form-evaluation
+                        :evaluation="row.evaluations_actual || {}"
+                        :student-id="row.id"
+                      />
+                      <evaluation-months
+                        :evaluations="row.evaluations_months"
+                      />
+                    </td>
+                  </q-tr>
                 </template>
-                <template v-slot:body-cell-actions="{ row }">
-                  <q-td width="100px" class="text-center tw-w-5 q-gutter-x-xs">
-                    <btn-views :row="row" />
-                    <btn-pdf :row="row" />
-                    <actions
-                      :row="row"
-                      @edit="edit(row)"
-                      @remove="remove(row)"
-                    />
-                  </q-td>
-                </template>
+
                 <template v-slot:no-data>
                   <app-no-data :loading="loading" />
                 </template>
@@ -106,6 +152,9 @@ import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue';
 import ModalAddStudent from 'src/modules/personal/students/components/ModalAddStudent.vue';
 import CardStudent from '../components/CardStudent.vue';
 import StudentSkeleton from '../components/StudentSkeleton.vue';
+import FormEvaluation from '../components/FormEvaluation.vue';
+import EvaluationMonths from '../components/EvaluationMonths.vue';
+import EvaluationCard from '../components/EvaluationCard.vue';
 import ModalDiet from '../components/ModalDiet.vue';
 import ModalTraining from '../components/ModalTraining.vue';
 import ModalViewTraining from '../components/ModalViewTraining.vue';
@@ -128,12 +177,15 @@ export default defineComponent({
   name: 'StudentsPage',
   components: {
     ModalAddStudent,
+    EvaluationMonths,
+    EvaluationCard,
     CardStudent,
     BtnViews,
     Actions,
     BtnPdf,
     StudentSkeleton,
     ModalDiet,
+    FormEvaluation,
     ModalTraining,
     ModalViewDiet,
     ModalViewTraining,
@@ -193,6 +245,30 @@ export default defineComponent({
       await studentStore.REQUEST_GET_STUDENT(params);
     };
 
+    const configDataChart = (row) => {
+      const data = row?.evaluations_months || [];
+      let totalWeight = data.map((item) => item.weigh);
+      let totalWaist = data.map((item) => item.waist);
+      let totalArm = data.map((item) => item.arm);
+
+      if (row.evaluations_actual) {
+        totalWeight.push(row.evaluations_actual?.weight || 0);
+        totalWaist.push(row.evaluations_actual?.waist || 0);
+        totalArm.push(row.evaluations_actual?.arm || 0);
+      }
+
+      return {
+        weight: totalWeight,
+        waist: totalWaist,
+        arm: totalArm,
+      };
+    };
+
+    const expand = (key: number, value: boolean) => {
+      studentStore.listStudent[key].expand = value;
+      studentStore.listStudent = [...studentStore.listStudent];
+    };
+
     const edit = (row) => {
       studentStore.SET_ROW_SELECTED(row);
       studentStore.SET_OPEN_MODAL_STUDENT(true);
@@ -210,8 +286,10 @@ export default defineComponent({
       columns,
       loading,
       modeView,
+      configDataChart,
       ...toRefs(state),
       toggleIsGrid,
+      expand,
       edit,
       remove,
       request,
@@ -230,6 +308,12 @@ export default defineComponent({
 }
 .border-middle {
   @apply lg:tw-rounded-none;
+}
+.chip--evaluation {
+  @apply tw-w-[110px];
+  :deep(.q-chip__content) {
+    @apply tw-justify-center;
+  }
 }
 .app-table {
   :deep(.q-table__bottom) {

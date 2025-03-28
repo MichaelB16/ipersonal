@@ -7,6 +7,8 @@ import { ITraining, ITrainingFormSearch } from '../model/training.model';
 import { useNotification } from 'src/shared/composable/notification';
 import { IDiet, IDietFormSearch } from '../model/diet.model';
 import { dietgService } from '../services/diet.service';
+import { evaluationService } from '../services/evaluation.service';
+import { IFormEvaluation } from '../model/evaluation.model';
 const notification = useNotification();
 
 export const useStudentStore = defineStore('student', {
@@ -16,11 +18,12 @@ export const useStudentStore = defineStore('student', {
     openModalTrainer: false,
     openModalViewTraining: false,
     openModalViewDiet: false,
-    listStudent: [],
+    listStudent: [] as any,
     listTraining: [],
     listDiet: [],
     listViewTraining: [],
     loadingTable: false,
+    loadingEvaluation: false,
     pagination: configPagination(),
     loading: false,
     rowSelected: {} as any,
@@ -52,7 +55,10 @@ export const useStudentStore = defineStore('student', {
           per_page: params?.rowsPerPage || this.pagination.rowsPerPage,
         })
         .then(({ data }) => {
-          this.listStudent = data.data;
+          this.listStudent = data.data.map((item) => ({
+            ...item,
+            expand: false,
+          }));
           this.pagination = configPagination(data);
         })
         .finally(() => {
@@ -167,6 +173,30 @@ export const useStudentStore = defineStore('student', {
         })
         .catch(() => {
           notification.error();
+        });
+    },
+    async REQUEST_ADD_EVALUATION(data: IFormEvaluation) {
+      this.loadingEvaluation = true;
+      await evaluationService
+        .create(data)
+        .then(async () => {
+          notification.success();
+          await this.REQUEST_GET_STUDENT();
+        })
+        .finally(() => {
+          this.loadingEvaluation = false;
+        });
+    },
+    async REQUEST_UPDATE_EVALUATION(data: IFormEvaluation) {
+      this.loadingEvaluation = true;
+      await evaluationService
+        .update(data.id as number, data)
+        .then(async () => {
+          notification.success();
+          await this.REQUEST_GET_STUDENT();
+        })
+        .finally(() => {
+          this.loadingEvaluation = false;
         });
     },
   },

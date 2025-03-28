@@ -1,5 +1,6 @@
 import { IFormStudent } from 'src/modules/personal/students/model/student.model';
 import { moneyFormatBr } from 'src/shared/utils';
+import { IFormEvaluation } from '../model/evaluation.model';
 
 export const setFormStudent = (data: IFormStudent = {} as IFormStudent) => {
   return {
@@ -12,6 +13,22 @@ export const setFormStudent = (data: IFormStudent = {} as IFormStudent) => {
     height: data?.height || '',
     id: data?.id || null,
     access: data?.access || 0,
+  };
+};
+
+export const formEvaluation = (
+  data: IFormEvaluation = {} as IFormEvaluation
+) => {
+  return {
+    id: data?.id || null,
+    weight: data?.weight || null,
+    height: data?.height || null,
+    percent_weight: data?.percent_weight || null,
+    arm: data?.arm || null,
+    waist: data?.waist || null,
+    breastplate: data?.breastplate || null,
+    leg: data?.leg || null,
+    observation: data?.observation || null,
   };
 };
 
@@ -54,7 +71,7 @@ export const studentColumns = [
   },
   {
     name: 'situation',
-    label: 'Situação',
+    label: 'Avaliação',
     field: 'active',
     align: 'center',
     sortable: true,
