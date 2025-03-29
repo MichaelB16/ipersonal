@@ -25,7 +25,7 @@
               {{ row.name }}
             </b>
             <span class="tw-text-[14px] text-grey-8"> {{ row.age }} anos </span>
-            <span class="tw-text-[14px] text-grey-8">
+            <span class="tw-text-[14px] ellipsis text-grey-8">
               {{ row.email }}
             </span>
             <span class="tw-text-[12px] tw-tracking-widest text-grey-8">

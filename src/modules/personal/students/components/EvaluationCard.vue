@@ -1,6 +1,6 @@
 <template>
-  <div class="row q-col-gutter-x-md q-mb-sm">
-    <div class="col-4">
+  <div class="row q-col-gutter-x-md q-col-gutter-y-md q-mb-sm">
+    <div class="col-xs-12 col-md-4 com-sm-4 col-lg-4">
       <div class="row q-col-gutter-y-sm">
         <div class="col-12">
           <q-card bordered class="no-shadow">
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
       <q-card bordered class="no-shadow">
         <q-card-section class="tw-border tw-gap-4 tw-border-t-2">
           <q-icon name="mdi-chart-line-variant" />
