@@ -114,6 +114,11 @@ export default defineComponent({
             data: props.dataChart.waist,
           },
           {
+            label: 'Perna',
+            backgroundColor: '#9c27b0',
+            data: props.dataChart.leg,
+          },
+          {
             label: 'Braço',
             backgroundColor: '#1fcb63',
             data: props.dataChart.arm,

@@ -26,6 +26,8 @@
                       type="number"
                       :rules="formRules()"
                       hide-bottom-space
+                      :bg-color="disabled ? 'grey-12' : 'white'"
+                      :disable="disabled"
                       v-model="form.weight"
                       suffix="kg"
                       label="Peso"
@@ -37,6 +39,8 @@
                       mask="#.##"
                       :rules="formRules()"
                       hide-bottom-space
+                      :bg-color="disabled ? 'grey-12' : 'white'"
+                      :disable="disabled"
                       v-model="form.height"
                       label="Altura"
                     />
@@ -45,6 +49,8 @@
                     <app-input
                       label="Percentual de gordura"
                       suffix="%"
+                      :bg-color="disabled ? 'grey-12' : 'white'"
+                      :disable="disabled"
                       v-model="form.percent_weight"
                       :rules="formRules()"
                       hide-bottom-space
@@ -71,6 +77,8 @@
                     <app-input
                       v-model="form.arm"
                       type="number"
+                      :disable="disabled"
+                      :bg-color="disabled ? 'grey-12' : 'white'"
                       :rules="formRules()"
                       hide-bottom-space
                       label="Braço"
@@ -80,7 +88,9 @@
                     <app-input
                       type="number"
                       v-model="form.leg"
+                      :bg-color="disabled ? 'grey-12' : 'white'"
                       :rules="formRules()"
+                      :disable="disabled"
                       hide-bottom-space
                       label="Perna"
                     />
@@ -91,12 +101,16 @@
                       v-model="form.waist"
                       :rules="formRules()"
                       hide-bottom-space
+                      :disable="disabled"
+                      :bg-color="disabled ? 'grey-12' : 'white'"
                       label="Cintura"
                     />
                   </div>
                   <div class="col-3">
                     <app-input
                       type="number"
+                      :disable="disabled"
+                      :bg-color="disabled ? 'grey-12' : 'white'"
                       v-model="form.breastplate"
                       :rules="formRules()"
                       hide-bottom-space
@@ -121,6 +135,8 @@
                     <app-input
                       type="textarea"
                       :rounded="false"
+                      :bg-color="disabled ? 'grey-12' : 'white'"
+                      :disable="disabled"
                       v-model="form.observation"
                       label="Observação"
                     />
@@ -128,7 +144,7 @@
                 </div>
               </fieldset>
             </div>
-            <div class="col-12">
+            <div class="col-12" v-if="!hideSave">
               <fieldset>
                 <legend>
                   <q-chip
@@ -143,6 +159,7 @@
                     color="primary"
                     type="submit"
                     no-caps
+                    :bg-color="disabled ? 'grey-12' : 'white'"
                     :loading="loading"
                     :disable="loading"
                     unelevated
@@ -183,11 +200,21 @@ export default defineComponent({
       type: Number,
       default: null,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    hideSave: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const studentStore = useStudentStore();
     const formRef = ref();
-    console.log(props.evaluation);
+
+    dayjs.locale('pt-br');
+
     const state = reactive({
       form: formEvaluation(props.evaluation),
     });

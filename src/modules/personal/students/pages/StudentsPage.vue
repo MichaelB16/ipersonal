@@ -247,13 +247,15 @@ export default defineComponent({
 
     const configDataChart = (row) => {
       const data = row?.evaluations_months || [];
-      let totalWeight = data.map((item) => item.weigh);
+      let totalWeight = data.map((item) => item.weight);
       let totalWaist = data.map((item) => item.waist);
+      let totalLeg = data.map((item) => item.leg);
       let totalArm = data.map((item) => item.arm);
 
       if (row.evaluations_actual) {
         totalWeight.push(row.evaluations_actual?.weight || 0);
         totalWaist.push(row.evaluations_actual?.waist || 0);
+        totalLeg.push(row.evaluations_actual?.leg || 0);
         totalArm.push(row.evaluations_actual?.arm || 0);
       }
 
@@ -261,6 +263,7 @@ export default defineComponent({
         weight: totalWeight,
         waist: totalWaist,
         arm: totalArm,
+        leg: totalLeg,
       };
     };
 

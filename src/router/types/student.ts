@@ -16,6 +16,13 @@ export const studentRoutes: RouteRecordRaw[] = [
             'src/modules/student/dashboard/pages/StudentDashboardPage.vue'
           ),
       },
+      {
+        path: 'evaluation',
+        name: 'student.evaluation',
+        meta: { auth: true },
+        component: () =>
+          import('src/modules/student/evaluation/pages/EvaluationPage.vue'),
+      },
     ],
   },
 ];

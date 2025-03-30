@@ -24,13 +24,24 @@
             :title="`Treino - ${todayTraining.focus}`"
             color="secondary"
             icon="mdi-weight-lifter"
-            height="tw-h-[425px]"
+            :height="
+              todayTraining.exercises.length
+                ? 'tw-h-[425px]'
+                : 'tw-min-h-[80px]'
+            "
           >
-            <card-exercises
-              class="tw-p-4"
-              show-btn-view
-              :exercises="todayTraining.exercises"
-            />
+            <template v-if="todayTraining.exercises.length">
+              <card-exercises
+                class="tw-p-4"
+                show-btn-view
+                :exercises="todayTraining.exercises"
+              />
+            </template>
+            <template v-else>
+              <div class="row q-px-md q-py-md">
+                <app-alert permanent type="warning" message="Sem treino!" />
+              </div>
+            </template>
           </card-dashboard>
         </template>
       </div>
@@ -45,17 +56,26 @@
         </template>
         <template v-else>
           <card-dashboard
-            height="tw-h-[432px]"
             title="Dieta"
             color="secondary"
             icon="mdi-food-steak"
+            :height="
+              todayDiet.meals.length ? 'tw-h-[432px]' : 'tw-min-h-[80px]'
+            "
           >
-            <card-diet
-              class="tw-p-4"
-              grid="col-12"
-              height="tw-h-[75px]"
-              :meals="todayDiet.meals"
-            />
+            <template v-if="todayDiet.meals.length">
+              <card-diet
+                class="tw-p-4"
+                grid="col-12"
+                height="tw-h-[75px]"
+                :meals="todayDiet.meals"
+              />
+            </template>
+            <template v-else>
+              <div class="row q-px-md q-py-md">
+                <app-alert permanent type="warning" message="Sem dieta!" />
+              </div>
+            </template>
           </card-dashboard>
         </template>
       </div>
@@ -78,20 +98,25 @@
             title="Treino"
             color="blue-grey-6"
             icon="mdi-weight-lifter"
-            height="tw-max-h-[420px]"
+            height="tw-min-h-[82px] tw-max-h-[420px]"
           >
             <div class="row tw-py-3 tw-px-3">
-              <q-timeline class="tw-px-[12px] tw-py-[0px]">
-                <q-timeline-entry
-                  v-for="(item, index) in training"
-                  :key="index"
-                  icon="mdi-calendar"
-                  color="blue-grey-6"
-                  :subtitle="`${item.day} - ${item.focus}`"
-                >
-                  <card-exercises :exercises="item.exercises" />
-                </q-timeline-entry>
-              </q-timeline>
+              <template v-if="training.length">
+                <q-timeline class="tw-px-[12px] tw-py-[0px]">
+                  <q-timeline-entry
+                    v-for="(item, index) in training"
+                    :key="index"
+                    icon="mdi-calendar"
+                    color="blue-grey-6"
+                    :subtitle="`${item.day} - ${item.focus}`"
+                  >
+                    <card-exercises :exercises="item.exercises" />
+                  </q-timeline-entry>
+                </q-timeline>
+              </template>
+              <template v-else>
+                <app-alert permanent type="info" message="Sem treino!" />
+              </template>
             </div>
           </card-dashboard>
         </template>
@@ -108,21 +133,29 @@
         <template v-else>
           <card-dashboard
             title="Dieta"
-            height="tw-max-h-[420px]"
+            height="tw-min-h-[80px] tw-max-h-[420px]"
             color="blue-grey-6"
             icon="mdi-food-steak"
           >
             <div class="row tw-py-4 tw-px-3">
-              <q-timeline color="blue-grey-6" class="tw-px-[12px] tw-py-[0px]">
-                <q-timeline-entry
-                  v-for="(item, index) in diet"
-                  :key="index"
-                  icon="mdi-calendar"
-                  :subtitle="item.day"
+              <template v-if="diet.length">
+                <q-timeline
+                  color="blue-grey-6"
+                  class="tw-px-[12px] tw-py-[0px]"
                 >
-                  <card-diet :meals="item.meals" />
-                </q-timeline-entry>
-              </q-timeline>
+                  <q-timeline-entry
+                    v-for="(item, index) in diet"
+                    :key="index"
+                    icon="mdi-calendar"
+                    :subtitle="item.day"
+                  >
+                    <card-diet :meals="item.meals" />
+                  </q-timeline-entry>
+                </q-timeline>
+              </template>
+              <template v-else>
+                <app-alert permanent type="info" message="Sem dieta!" />
+              </template>
             </div>
           </card-dashboard>
         </template>
