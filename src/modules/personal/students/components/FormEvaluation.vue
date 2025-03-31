@@ -10,7 +10,7 @@
       <q-card-section class="q-py-sm q-px-sm">
         <q-form @submit.prevent="handleSubmit" ref="formRef">
           <div class="row q-col-gutter-y-sm">
-            <div class="col-6">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
               <fieldset>
                 <legend>
                   <q-chip
@@ -20,8 +20,8 @@
                     text-color="grey-12"
                   />
                 </legend>
-                <div class="row q-col-gutter-x-md">
-                  <div class="col-4">
+                <div class="row q-col-gutter-y-md q-col-gutter-x-md">
+                  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <app-input
                       type="number"
                       :rules="formRules()"
@@ -33,7 +33,7 @@
                       label="Peso"
                     />
                   </div>
-                  <div class="col-4">
+                  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <app-input
                       fill-mask
                       mask="#.##"
@@ -45,7 +45,7 @@
                       label="Altura"
                     />
                   </div>
-                  <div class="col-4">
+                  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <app-input
                       label="Percentual de gordura"
                       suffix="%"
@@ -62,7 +62,7 @@
                 </div>
               </fieldset>
             </div>
-            <div class="col-6">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
               <fieldset>
                 <legend>
                   <q-chip
@@ -72,8 +72,8 @@
                     label="Medidas"
                   />
                 </legend>
-                <div class="row q-col-gutter-x-md">
-                  <div class="col-3">
+                <div class="row q-col-gutter-y-sm q-col-gutter-x-md">
+                  <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                     <app-input
                       v-model="form.arm"
                       type="number"
@@ -84,7 +84,7 @@
                       label="Braço"
                     />
                   </div>
-                  <div class="col-3">
+                  <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                     <app-input
                       type="number"
                       v-model="form.leg"
@@ -95,7 +95,7 @@
                       label="Perna"
                     />
                   </div>
-                  <div class="col-3">
+                  <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                     <app-input
                       type="number"
                       v-model="form.waist"
@@ -106,7 +106,7 @@
                       label="Cintura"
                     />
                   </div>
-                  <div class="col-3">
+                  <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                     <app-input
                       type="number"
                       :disable="disabled"
