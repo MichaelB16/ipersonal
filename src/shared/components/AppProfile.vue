@@ -4,10 +4,10 @@
     <div
       class="text-left tw-mb-0 tw-w-[80px] q-mt-sm tw-flex text-white tw-h-full column"
     >
-      <b class="tw-leading-[8.5px] tw-text-primary ellipsis tw-w-[80px]">
+      <b class="tw-leading-[8.5px] ellipsis tw-w-[80px]" :class="color">
         {{ name }}
       </b>
-      <div class="tw-w-[80px] tw-text-primary ellipsis">
+      <div class="tw-w-[80px] ellipsis" :class="color">
         {{ email }}
       </div>
     </div>
@@ -18,18 +18,19 @@
     <div
       class="text-left tw-mb-0 tw-w-[80px] q-mt-sm tw-flex text-white tw-h-full column"
     >
-      <b class="tw-leading-[8.5px] tw-text-primary ellipsis tw-w-[80px]">
+      <b class="tw-leading-[8.5px] ellipsis tw-w-[80px]" :class="color">
         <q-skeleton height="15px" type="text" />
       </b>
-      <div class="tw-w-[80px] tw-text-primary ellipsis">
+      <div class="tw-w-[80px] ellipsis" :class="color">
         <q-skeleton height="15px" type="text" />
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import AppUserAvatar from './AppUserAvatar.vue';
+import { useSettingStore } from 'src/stores/settings';
 export default defineComponent({
   name: 'AppProfile',
   components: {
@@ -49,6 +50,16 @@ export default defineComponent({
       default: '',
     },
   },
-  setup() {},
+  setup() {
+    const settingStore = useSettingStore();
+
+    const color = computed(() => {
+      return settingStore.isDark ? 'tw-text-white' : 'tw-text-primary';
+    });
+
+    return {
+      color,
+    };
+  },
 });
 </script>

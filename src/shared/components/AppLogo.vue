@@ -7,6 +7,8 @@
 import { defineComponent, computed } from 'vue';
 import logoBlue from 'src/assets/logo-smart-blue.svg';
 import logoMini from 'src/assets/logo-smart-mini.svg';
+import logoWhite from 'src/assets/logo-smart-white.svg';
+import { useSettingStore } from 'src/stores/settings';
 export default defineComponent({
   name: 'AppLogo',
   props: {
@@ -23,16 +25,19 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const settingStore = useSettingStore();
     const allLogos = {
       mini: logoMini,
       blue: logoBlue,
+      white: logoWhite,
     };
 
     type logoType = keyof typeof allLogos;
 
     const logo = computed(() => {
+      const type = settingStore.isDark ? 'white' : props.type;
       return {
-        img: getLogo(props.type as logoType),
+        img: getLogo(type as logoType),
         style: { width: props.width + 'px' },
       };
     });
@@ -41,6 +46,7 @@ export default defineComponent({
       const logos = {
         mini: logoMini,
         blue: logoBlue,
+        white: logoWhite,
       };
 
       return logos[type];

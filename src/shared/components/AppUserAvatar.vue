@@ -1,5 +1,11 @@
 <template>
-  <q-avatar v-bind="$attrs" color="primary" class="tw-text-white" :size="size">
+  <q-avatar
+    v-bind="$attrs"
+    :color="color"
+    :class="isDark ? 'text-secondary' : 'text-white'"
+    class="avatar-profile"
+    :size="size"
+  >
     <template v-if="imageUrl && imgSuccess">
       <q-img alt="img" @error="handleError" :src="imageUrl" />
     </template>
@@ -11,6 +17,7 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs } from 'vue';
 import { useCacheStorage } from '../composable/storage';
+import { useSettingStore } from 'src/stores/settings';
 
 export default defineComponent({
   name: 'AppUserAvatar',
@@ -24,6 +31,7 @@ export default defineComponent({
     const state = reactive({
       imgSuccess: true,
     });
+    const settingStore = useSettingStore();
     const storage = useCacheStorage();
     const user = storage.getItemStorage('user-storage');
 
@@ -35,6 +43,14 @@ export default defineComponent({
       return user?.picture ? user?.picture.trim() : null;
     });
 
+    const color = computed(() => {
+      return settingStore.isDark ? 'white' : 'primary';
+    });
+
+    const isDark = computed(() => {
+      return settingStore.isDark;
+    });
+
     const handleError = () => {
       state.imgSuccess = false;
     };
@@ -43,6 +59,8 @@ export default defineComponent({
       ...toRefs(state),
       name,
       imageUrl,
+      isDark,
+      color,
       handleError,
     };
   },

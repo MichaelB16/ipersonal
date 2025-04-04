@@ -1,10 +1,12 @@
 <template>
-  <q-layout view="hHh lpR lFr">
+  <q-layout :class="isDark" view="hHh lpR lFr">
     <app-menu-header :menu="!isMini" @toggle="toggleSidebar" />
     <app-sidebar-left :mini="isMini" v-model="open" />
     <q-page-container class="tw-min-h-[100dvh]">
-      <div id="container">
-        <router-view />
+      <div class="tw-pl-4 tw-pb-6 tw-pr-4 main-page-content">
+        <div id="container">
+          <router-view />
+        </div>
       </div>
     </q-page-container>
   </q-layout>
@@ -47,6 +49,10 @@ export default defineComponent({
 
     const isMobile = computed(() => width.value <= 600);
 
+    const isDark = computed(() => {
+      return settingStore.isDark ? 'dark-theme' : 'light-theme';
+    });
+
     onMounted(async () => {
       await settingStore.requestSettings();
       state.open = isMobile.value ? false : true;
@@ -62,6 +68,7 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
+      isDark,
       toggleSidebar,
     };
   },

@@ -24,7 +24,7 @@
           round
           flat
           icon="menu"
-          color="primary"
+          :color="color"
           aria-label="Menu"
           @click="$emit('toggle')"
         />
@@ -34,7 +34,18 @@
           round
           class="xs:tw-hidden sm:tw-block"
           size="md"
-          text-color="primary"
+          :text-color="color"
+          flat
+          @click="toggleDark"
+          :icon="
+            isDark ? 'mdi-white-balance-sunny' : 'mdi-moon-waxing-crescent'
+          "
+        />
+        <q-btn
+          round
+          class="xs:tw-hidden sm:tw-block"
+          size="md"
+          :text-color="color"
           flat
           @click="toggle"
           :icon="activeFullscreen ? 'mdi-fullscreen-exit' : 'mdi-fullscreen'"
@@ -42,7 +53,7 @@
         <q-btn-dropdown
           :menu-offset="[0, 10]"
           size="sm"
-          color="primary"
+          :color="color"
           unelevated
           no-caps
           flat
@@ -143,8 +154,20 @@ export default defineComponent({
       return AppFullscreen.isActive;
     });
 
+    const color = computed(() => {
+      return settingStore.isDark ? 'white' : 'primary';
+    });
+
+    const isDark = computed(() => {
+      return settingStore.isDark;
+    });
+
     const toggle = () => {
       activeFullscreen.value ? AppFullscreen.exit() : AppFullscreen.request();
+    };
+
+    const toggleDark = () => {
+      settingStore.isDark = !settingStore.isDark;
     };
 
     const logout = async () => {
@@ -156,6 +179,9 @@ export default defineComponent({
     return {
       loadingPage,
       profile,
+      isDark,
+      color,
+      toggleDark,
       activeFullscreen,
       ...toRefs(state),
       toggle,
