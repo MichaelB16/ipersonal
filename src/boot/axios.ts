@@ -1,6 +1,7 @@
 import { boot } from 'quasar/wrappers';
 import axios, { AxiosInstance } from 'axios';
 import { useCacheStorage } from 'src/shared/composable/storage';
+import { removeUserStorage } from 'src/shared/utils';
 
 declare module 'vue' {
   interface ComponentCustomProperties {
@@ -15,13 +16,15 @@ declare module 'vue' {
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-export const $http = axios.create({ baseURL: `${process.env.API_URL}/api/v1/` });
+export const $http = axios.create({
+  baseURL: `${process.env.API_URL}/api/v1/`,
+});
 const storage = useCacheStorage();
-const token = storage.getItemStorage('user-token')
+const token = storage.getItemStorage('user-token');
 
 $http.interceptors.request.use(
   (config) => {
-    if(token) {
+    if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
     return config;
@@ -36,10 +39,10 @@ $http.interceptors.response.use(
     return response;
   },
   (error) => {
-    const status:number = error.response.status;
+    const status: number = error.response.status;
 
-    if(status === 401 && token) {
-      localStorage.clear();
+    if (status === 401 && token) {
+      removeUserStorage();
       window.location.href = '/login';
     }
 

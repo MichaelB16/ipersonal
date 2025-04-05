@@ -15,6 +15,11 @@ export const configPagination = (paginate = {} as any): IPagination => {
   };
 };
 
+export const removeUserStorage = () => {
+  localStorage.removeItem('user-storage');
+  localStorage.removeItem('user-token');
+};
+
 export const configModalTitle = (
   id: boolean,
   title: { add: string; edit: string }

@@ -116,8 +116,9 @@
 <script>
 import { computed, defineComponent, reactive, toRefs } from 'vue';
 import { useAuthStore } from 'src/modules/signin/stores/auth.store';
-import { AppFullscreen } from 'quasar';
+import { AppFullscreen, LocalStorage } from 'quasar';
 import { useSettingStore } from 'src/stores/settings';
+import { useCacheStorage } from 'src/shared/composable/storage';
 import AppFormProfile from './AppFormProfile.vue';
 import AppUserAvatar from './AppUserAvatar.vue';
 
@@ -138,6 +139,7 @@ export default defineComponent({
   setup() {
     const authStore = useAuthStore();
     const settingStore = useSettingStore();
+    const storage = useCacheStorage();
     const state = reactive({
       loading: false,
     });
@@ -168,6 +170,8 @@ export default defineComponent({
 
     const toggleDark = () => {
       settingStore.isDark = !settingStore.isDark;
+      LocalStorage.removeItem('user-theme');
+      storage.setItemStorage('user-theme', settingStore.isDark);
     };
 
     const logout = async () => {

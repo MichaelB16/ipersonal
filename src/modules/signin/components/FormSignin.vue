@@ -94,7 +94,7 @@ import {
 } from 'vue';
 import { useAuthStore } from '../stores/auth.store';
 import { useRouter } from 'vue-router';
-import { formRules } from 'src/shared/utils';
+import { formRules, removeUserStorage } from 'src/shared/utils';
 import { useCacheStorage } from 'src/shared/composable/storage';
 import AppBtnGoogle from 'src/shared/components/AppBtnGoogle.vue';
 
@@ -118,7 +118,7 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      localStorage.clear();
+      removeUserStorage();
     });
 
     onBeforeUnmount(() => {

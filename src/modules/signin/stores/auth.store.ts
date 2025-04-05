@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { authService } from '../services/auth.service';
 import { useCacheStorage } from 'src/shared/composable/storage';
 import { userService } from '../services/user.service';
+import { removeUserStorage } from 'src/shared/utils';
 const storage = useCacheStorage();
 
 export const useAuthStore = defineStore('auth', {
@@ -68,7 +69,7 @@ export const useAuthStore = defineStore('auth', {
         });
     },
     async REQUEST_LOGOUT() {
-      localStorage.clear();
+      removeUserStorage();
       await authService.logout().finally(() => {
         window.location.href = '/login';
       });

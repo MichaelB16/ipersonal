@@ -25,6 +25,7 @@ import {
 import { useSettingStore } from 'src/stores/settings';
 import AppMenuHeader from 'src/shared/components/AppMenuHeader.vue';
 import AppSidebarLeft from 'src/shared/components/AppSidebarLeft.vue';
+import { useCacheStorage } from 'src/shared/composable/storage';
 export default defineComponent({
   name: 'MainLayout',
   components: {
@@ -34,6 +35,7 @@ export default defineComponent({
   setup() {
     const settingStore = useSettingStore();
     const { width } = useWindowSize();
+    const storage = useCacheStorage();
     const state = reactive({
       open: false,
       isMini: false,
@@ -54,6 +56,9 @@ export default defineComponent({
     });
 
     onMounted(async () => {
+      const value = storage.getItemStorage('user-theme');
+      settingStore.isDark = value || false;
+
       await settingStore.requestSettings();
       state.open = isMobile.value ? false : true;
     });

@@ -1,6 +1,7 @@
 import { personalRoutes } from 'src/router/types/personal';
 import { studentRoutes } from 'src/router/types/student';
 import { useCacheStorage } from '../composable/storage';
+import { removeUserStorage } from '../utils';
 const storage = useCacheStorage();
 
 export const middlewareConfig = (to, next) => {
@@ -9,10 +10,10 @@ export const middlewareConfig = (to, next) => {
   if (user) {
     return to.path === '/' ? next({ name: 'dashboard' }) : next();
   } else if ((hasMeta || !user) && to.meta?.auth) {
-    localStorage.clear();
+    removeUserStorage();
     return next({ name: 'login' });
   } else if (to.path === '/') {
-    localStorage.clear();
+    removeUserStorage();
     return next({ name: 'login' });
   }
   return next();

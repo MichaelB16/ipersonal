@@ -7,7 +7,7 @@ export const useSettingStore = defineStore('settings', {
   state: () => ({
     widthPage: 0,
     loadingSetting: false,
-    isDark: true,
+    isDark: false,
     setting: {
       menu: [] as IMenu[],
     },
