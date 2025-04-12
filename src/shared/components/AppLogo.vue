@@ -7,6 +7,7 @@
 import { defineComponent, computed } from 'vue';
 import logoBlue from 'src/assets/logo-smart-blue.svg';
 import logoMini from 'src/assets/logo-smart-mini.svg';
+import logoMiniWhite from 'src/assets/logo-smart-mini-white.svg';
 import logoWhite from 'src/assets/logo-smart-white.svg';
 import { useSettingStore } from 'src/stores/settings';
 export default defineComponent({
@@ -30,14 +31,26 @@ export default defineComponent({
       mini: logoMini,
       blue: logoBlue,
       white: logoWhite,
+      'mini-white': logoMiniWhite,
     };
 
     type logoType = keyof typeof allLogos;
 
     const logo = computed(() => {
-      const type = settingStore.isDark ? 'white' : props.type;
+      const menuMini = settingStore.menuMini;
+
+      if (settingStore.isDark) {
+        const type: logoType = menuMini ? 'mini-white' : 'white';
+        return {
+          img: getLogo(type),
+          style: { width: props.width + 'px' },
+        };
+      }
+
+      const type: logoType = menuMini ? 'mini' : (props.type as logoType);
+
       return {
-        img: getLogo(type as logoType),
+        img: getLogo(type),
         style: { width: props.width + 'px' },
       };
     });
@@ -47,6 +60,7 @@ export default defineComponent({
         mini: logoMini,
         blue: logoBlue,
         white: logoWhite,
+        'mini-white': logoMiniWhite,
       };
 
       return logos[type];

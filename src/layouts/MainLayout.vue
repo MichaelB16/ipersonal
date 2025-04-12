@@ -38,7 +38,6 @@ export default defineComponent({
     const storage = useCacheStorage();
     const state = reactive({
       open: false,
-      isMini: false,
     });
 
     window.addEventListener('resize', () => (width.value = window.innerWidth));
@@ -48,6 +47,10 @@ export default defineComponent({
       (val) => settingStore.SET_WIDTH_PAGE(val),
       { immediate: true }
     );
+
+    const isMini = computed(() => {
+      return settingStore.menuMini;
+    });
 
     const isMobile = computed(() => width.value <= 600);
 
@@ -65,7 +68,7 @@ export default defineComponent({
 
     const toggleSidebar = () => {
       if (!isMobile.value) {
-        state.isMini = !state.isMini;
+        settingStore.SET_MENU_MINI(!isMini.value);
       } else {
         state.open = !state.open;
       }
@@ -73,6 +76,7 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
+      isMini,
       isDark,
       toggleSidebar,
     };

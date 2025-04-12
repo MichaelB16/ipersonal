@@ -6,6 +6,7 @@ const { success, error } = useNotification();
 export const useSettingStore = defineStore('settings', {
   state: () => ({
     widthPage: 0,
+    menuMini: false,
     loadingSetting: false,
     isDark: false,
     setting: {
@@ -18,6 +19,9 @@ export const useSettingStore = defineStore('settings', {
     },
   }),
   actions: {
+    SET_MENU_MINI(value) {
+      this.menuMini = value;
+    },
     SET_WIDTH_PAGE(value) {
       this.widthPage = value;
     },
