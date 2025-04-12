@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0f0a38',
+        primary: '#0947c2',
       },
       keyframes: {
         fadeOut: {
