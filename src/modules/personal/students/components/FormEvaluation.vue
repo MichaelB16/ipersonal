@@ -156,7 +156,8 @@
                 </legend>
                 <div class="row justify-end">
                   <q-btn
-                    color="primary"
+                    color="secondary"
+                    glossy
                     type="submit"
                     no-caps
                     :bg-color="disabled ? 'grey-12' : 'white'"

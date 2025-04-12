@@ -36,7 +36,8 @@
                           icon="mdi-plus"
                           label="Adicionar treino"
                           @click="addTraining(index)"
-                          color="primary"
+                          color="secondary"
+                          glossy
                           unelevated
                           no-caps
                           size="sm"

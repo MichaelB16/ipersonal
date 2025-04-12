@@ -80,7 +80,7 @@
                   </b>
                   <div
                     :title="profile.email"
-                    class="tw-leading-5 tw-max-w-[150px] tw-text-[12px] tw-text-primary ellipsis"
+                    class="tw-leading-5 tw-max-w-[150px] tw-text-[12px] text-grey-8 ellipsis"
                   >
                     {{ profile.email }}
                   </div>
@@ -157,7 +157,7 @@ export default defineComponent({
     });
 
     const color = computed(() => {
-      return settingStore.isDark ? 'white' : 'primary';
+      return settingStore.isDark ? 'white' : 'grey-8';
     });
 
     const isDark = computed(() => {

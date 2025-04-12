@@ -4,16 +4,21 @@
     hide-bottom-space
     outlined
     dense
-    color="primary"
+    color="secondary"
     v-model="model"
-    v-bind="$attrs">
-    <template v-for="(slotContent, slotName) in $slots" :key="slotName" v-slot:[slotName]>
+    v-bind="$attrs"
+  >
+    <template
+      v-for="(slotContent, slotName) in $slots"
+      :key="slotName"
+      v-slot:[slotName]
+    >
       <slot :name="slotName" />
     </template>
   </q-input>
 </template>
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'AppInput',
@@ -21,25 +26,23 @@ export default defineComponent({
   props: {
     modelValue: {
       type: [String, Number, FileList],
-      required: true
-    }
+      required: true,
+    },
   },
-  setup(props, {emit}) {
+  setup(props, { emit }) {
     const model = computed({
       get() {
         return props.modelValue;
       },
       set(value) {
-        emit('update:modelValue', value)
-      }
+        emit('update:modelValue', value);
+      },
     });
 
     return {
-      model
-    }
-  }
-})
+      model,
+    };
+  },
+});
 </script>
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

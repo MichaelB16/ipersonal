@@ -54,7 +54,7 @@ export default defineComponent({
     const settingStore = useSettingStore();
 
     const color = computed(() => {
-      return settingStore.isDark ? 'tw-text-white' : 'tw-text-primary';
+      return settingStore.isDark ? 'text-white' : 'text-grey-8';
     });
 
     return {

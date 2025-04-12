@@ -6,16 +6,21 @@
     dense
     map-options
     emit-value
-    color="primary"
+    color="secondary"
     v-model="model"
-    v-bind="$attrs">
-    <template v-for="(slotContent, slotName) in $slots" :key="slotName" v-slot:[slotName]>
+    v-bind="$attrs"
+  >
+    <template
+      v-for="(slotContent, slotName) in $slots"
+      :key="slotName"
+      v-slot:[slotName]
+    >
       <slot :name="slotName" />
     </template>
   </q-select>
 </template>
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'AppSelect',
@@ -23,25 +28,23 @@ export default defineComponent({
   props: {
     modelValue: {
       type: [String, Number, FileList],
-      required: true
-    }
+      required: true,
+    },
   },
-  setup(props, {emit}) {
+  setup(props, { emit }) {
     const model = computed({
       get() {
         return props.modelValue;
       },
       set(value) {
-        emit('update:modelValue', value)
-      }
+        emit('update:modelValue', value);
+      },
     });
 
     return {
-      model
-    }
-  }
-})
+      model,
+    };
+  },
+});
 </script>
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

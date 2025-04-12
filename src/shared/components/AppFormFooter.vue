@@ -14,7 +14,8 @@
         label="Cancelar"
       />
       <q-btn
-        color="primary"
+        color="secondary"
+        glossy
         unelevated
         rounded
         no-caps

@@ -10,21 +10,20 @@
           </div>
           <div>
             <q-avatar
-              size="70px"
+              size="60px"
               class="text-uppercase"
               text-color="white"
-              color="primary"
+              color="secondary"
             >
               {{ username.slice(0, 2) }}
             </q-avatar>
           </div>
-          <div class="tw-flex tw-flex-col tw-mt-2 tw-mb-1 tw-gap-1">
+          <div class="tw-flex tw-flex-col tw-mt-2 tw-mb-1 tw-gap-2">
             <b
               class="tw-text-[16px] text-grey-8 tw-leading-3 tw-text-ellipsis text-capitalize"
             >
-              {{ row.name }}
+              {{ row.name }} ({{ row.age }} anos)
             </b>
-            <span class="tw-text-[14px] text-grey-8"> {{ row.age }} anos </span>
             <span class="tw-text-[14px] ellipsis text-grey-8">
               {{ row.email }}
             </span>

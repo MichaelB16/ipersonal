@@ -27,7 +27,7 @@
                 <q-card-section class="row w-flex tw-justify-center">
                   <div class="col-3 tw-flex tw-justify-start">
                     <div
-                      class="ball tw-text-white tw-flex tw-justify-center tw-items-center tw-rounded-[4px] tw-w-[60px] tw-h-[60px] bg-primary"
+                      class="ball tw-text-white tw-flex tw-justify-center tw-items-center tw-rounded-[4px] tw-w-[60px] tw-h-[60px] bg-secondary"
                     >
                       <q-icon class="tw-text-[28px]" :name="item.icon" />
                     </div>
@@ -37,7 +37,7 @@
                       class="row q-ml-sm bg tw-flex tw-items-center tw-justify-center"
                     >
                       <div
-                        class="col-12 tw-text-left ellipsis text-h4 text-bold"
+                        class="col-12 tw-text-left ellipsis text-h4 text-grey-8 text-bold"
                       >
                         {{ item.total }}
                       </div>

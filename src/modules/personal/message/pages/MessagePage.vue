@@ -52,8 +52,9 @@
                         :loading="loading"
                         :disable="loading"
                         label="Salvar"
+                        glossy
                         type="submit"
-                        color="primary"
+                        color="secondary"
                       />
                     </div>
                   </div>

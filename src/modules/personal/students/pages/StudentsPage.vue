@@ -37,7 +37,9 @@
                         round
                         size="xs"
                         @click="toggleIsGrid"
-                        color="primary"
+                        color="secondary"
+                        glossy
+                        unelevated
                         class="tw-h-full"
                         :icon="modeView.icon"
                       >

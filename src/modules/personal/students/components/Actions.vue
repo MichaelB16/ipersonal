@@ -3,15 +3,15 @@
     <template v-slot:before-edit>
       <q-item @click="openModalTrainer" dense clickable v-close-popup>
         <q-item-section avatar>
-          <q-icon color="primary" size="18px" name="mdi-weight-lifter" />
+          <q-icon color="grey-8" size="18px" name="mdi-weight-lifter" />
         </q-item-section>
-        <q-item-section class="text-primary"> Gerar treino </q-item-section>
+        <q-item-section class="text-grey-8"> Gerar treino </q-item-section>
       </q-item>
       <q-item @click="openModalDiet" dense clickable v-close-popup>
         <q-item-section avatar>
-          <q-icon color="primary" size="18px" name="mdi-food-steak" />
+          <q-icon color="grey-8" size="18px" name="mdi-food-steak" />
         </q-item-section>
-        <q-item-section class="text-primary"> Gerar dieta </q-item-section>
+        <q-item-section class="text-grey-8"> Gerar dieta </q-item-section>
       </q-item>
     </template>
   </app-btn-actions>

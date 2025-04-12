@@ -3,7 +3,7 @@
     <q-pagination
       size="sm"
       v-model="model"
-      color="primary"
+      color="grey-8"
       v-bind="$attrs"
       direction-links
       boundary-links

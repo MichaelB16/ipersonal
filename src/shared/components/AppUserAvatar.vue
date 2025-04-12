@@ -1,8 +1,8 @@
 <template>
   <q-avatar
     v-bind="$attrs"
-    :color="color"
-    :class="isDark ? 'text-secondary' : 'text-white'"
+    :color="isDark ? 'white' : 'secondary'"
+    :text-color="isDark ? 'secondary' : 'white'"
     class="avatar-profile"
     :size="size"
   >
@@ -43,10 +43,6 @@ export default defineComponent({
       return user?.picture ? user?.picture.trim() : null;
     });
 
-    const color = computed(() => {
-      return settingStore.isDark ? 'white' : 'primary';
-    });
-
     const isDark = computed(() => {
       return settingStore.isDark;
     });
@@ -60,7 +56,6 @@ export default defineComponent({
       name,
       imageUrl,
       isDark,
-      color,
       handleError,
     };
   },

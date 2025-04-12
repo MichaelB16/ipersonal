@@ -66,7 +66,8 @@
       <q-btn
         type="submit"
         label="Salvar"
-        color="primary"
+        color="secondary"
+        glossy
         rounded
         class="col-12"
         unelevated
