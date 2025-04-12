@@ -156,7 +156,7 @@
                 </legend>
                 <div class="row justify-end">
                   <q-btn
-                    color="secondary"
+                    color="primary"
                     glossy
                     type="submit"
                     no-caps
