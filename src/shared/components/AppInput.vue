@@ -27,6 +27,7 @@ export default defineComponent({
     modelValue: {
       type: [String, Number, FileList],
       required: true,
+      default: null,
     },
   },
   setup(props, { emit }) {
