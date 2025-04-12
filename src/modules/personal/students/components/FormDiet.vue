@@ -8,7 +8,7 @@
             v-for="(item, index) in listDiet"
             :key="index"
           >
-            <q-card bordered class="no-shadow">
+            <q-card bordered class="no-shadow tw-z-50">
               <q-card-section class="q-pa-none">
                 <q-expansion-item icon="mdi-calendar" :label="item.day">
                   <template v-slot:header>
