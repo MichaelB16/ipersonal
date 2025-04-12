@@ -54,7 +54,7 @@
                         label="Salvar"
                         glossy
                         type="submit"
-                        color="secondary"
+                        color="primary"
                       />
                     </div>
                   </div>

@@ -1,8 +1,8 @@
 <template>
   <q-avatar
     v-bind="$attrs"
-    :color="isDark ? 'white' : 'secondary'"
-    :text-color="isDark ? 'secondary' : 'white'"
+    :color="isDark ? 'white' : 'primary'"
+    :text-color="isDark ? 'primary' : 'white'"
     class="avatar-profile"
     :size="size"
   >

@@ -37,7 +37,7 @@
                         round
                         size="xs"
                         @click="toggleIsGrid"
-                        color="secondary"
+                        color="primary"
                         glossy
                         unelevated
                         class="tw-h-full"

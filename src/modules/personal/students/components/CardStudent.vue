@@ -13,7 +13,7 @@
               size="60px"
               class="text-uppercase"
               text-color="white"
-              color="secondary"
+              color="primary"
             >
               {{ username.slice(0, 2) }}
             </q-avatar>

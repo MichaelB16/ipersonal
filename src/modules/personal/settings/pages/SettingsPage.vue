@@ -125,7 +125,7 @@
                           unelevated
                           size="sm"
                           glossy
-                          color="secondary"
+                          color="primary"
                           icon="mdi-arrow-right"
                         />
                       </div>
@@ -164,7 +164,7 @@
                 <div class="col-12">
                   <q-btn
                     class="tw-w-full"
-                    color="secondary"
+                    color="primary"
                     unelevated
                     rounded
                     :loading="loadingSubmit"

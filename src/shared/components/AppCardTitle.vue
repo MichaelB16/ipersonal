@@ -26,7 +26,7 @@
                   unelevated
                   @click="$emit('search', { search })"
                   :disable="!search"
-                  color="secondary"
+                  color="primary"
                   glossy
                 />
               </template>
@@ -38,7 +38,7 @@
             v-if="!hideAdd"
           >
             <q-btn
-              color="secondary"
+              color="primary"
               glossy
               unelevated
               icon="mdi-plus"
