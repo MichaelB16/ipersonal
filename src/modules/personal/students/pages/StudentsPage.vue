@@ -111,16 +111,18 @@
                   <q-tr v-if="row.expand" class="bg-grey-3">
                     <td colspan="7">
                       <evaluation-card
-                        :weight="row.evaluations_actual.weight"
-                        :percent-weight="row.evaluations_actual.percent_weight"
+                        :weight="row?.evaluations_actual?.weight"
+                        :percent-weight="
+                          row?.evaluations_actual?.percent_weight
+                        "
                         :data-chart="configDataChart(row)"
                       />
                       <form-evaluation
-                        :evaluation="row.evaluations_actual || {}"
-                        :student-id="row.id"
+                        :evaluation="row?.evaluations_actual || {}"
+                        :student-id="row?.id"
                       />
                       <evaluation-months
-                        :evaluations="row.evaluations_months"
+                        :evaluations="row?.evaluations_months"
                       />
                     </td>
                   </q-tr>
