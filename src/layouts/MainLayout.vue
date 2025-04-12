@@ -42,11 +42,13 @@ export default defineComponent({
 
     window.addEventListener('resize', () => (width.value = window.innerWidth));
 
-    watch(
-      () => width.value,
-      (val) => settingStore.SET_WIDTH_PAGE(val),
-      { immediate: true }
-    );
+    onMounted(async () => {
+      const value = storage.getItemStorage('user-theme');
+      settingStore.isDark = value || false;
+
+      await settingStore.requestSettings();
+      state.open = isMobile.value ? false : true;
+    });
 
     const isMini = computed(() => {
       return settingStore.menuMini;
@@ -58,13 +60,17 @@ export default defineComponent({
       return settingStore.isDark ? 'dark-theme' : 'light-theme';
     });
 
-    onMounted(async () => {
-      const value = storage.getItemStorage('user-theme');
-      settingStore.isDark = value || false;
+    watch(
+      () => width.value,
+      (val) => settingStore.SET_WIDTH_PAGE(val),
+      { immediate: true }
+    );
 
-      await settingStore.requestSettings();
-      state.open = isMobile.value ? false : true;
-    });
+    watch(
+      () => isMobile,
+      (val) => settingStore.SET_IS_MOBILE(val),
+      { immediate: true }
+    );
 
     const toggleSidebar = () => {
       if (!isMobile.value) {

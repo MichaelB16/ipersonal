@@ -37,7 +37,9 @@ export default defineComponent({
     type logoType = keyof typeof allLogos;
 
     const logo = computed(() => {
-      const menuMini = settingStore.menuMini;
+      const menuMini = settingStore.menuMini || settingStore.isMobile;
+
+      console.log(menuMini);
 
       if (settingStore.isDark) {
         const type: logoType = menuMini ? 'mini-white' : 'white';

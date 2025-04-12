@@ -15,6 +15,7 @@ const components = {
 import { Money3Directive } from 'v-money3';
 
 export default boot(async ({ app }) => {
+  // app.config.globalProperties.$q.dark.set(true);
   app.directive('money', Money3Directive);
   for (const [name, component] of Object.entries(components)) {
     app.component(name, (await component()).default);

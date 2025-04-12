@@ -34,12 +34,10 @@
           round
           class="xs:tw-hidden sm:tw-block"
           size="md"
-          :text-color="color"
+          :text-color="isDark ? 'white' : 'yellow-9'"
           flat
           @click="toggleDark"
-          :icon="
-            isDark ? 'mdi-white-balance-sunny' : 'mdi-moon-waxing-crescent'
-          "
+          :icon="isDark ? 'mdi-lightbulb' : 'mdi-lightbulb-on'"
         />
         <q-btn
           round

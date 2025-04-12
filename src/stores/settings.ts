@@ -7,6 +7,7 @@ export const useSettingStore = defineStore('settings', {
   state: () => ({
     widthPage: 0,
     menuMini: false,
+    isMobile: false,
     loadingSetting: false,
     isDark: false,
     setting: {
@@ -24,6 +25,9 @@ export const useSettingStore = defineStore('settings', {
     },
     SET_WIDTH_PAGE(value) {
       this.widthPage = value;
+    },
+    SET_IS_MOBILE(value) {
+      this.isMobile = value;
     },
     async requestSettings() {
       this.loadingSetting = true;
