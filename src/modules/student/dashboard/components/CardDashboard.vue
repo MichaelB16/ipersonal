@@ -1,5 +1,5 @@
 <template>
-  <q-card bordered class="no-shadow">
+  <app-card bordered class="no-shadow">
     <q-card-section class="tw-border tw-p-[10px] tw-border-grey-2">
       <div class="row items-center no-wrap q-col-gutter-x-md">
         <div class="col-auto">
@@ -17,7 +17,7 @@
     <q-card-section class="q-pa-none tw-overflow-y-auto scroll" :class="height">
       <slot />
     </q-card-section>
-  </q-card>
+  </app-card>
 </template>
 <script>
 import { defineComponent } from 'vue';

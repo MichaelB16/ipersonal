@@ -1,6 +1,6 @@
 <template>
   <q-dialog v-model="model">
-    <q-card :class="cardClass">
+    <app-card :class="cardClass">
       <template v-if="loading">
         <app-loading class="absolute-full tw-bg-[#6e6c6cc4] tw-text-white" />
       </template>
@@ -36,7 +36,7 @@
         <slot name="default" />
       </q-card-section>
       <slot name="after-content" />
-    </q-card>
+    </app-card>
   </q-dialog>
 </template>
 <script lang="ts">

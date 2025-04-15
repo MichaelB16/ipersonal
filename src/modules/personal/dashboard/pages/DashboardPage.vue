@@ -15,7 +15,7 @@
         <div class="col-12">
           <div class="row">
             <div v-for="(item, index) in card" :key="index" :class="item.col">
-              <q-card
+              <app-card
                 bordered
                 class="no-shadow tw-h-[95px]"
                 :class="{
@@ -47,7 +47,7 @@
                     </div>
                   </div>
                 </q-card-section>
-              </q-card>
+              </app-card>
             </div>
           </div>
         </div>

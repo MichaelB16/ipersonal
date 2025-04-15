@@ -1,6 +1,6 @@
 <template>
   <div class="col-sm-6 col-md-3 col-xs-12">
-    <q-card bordered class="no-shadow">
+    <app-card bordered class="no-shadow">
       <q-card-section class="tw-p-4">
         <div class="tw-flex text-center tw-flex-col tw-justify-center">
           <div class="tw-absolute tw-right-0 tw-top-0 tw-m-1">
@@ -41,7 +41,7 @@
           </span>
         </div>
       </q-card-section>
-    </q-card>
+    </app-card>
   </div>
 </template>
 <script lang="ts">

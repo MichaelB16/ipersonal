@@ -1,5 +1,5 @@
 <template>
-  <q-card
+  <app-card
     :class="alertClass"
     class="tw-text-white tw-w-full no-shadow tw-rounded-full tw-border"
   >
@@ -21,7 +21,7 @@
         icon="mdi-close"
       />
     </q-card-section>
-  </q-card>
+  </app-card>
 </template>
 <script lang="ts">
 import { computed, defineComponent, onMounted } from 'vue';

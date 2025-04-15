@@ -7,7 +7,7 @@
         expand-icon-class="text-white"
         :label="item.label"
       >
-        <q-card>
+        <app-card>
           <q-card-section>
             <div class="row q-col-gutter-y-sm">
               <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -139,7 +139,7 @@
               </div>
             </div>
           </q-card-section>
-        </q-card>
+        </app-card>
       </q-expansion-item>
     </div>
   </div>

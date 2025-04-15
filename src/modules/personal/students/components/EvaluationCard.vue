@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-md-4 com-sm-4 col-lg-4">
       <div class="row q-col-gutter-y-sm">
         <div class="col-12">
-          <q-card bordered class="no-shadow">
+          <app-card bordered class="no-shadow">
             <q-card-section class="tw-border tw-border-t-2">
               <q-icon name="mdi-weight" />
               <b class="tw-ml-1"> Peso atual</b>
@@ -14,10 +14,10 @@
                 KG
               </b>
             </q-card-section>
-          </q-card>
+          </app-card>
         </div>
         <div class="col-12">
-          <q-card bordered class="no-shadow">
+          <app-card bordered class="no-shadow">
             <q-card-section class="tw-border tw-border-t-2">
               <b>% Gordura</b>
             </q-card-section>
@@ -27,12 +27,12 @@
                 %
               </b>
             </q-card-section>
-          </q-card>
+          </app-card>
         </div>
       </div>
     </div>
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-      <q-card bordered class="no-shadow">
+      <app-card bordered class="no-shadow">
         <q-card-section class="tw-border tw-gap-4 tw-border-t-2">
           <q-icon name="mdi-chart-line-variant" />
           <b class="tw-ml-1">Evolução</b>
@@ -40,7 +40,7 @@
         <q-card-section class="tw-h-[225px]">
           <bar :options="chartOptions" :data="chartData" />
         </q-card-section>
-      </q-card>
+      </app-card>
     </div>
   </div>
 </template>

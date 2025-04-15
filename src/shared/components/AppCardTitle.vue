@@ -1,5 +1,5 @@
 <template>
-  <q-card flat class="tw-w-full app-title">
+  <app-card flat class="tw-w-full app-title">
     <div class="row tw-items-center q-pa-md">
       <div class="col-xs-12 col-sm col-md col-lg">
         <b class="title-page text-grey-8">{{ title }}</b>
@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-  </q-card>
+  </app-card>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';

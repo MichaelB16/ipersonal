@@ -13,7 +13,7 @@
           ></app-title-page>
         </div>
         <div class="col-12">
-          <q-card class="tw-w-full no-shadow" flat>
+          <app-card class="tw-w-full no-shadow" flat>
             <app-card-title title="Suas mensagens" hide-add hide-search />
             <q-card-section class="q-px-md">
               <q-form ref="formRef" @submit.prevent="handleSubmit">
@@ -61,7 +61,7 @@
                 </div>
               </q-form>
             </q-card-section>
-          </q-card>
+          </app-card>
         </div>
       </div>
     </template>

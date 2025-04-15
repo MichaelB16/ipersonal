@@ -1,10 +1,10 @@
 <template>
   <div class="row full-width">
-    <q-card bordered dense class="full-width no-shadow">
+    <app-card bordered dense class="full-width no-shadow">
       <q-card-section class="tw-px-[45px]">
         <app-logo />
       </q-card-section>
-    </q-card>
+    </app-card>
   </div>
   <div class="row q-mt-sm tw-px-[60px] q-col-gutter-y-md">
     <div

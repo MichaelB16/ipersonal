@@ -9,6 +9,7 @@ const components = {
   AppInput: () => import('src/shared/components/AppInput.vue'),
   AppInputMoney: () => import('src/shared/components/AppInputMoney.vue'),
   AppSelect: () => import('src/shared/components/AppSelect.vue'),
+  AppCard: () => import('src/shared/components/AppCard.vue'),
   AppLogo: () => import('src/shared/components/AppLogo.vue'),
 };
 

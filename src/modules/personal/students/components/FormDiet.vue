@@ -8,7 +8,7 @@
             v-for="(item, index) in listDiet"
             :key="index"
           >
-            <q-card bordered class="no-shadow tw-z-50">
+            <app-card bordered class="no-shadow tw-z-50">
               <q-card-section class="q-pa-none">
                 <q-expansion-item icon="mdi-calendar" :label="item.day">
                   <template v-slot:header>
@@ -19,7 +19,7 @@
                       <b>{{ item.day }}</b>
                     </q-item-section>
                   </template>
-                  <q-card>
+                  <app-card>
                     <q-card-section class="q-pa-xs tw-bg-[#f5f5f5c9]">
                       <template v-if="item.meals.length">
                         <div
@@ -73,10 +73,10 @@
                         </div>
                       </template>
                     </q-card-section>
-                  </q-card>
+                  </app-card>
                 </q-expansion-item>
               </q-card-section>
-            </q-card>
+            </app-card>
           </div>
         </transition-group>
       </draggable>

@@ -4,7 +4,7 @@
       <app-skeleton-title />
     </div>
     <div class="col-12">
-      <q-card bordered class="no-shadow">
+      <app-card bordered class="no-shadow">
         <q-card-section class="tw-border">
           <q-skeleton width="200px" />
         </q-card-section>
@@ -20,7 +20,7 @@
             </div>
           </div>
         </q-card-section>
-      </q-card>
+      </app-card>
     </div>
   </div>
 </template>

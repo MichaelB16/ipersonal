@@ -13,7 +13,7 @@
           />
         </div>
         <div class="col-12">
-          <q-card class="no-shadow">
+          <app-card class="no-shadow">
             <q-card-section class="no-padding">
               <app-table
                 class="no-shadow"
@@ -140,7 +140,7 @@
                 </template>
               </app-table>
             </q-card-section>
-          </q-card>
+          </app-card>
         </div>
         <modal-add-student />
         <modal-diet />

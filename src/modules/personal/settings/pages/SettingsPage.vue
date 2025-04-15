@@ -9,7 +9,7 @@
         ></app-title-page>
       </div>
       <div class="col-12">
-        <q-card bordered class="no-shadow">
+        <app-card bordered class="no-shadow">
           <q-card-section class="tw-h-[250px]" v-if="loading">
             <div class="row q-col-gutter-y-md">
               <div class="col-12" v-for="value in 4" :key="value">
@@ -19,12 +19,13 @@
           </q-card-section>
           <q-card-section v-else>
             <q-form ref="formRef" @submit.prevent="handleSubmit">
-              <div class="row q-col-gutter-y-md">
-                <div class="col-12">
+              <div class="row q-col-gutter-y-md q-col-gutter-x-md">
+                <div class="col-6">
                   <app-input
                     v-model="form.name"
                     :rules="formRules()"
                     label="Nome"
+                    bg-color="white"
                     hide-bottom-space
                   >
                     <template v-slot:prepend>
@@ -32,12 +33,13 @@
                     </template>
                   </app-input>
                 </div>
-                <div class="col-12">
+                <div class="col-6">
                   <app-input
                     v-model="form.phone"
                     :rules="formRules()"
                     label="Celular"
                     lazy-rules
+                    bg-color="white"
                     mask="(##)#####-####"
                     hide-bottom-space
                   >
@@ -52,6 +54,7 @@
                     placeholder="Faça o upload da sua logo para sair nos pdf de dieta e treino"
                     outlined
                     dense
+                    bg-color="white"
                     hide-bottom-space
                     rounded
                     v-model="file"
@@ -72,7 +75,7 @@
                 <div class="col-12">
                   <div class="row q-col-gutter-x-md q-col-gutter-y-md">
                     <div class="col-xs-12 col-sm-12 col-md col-lg">
-                      <q-card bordered class="no-shadow">
+                      <app-card bordered class="no-shadow">
                         <q-card-section
                           class="tw-border q-py-sm bg-grey-2 tw-border-t-2"
                         >
@@ -115,7 +118,7 @@
                             </q-btn>
                           </div>
                         </q-card-section>
-                      </q-card>
+                      </app-card>
                     </div>
                     <div class="col-auto xs-hide sm-hide">
                       <div class="row full-height items-center justify-center">
@@ -131,7 +134,7 @@
                       </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md col-lg">
-                      <q-card bordered class="no-shadow">
+                      <app-card bordered class="no-shadow">
                         <q-card-section
                           class="tw-border q-py-sm bg-grey-2 tw-border-t-2"
                         >
@@ -157,7 +160,7 @@
                             />
                           </template>
                         </q-card-section>
-                      </q-card>
+                      </app-card>
                     </div>
                   </div>
                 </div>
@@ -178,7 +181,7 @@
               </div>
             </q-form>
           </q-card-section>
-        </q-card>
+        </app-card>
       </div>
     </div>
   </q-intersection>

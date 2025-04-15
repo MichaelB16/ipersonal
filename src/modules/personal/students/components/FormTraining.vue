@@ -8,7 +8,7 @@
             v-for="(item, index) in listTraining"
             :key="index"
           >
-            <q-card bordered class="no-shadow tw-z-50">
+            <app-card bordered class="no-shadow tw-z-50">
               <q-card-section class="q-pa-none">
                 <q-expansion-item icon="mdi-calendar" :label="item.day">
                   <template v-slot:header>
@@ -29,7 +29,7 @@
                       />
                     </q-item-section>
                   </template>
-                  <q-card>
+                  <app-card>
                     <q-card-section class="q-pa-xs tw-bg-[#f5f5f5c9]">
                       <div class="row q-pa-md justify-center">
                         <q-btn
@@ -152,10 +152,10 @@
                         </div>
                       </template>
                     </q-card-section>
-                  </q-card>
+                  </app-card>
                 </q-expansion-item>
               </q-card-section>
-            </q-card>
+            </app-card>
           </div>
         </transition-group>
       </draggable>

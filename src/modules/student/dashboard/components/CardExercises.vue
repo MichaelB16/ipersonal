@@ -10,7 +10,7 @@
           />
         </div>
         <div class="col">
-          <q-card bordered class="no-shadow tw-border-l-8 full-width" dense>
+          <app-card bordered class="no-shadow tw-border-l-8 full-width" dense>
             <q-card-section class="tw-p-3 sm:tw-h-[45px]">
               <div class="row items-center">
                 <div class="col">
@@ -37,7 +37,7 @@
                 </div>
               </div>
             </q-card-section>
-          </q-card>
+          </app-card>
         </div>
       </div>
     </div>

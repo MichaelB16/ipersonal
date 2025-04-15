@@ -1,6 +1,7 @@
 <template>
   <q-table
     class="app-table"
+    :dark="dark"
     :rows="rows"
     :pagination="paginate"
     v-bind="$attrs"
@@ -11,8 +12,9 @@
   </q-table>
 </template>
 <script lang="ts">
-import { defineComponent, useAttrs } from 'vue';
+import { computed, defineComponent, useAttrs } from 'vue';
 import { IPagination } from '../model/paginate.type';
+import { useSettingStore } from 'src/stores/settings';
 
 export default defineComponent({
   name: 'AppTable',
@@ -24,6 +26,11 @@ export default defineComponent({
   },
   setup() {
     const attrs = useAttrs();
+    const settingStore = useSettingStore();
+
+    const dark = computed(() => {
+      return settingStore.isDark;
+    });
 
     const setConfigPagination = (): IPagination => {
       const paginate = (attrs?.pagination || {}) as IPagination;
@@ -38,6 +45,7 @@ export default defineComponent({
     };
 
     return {
+      dark,
       paginate: setConfigPagination(),
       setConfigPagination,
     };

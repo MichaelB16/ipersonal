@@ -1,7 +1,7 @@
 <template>
   <div class="row q-col-gutter-x-md q-col-gutter-y-md">
     <div :class="grid" v-for="(meal, m) in meals" :key="m">
-      <q-card bordered class="no-shadow tw-border-l-8" dense>
+      <app-card bordered class="no-shadow tw-border-l-8" dense>
         <q-card-section class="tw-p-3" :class="height">
           <div class="row">
             <div class="col-12">
@@ -14,7 +14,7 @@
             </div>
           </div>
         </q-card-section>
-      </q-card>
+      </app-card>
     </div>
   </div>
 </template>

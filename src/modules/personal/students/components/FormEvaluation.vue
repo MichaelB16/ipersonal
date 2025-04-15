@@ -6,7 +6,7 @@
     default-opened
     :label="title"
   >
-    <q-card bordered class="no-shadow">
+    <app-card bordered class="no-shadow">
       <q-card-section class="q-py-sm q-px-sm">
         <q-form @submit.prevent="handleSubmit" ref="formRef">
           <div class="row q-col-gutter-y-sm">
@@ -172,7 +172,7 @@
           </div>
         </q-form>
       </q-card-section>
-    </q-card>
+    </app-card>
   </q-expansion-item>
 </template>
 <script lang="ts">

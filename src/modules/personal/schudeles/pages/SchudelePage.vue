@@ -13,13 +13,13 @@
           />
         </div>
         <div class="col-12">
-          <q-card class="no-shadow">
+          <app-card class="no-shadow">
             <q-card-section class="no-padding tw-h-[calc(100vh_-_180px)]">
               <div class="tw-flex tw-h-full tw-justify-center">
                 <app-google-calendar />
               </div>
             </q-card-section>
-          </q-card>
+          </app-card>
         </div>
       </div>
     </template>
