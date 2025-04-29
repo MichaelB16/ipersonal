@@ -2,26 +2,22 @@
 FROM node:20-alpine AS build-stage
 WORKDIR /app
 
-# Copia apenas arquivos de dependência para cache otimizado
-COPY package.json package-lock.json ./
+# Instala dependências do sistema para build
+RUN apk add --no-cache python3 make g++
 
-# Instala as dependências necessárias para build e remove cache
+# Copia e instala dependências com cache otimizado
+COPY package.json package-lock.json ./
 RUN npm ci --prefer-offline --no-audit --progress=false
 
-# Copia o restante do código
+# Copia o restante do projeto
 COPY . .
 
-# Faz o build usando npx (evita global)
+# Faz o build
 RUN npx quasar build
 
-# Stage de produção final
+# Stage de produção
 FROM nginx:1.27.0-alpine AS production-stage
-
-# Copia o build final pro Nginx
 COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
 
-# Expor a porta padrão do Nginx
 EXPOSE 80
-
-# Comando padrão
 CMD ["nginx", "-g", "daemon off;"]
