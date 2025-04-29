@@ -8,7 +8,7 @@
             v-for="(item, index) in listTraining"
             :key="index"
           >
-            <app-card bordered class="no-shadow tw-z-50">
+            <app-card bordered class="no-shadow">
               <q-card-section class="q-pa-none">
                 <q-expansion-item icon="mdi-calendar" :label="item.day">
                   <template v-slot:header>
