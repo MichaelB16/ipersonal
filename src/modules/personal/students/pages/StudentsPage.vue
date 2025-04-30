@@ -61,7 +61,9 @@
                   <q-tr>
                     <td class="text-left">{{ row.name }}</td>
                     <td class="text-left">{{ row.email }}</td>
-                    <td class="text-left">{{ row.price }}</td>
+                    <td class="text-left">
+                      {{ formatMoney(row.price) }}
+                    </td>
                     <td class="text-left">{{ row.phone }}</td>
                     <q-td class="text-center">
                       <q-btn
@@ -174,7 +176,7 @@ import { studentColumns } from 'src/modules/personal/students/helpers';
 import { useStudentStore } from 'src/modules/personal/students/store/student.store';
 import { IFormStudent } from '../model/student.model';
 import { useNotification } from 'src/shared/composable/notification';
-import { isGrid } from 'src/shared/utils';
+import { isGrid, moneyFormatBr } from 'src/shared/utils';
 import dayjs from 'dayjs';
 
 export default defineComponent({
@@ -271,6 +273,10 @@ export default defineComponent({
       };
     };
 
+    const formatMoney = (value) => {
+      return moneyFormatBr(value);
+    };
+
     const expand = (key: number, value: boolean) => {
       studentStore.listStudent[key].expand = value;
       studentStore.listStudent = [...studentStore.listStudent];
@@ -293,6 +299,7 @@ export default defineComponent({
       columns,
       loading,
       modeView,
+      formatMoney,
       configDataChart,
       ...toRefs(state),
       toggleIsGrid,

@@ -1,0 +1,11 @@
+services:
+  frontend:
+    image: node:20-alpine
+    container_name: app_frontend_dev
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - '3000:3000'
+    command: sh -c "npm install && npx quasar dev -p 3000"
